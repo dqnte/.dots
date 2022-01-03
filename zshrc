@@ -55,6 +55,6 @@ alias sft='sqlformat --reindent_aligned -' # need to add -i in vim
 
 
 # Open tmux automatically
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~  tmux ]] && [ -z "$TMUX" ]; then
+ exec tmux -f ~/.dots/tmux.conf
 fi
