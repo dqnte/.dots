@@ -1,1 +1,1 @@
-# Add your database connection strings to this file
+Plug 'vim-scripts/dbext.vim'
