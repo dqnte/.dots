@@ -1,2 +1,2 @@
-" Fancy commenting
+-- Fancy commenting
 Plug 'tpope/vim-commentary'
