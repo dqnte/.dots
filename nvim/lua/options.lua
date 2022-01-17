@@ -18,6 +18,7 @@ local options = {
 	ttyfast = true,                 -- Speed up scrolling in Vim
 	swapfile = false,               -- disable creating swap file
 	signcolumn = "yes",             -- prevent sign column from shifting
+	encoding="UTF-8"
 }
 
 for k, v in pairs(options) do

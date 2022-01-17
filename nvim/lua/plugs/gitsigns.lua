@@ -1,6 +1,6 @@
 Plug 'lewis6991/gitsigns.nvim'
 
-local function start_gitsigns()
+vim.loaded.start_gitsigns = function()
     require 'gitsigns'.setup{
         -- signs config
  	    current_line_blame = true,
@@ -10,5 +10,3 @@ local function start_gitsigns()
  	    }
     }
 end
-
-vim.loaded.start_gitsigns = start_gitsigns

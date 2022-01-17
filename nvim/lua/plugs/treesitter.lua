@@ -1,6 +1,6 @@
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
-local function start_treesitter()
+vim.loaded.start_treesitter = function ()
 	require'nvim-treesitter.configs'.setup {
 		ensure_installed = "maintained",
 		sync_install = false,
@@ -13,5 +13,3 @@ local function start_treesitter()
 		indent = { enabled = true }
 	}
 end
-
-vim.loaded.start_treesitter = start_treesitter

@@ -6,7 +6,7 @@ keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true, sil
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
 
-local function start_telescope()
+vim.loaded.start_telescope = function()
 	local telescope = require("telescope")
 	telescope.setup {
 		defaults = {
@@ -17,5 +17,3 @@ local function start_telescope()
 	}
 	-- telescope.load_extension('fzf')
 end
-
-vim.loaded.start_telescope = start_telescope

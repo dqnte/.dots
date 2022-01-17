@@ -1,6 +1,6 @@
 Plug 'neovim/nvim-lspconfig'
 
-local function start_lsp()
+vim.loaded.start_lsp = function()
     local LSP = require 'lspconfig'
 
     -- Lua server
