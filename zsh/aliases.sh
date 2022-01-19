@@ -5,3 +5,7 @@ alias g='grep --exclude-dir=node_modules --exclude-dir=__pycache__ --exclude-dir
 alias v=nvim
 alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
+
+# key binding for kitty
+bindkey '\e[1;3D' backward-word # ⌥←
+bindkey '\e[1;3C' forward-word # ⌥→
