@@ -1,5 +1,14 @@
 # zsh shape and colorization
-export PS1="%1~ $ " # leading text in shell
+setopt PROMPT_SUBST
+parse_git_branch() {
+   branch=$(git branch 2> /dev/null)
+   branch=$(sed -e '/^[^*]/d' <<< $branch)
+   branch=$(sed -e 's/* \(.*\)/\1/' <<< $branch)
+   branch=$(sed -r 's/^[a-z]*-//' <<< $branch)
+   branch=$(sed 's/^\([a-z]*-[0-9]*\).*/\1/' <<< $branch)
+   echo $branch
+}
+export PS1="(\$(parse_git_branch)) %1~ $ " # leading text in shell
 
 export CLICOLOR=1
 export LSCOLORS=fxxxxxxxxxxxxxxxxxxxxx
