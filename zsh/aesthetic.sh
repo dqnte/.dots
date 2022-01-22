@@ -1,20 +1,22 @@
 # zsh shape and colorization
 setopt PROMPT_SUBST
-parse_git_branch() {
-   branch=$(git branch 2> /dev/null)
-   branch=$(sed -e '/^[^*]/d' <<< $branch)
-   branch=$(sed -e 's/* \(.*\)/\1/' <<< $branch)
-   branch=$(sed -r 's/^[a-z]*-//' <<< $branch) # remove initials
-   branch=$(sed 's/^\([a-z]*-[0-9]*\).*/\1/' <<< $branch) # show ticket
-   if [ -z $branch ]
+parse_git() {
+   branch=$(git branch --show-current 2> /dev/null | cut -d '-' -f 2-3)
+   if [ $branch ]
    then
-      echo ""
-   else
       echo "%F{blue}($branch)%f "
    fi
 }
 
-export PS1="\$(parse_git_branch)%1~ $ " # leading text in shell
+parse_venv() {
+   if [[ $PATH == *"pyenv-virtualenv"* ]]
+   then
+      echo "%F{blue}%f "
+   fi
+}
+
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PS1="\$(parse_venv)\$(parse_git)%1~ $ " # leading text in shell
 export LSCOLORS=cxxxxxxxxxxxxxxxxxxxxx
 alias ls="ls -G" # better ls colors
 
