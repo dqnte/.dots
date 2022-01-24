@@ -26,7 +26,6 @@ require "plugs.goyo"
 require "linting"
 require "plugs.treesitter"
 require "plugs.lspconfig"
-require "plugs.lspsaga"
 vim.call('plug#end')
 
 vim.cmd("doautocmd User PlugLoaded")
