@@ -138,7 +138,7 @@ vim.loaded.start_alpha = function()
     local working_dirs = {}
 
     local function _get_base_dir(full_path)
-        for i, dir in ipairs(working_dirs) do
+        for _, dir in ipairs(working_dirs) do
             if full_path:find(dir) == 1 then
                 return dir:gsub("%%", "")
             end
@@ -258,7 +258,7 @@ vim.loaded.start_alpha = function()
         },
     }
 
-    opts = {
+    local opts = {
         layout = {
             { type = "padding", val = 1 },
             section.header,

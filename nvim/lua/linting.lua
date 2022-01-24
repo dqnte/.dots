@@ -1,7 +1,17 @@
--- Plug 'dense-analysis/ale'    -- linting pluggin
-Plug 'sheerun/vim-polyglot'  -- langauge syntax highlighting
+-- langauge syntax highlighting
+Plug 'sheerun/vim-polyglot'
 
--- vim.g.ale_linters = { python = {'flake8', 'mypy'}, javascript = {'prettier', 'eslint'}}
--- vim.g.ale_fixers = { python = {'black', 'isort'}, javascript = {'prettier', 'eslint'}}
+-- remove trailing white spaces
+nvim_cmd("autocmd BufWritePre * :%s/\\s\\+$//e")
 
-nvim_cmd("autocmd BufWritePre * :%s/\\s\\+$//e") -- remove trailing white spaces
+-- enable spell in markdown files
+vim.api.nvim_exec(
+	[[
+	augroup markdownSpell
+		autocmd!
+		autocmd FileType markdown setlocal spell
+		autocmd BufRead,BufNewFile *.md setlocal spell
+	augroup END
+	]],
+	false
+)
