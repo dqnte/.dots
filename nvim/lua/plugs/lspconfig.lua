@@ -39,7 +39,7 @@ local function configure_server(server_name, opts)
 
   if active then
     server:on_ready(function()
-	    server:setup(opts)
+	  server:setup(opts)
     end)
   else
     if not server:is_installed() then
@@ -68,6 +68,15 @@ local function configure_lsp()
       }
 	}
   })
+  configure_server("bashls", {
+    -- on_attach = on_attach,
+    -- capabilities = capabilities
+  })
+  configure_server("vuels", {
+    on_attach = on_attach,
+    capabilities = capabilities
+  })
+
   -- configure_server("remark_ls", {
   --   on_attach = on_attach,
   --   capabilities = capabilities

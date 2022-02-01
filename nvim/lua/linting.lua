@@ -1,5 +1,5 @@
 -- langauge syntax highlighting
-Plug 'sheerun/vim-polyglot'
+-- Plug 'sheerun/vim-polyglot'
 
 -- remove trailing white spaces
 nvim_cmd("autocmd BufWritePre * :%s/\\s\\+$//e")
