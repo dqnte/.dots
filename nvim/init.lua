@@ -14,13 +14,16 @@ require "plugs.sensible"
 require "plugs.dbext"
 require "plugs.planerly"
 require "plugs.gitsigns"
-require "plugs.dracula"
 require "plugs.vim_tmux_navigator"
 require "plugs.kitty"
 require "plugs.lualine"
 require "plugs.alpha"
 require "plugs.telescope"
 require "plugs.goyo"
+
+-- Color Schemes
+-- require "plugs.vim_nightfox"
+require "plugs.dracula"
 
 -- All linting requirements
 require "linting"
