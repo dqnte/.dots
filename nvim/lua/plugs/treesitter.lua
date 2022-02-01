@@ -8,7 +8,7 @@ vim.loaded.start_treesitter = function ()
 		highlight = {
 			enable = true,
 			disable = { "c", "rust" },
-			additional_vim_regex_highlighting = true,
+			additional_vim_regex_highlighting = false,
 		},
 		indent = { enabled = true }
 	}
