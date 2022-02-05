@@ -1,5 +1,6 @@
 .DS_Store
 .zcompdump
+.zsh_history
 .luarc.json
 nvim/modules/*
 zsh/plugins/*
