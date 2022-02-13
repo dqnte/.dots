@@ -1,7 +1,4 @@
-# Open tmux automatically
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~  tmux ]] && [ -z "$TMUX" ]; then
-    exec tmux -f ~/.dots/tmux.conf
-else
+function set_zsh_env() {
     DOTZSH="$HOME/.dots/zsh"
     source "$DOTZSH/environment.sh"
     source "$DOTZSH/aesthetic.sh"
@@ -11,4 +8,12 @@ else
 
     # Pluggins
     zsh_add_plugin "lukechilds/zsh-nvm"
+}
+
+# Open tmux automatically
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~  tmux ]] && [ -z "$TMUX" ]; then
+    export TERM=screen-256color # for italics in tmux
+    exec tmux -f ~/.dots/tmux.conf
+else
+    set_zsh_env
 fi
