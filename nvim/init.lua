@@ -1,7 +1,9 @@
 vim.cmd("let &runtimepath.=','.escape(expand('~/.dots/nvim'), '\\,')")
 
-require "options"
+require "utils"
 require "mappings"
+require "options"
+pcall(require, "secrets")
 
 -- Plugins
 Plug = vim.fn['plug#']
