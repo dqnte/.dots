@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ALIASES
 alias k=kubectl
 alias ol='cd ~/onelogin; onelogin-aws-assume-role --onelogin-password $(security find-generic-password -s onelogin -w) --profile default; cd $OLDPWD'

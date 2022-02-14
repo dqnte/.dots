@@ -25,6 +25,3 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
-keymap = vim.api.nvim_set_keymap
-nvim_cmd = vim.api.nvim_command

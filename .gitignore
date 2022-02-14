@@ -1,7 +1,8 @@
 .DS_Store
 .zcompdump
+.zcompcache
 .zsh_history
 .luarc.json
 nvim/modules/*
+nvim/lua/secrets.lua
 zsh/plugins/*
-database.lua

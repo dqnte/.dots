@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # style not showing up for some reason...
 zstyle ':completion:*:*:git:*' script ~/.dots/zsh/functions/git-completions.bash
 
