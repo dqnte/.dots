@@ -1,3 +1,4 @@
+#!/bin/bash
 AUTO_TMUX=true
 
 function set_zsh_env() {

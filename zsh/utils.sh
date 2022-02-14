@@ -1,6 +1,7 @@
-export ZDOTDIR="$HOME/.dots/zsh"
+#!/bin/bash
 
-# Function to source files if they exist
+# Functions to source files if they exist
+export ZDOTDIR="$HOME/.dots/zsh"
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }

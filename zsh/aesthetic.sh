@@ -1,6 +1,8 @@
-# zsh shape and colorization
+#!/bin/bash
+
+# zsh prompt styles
 setopt PROMPT_SUBST
-parse_git() {
+function parse_git() {
    branch=$(git branch --show-current 2> /dev/null | cut -d '-' -f 2-3)
    if [ $branch ]
    then
@@ -8,7 +10,7 @@ parse_git() {
    fi
 }
 
-parse_venv() {
+function parse_venv() {
    if [[ $PATH == *"pyenv-virtualenv"* ]]
    then
       echo "+>"

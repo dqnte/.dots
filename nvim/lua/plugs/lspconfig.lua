@@ -69,8 +69,8 @@ local function configure_lsp()
 	}
   })
   configure_server("bashls", {
-    -- on_attach = on_attach,
-    -- capabilities = capabilities
+    on_attach = on_attach,
+    capabilities = capabilities
   })
   configure_server("vuels", {
     on_attach = on_attach,
