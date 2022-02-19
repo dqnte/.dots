@@ -19,7 +19,8 @@ local options = {
 	swapfile = false,               -- disable creating swap file
 	signcolumn = "yes",             -- prevent sign column from shifting
 	encoding="UTF-8",
-	updatetime=300
+	updatetime=300,
+    cursorline = true
 }
 
 for k, v in pairs(options) do

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# keep on line 4 pls
+[ -z $THEME ] && export THEME=dracula
+
 # zsh prompt styles
 setopt PROMPT_SUBST
 function parse_git() {

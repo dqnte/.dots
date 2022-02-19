@@ -3,7 +3,7 @@ Plug 'nvim-lualine/lualine.nvim'
 vim.loaded.start_lualine = function()
     require('lualine').setup{
         options = {
-            theme = 'dracula'
+            theme = vim.env.THEME
         },
         sections = {
             lualine_a = {'mode'},
