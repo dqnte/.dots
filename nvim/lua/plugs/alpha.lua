@@ -136,6 +136,9 @@ vim.loaded.start_alpha = function()
     end
 
     local working_dirs = {}
+    if vim.g.working_dirs ~= nil then
+        working_dirs = vim.g.working_dirs
+    end
 
     local function _get_base_dir(full_path)
         for _, dir in ipairs(working_dirs) do
@@ -205,7 +208,9 @@ vim.loaded.start_alpha = function()
     end
 
     local function mru_title()
-        return format_row("MRU " .. fnamemodify(vim.fn.getcwd(), ":~"))
+        local title = fnamemodify(vim.fn.getcwd(), ":~")
+        if title == "~/" then return format_row("MRU ~") end
+        return format_row("MRU " .. _format_file_path(title))
     end
 
     local section = {
@@ -227,7 +232,8 @@ vim.loaded.start_alpha = function()
             type = "group",
             val = {
                 { type = "padding", val = 1 },
-                { type = "text", val = format_row("MRU"), opts = { position = "center", hl = "SpecialComment" } },
+                { type = "text", val = format_row("MRU"),
+                   opts = { position = "center", hl = "Directory" } },
                 { type = "padding", val = 1 },
                 {
                     type = "group",
@@ -241,7 +247,14 @@ vim.loaded.start_alpha = function()
             type = "group",
             val = {
                 { type = "padding", val = 1 },
-                { type = "text", val = mru_title, opts = { hl = "SpecialComment", position = "center", shrink_margin = false } },
+                { type = "text",
+                    val = mru_title,
+                    opts = {
+                        hl = "Directory",
+                        position = "center",
+                        shrink_margin = false
+                    }
+                },
                 { type = "padding", val = 1 },
                 {
                     type = "group",
