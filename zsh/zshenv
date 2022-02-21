@@ -1,0 +1,8 @@
+# Must be placed in the home directory to function
+
+TRAPUSR1() {
+  if [[ -o INTERACTIVE ]]; then
+      THEME=$(cat ~/.dots/.state | grep THEME | cut -d '=' -f 2)
+      export $THEME
+  fi
+}
