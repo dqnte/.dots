@@ -4,8 +4,9 @@ if (vim.env.THEME == 'dracula') then
     vim.o.background = 'dark'
     vim.g.dracula_colorterm = 0
 
-    local drac_highlight = "autocmd ColorScheme dracula highlight "
-    nvim_cmd(drac_highlight .. "Cursorline ctermbg=233")
-    nvim_cmd(drac_highlight .. "CursorlineNR ctermbg=233 cterm=none")
-    nvim_cmd("autocmd User PlugLoaded ++nested colorscheme dracula")
+    vim.loaded.start_dracula = function()
+        nvim_cmd("colorscheme dracula")
+        nvim_cmd("hi Cursorline ctermbg=233 guibg=#121212")
+        nvim_cmd("hi CursorlineNR ctermbg=233 guibg=#121212")
+    end
 end

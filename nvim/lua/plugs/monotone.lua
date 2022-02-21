@@ -2,7 +2,8 @@ Plug('Lokaltog/vim-monotone')
 
 if (vim.env.THEME == 'mono') then
     vim.o.background = 'dark'
-    vim.luatheme = "auto"
+    vim.o.termguicolors = false
+    vim.luatheme = "nord"
     vim.loaded.start_mono = function()
         vim.g.monotone_emphasize_comments = 1
         nvim_cmd("colorscheme monotone")
