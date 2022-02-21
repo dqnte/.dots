@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEFAULT_THEME=dracula
-declare -A ALLOWED_THEMES=( ["dracula"]=true ["ayu"]=true )
+declare -A ALLOWED_THEMES=( ["dracula"]=true ["ayu"]=true ["mono"]=true ["monochrome"]=true )
 
 if [ $ALLOWED_THEMES[$1] ]; then
     THEME=$1

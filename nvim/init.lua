@@ -10,6 +10,13 @@ Plug = vim.fn['plug#']
 vim.loaded = {}
 
 vim.call('plug#begin', '~/.dots/nvim/modules')
+-- Color Schemes
+require "plugs.dracula"
+require "plugs.vim_ayu"
+require "plugs.monochrome"
+require "plugs.monotone"
+
+-- Plugins
 require "plugs.fugitive"
 require "plugs.commentary"
 require "plugs.sensible"
@@ -22,10 +29,6 @@ require "plugs.lualine"
 require "plugs.alpha"
 require "plugs.telescope"
 require "plugs.goyo"
-
--- Color Schemes
-require "plugs.dracula"
-require "plugs.vim_ayu"
 
 -- All linting requirements
 require "linting"
