@@ -1,19 +1,18 @@
 #!/bin/bash
 
-declare -A allowed_themes=( ["dracula"]=true ["ayu"]=true)
-if [ -z $allowed_themes[$1] ]; then
-    export THEME=dracula
+DEFAULT_THEME=dracula
+declare -A ALLOWED_THEMES=( ["dracula"]=true ["ayu"]=true )
+
+if [ $ALLOWED_THEMES[$1] ]; then
+    THEME=$1
 else
-    export THEME="$1"
+    THEME=$DEFAULT_THEME
 fi
 
-# vim theme change
-new_line="\[ -z \$THEME \] \&\& export THEME=$THEME"
-sed -i "" "4s/.*/$new_line/" ~/.dots/zsh/aesthetic.sh
-
 # kitty theme change
-new_line="include ~\/.dots\/kitty\/$THEME.conf"
-sed -i "" "1s/.*/$new_line/" ~/.dots/kitty/kitty.conf
-
-# reload kitty
+cp ~/.dots/kitty/$THEME.conf ~/.dots/kitty/theme.conf
 kill -SIGUSR1 $(pgrep kitty)
+
+# update zsh env
+set_state_value THEME $THEME
+killall -SIGUSR1 zsh

@@ -16,3 +16,15 @@ function zsh_add_plugin() {
         git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
     fi
 }
+
+# Local state functions
+function get_state_value() {
+    key=$1
+    echo $(grep $key ~/.dots/.state | cut -d '=' -f 2)
+}
+
+function set_state_value() {
+    key=$1
+    new_value=$2
+    sed -i "" "s/$key=.*/$key=$new_value/" ~/.dots/.state
+}

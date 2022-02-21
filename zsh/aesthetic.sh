@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # keep on line 4 pls
-[ -z $THEME ] && export THEME=dracula
+export THEME="$( get_state_value THEME )"
 
 # zsh prompt styles
 setopt PROMPT_SUBST
