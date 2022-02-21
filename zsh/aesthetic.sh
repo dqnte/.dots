@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# keep on line 4 pls
+export THEME="$( get_state_value THEME )"
+
 # zsh prompt styles
 setopt PROMPT_SUBST
 function parse_git() {

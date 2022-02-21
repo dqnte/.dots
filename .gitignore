@@ -1,4 +1,5 @@
 .DS_Store
+.state
 .zcompdump
 .zcompcache
 .zsh_history
@@ -6,3 +7,4 @@
 nvim/modules/*
 nvim/lua/secrets.lua
 zsh/plugins/*
+kitty/theme.conf

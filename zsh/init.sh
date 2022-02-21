@@ -3,9 +3,9 @@ AUTO_TMUX=true
 
 function set_zsh_env() {
     DOTZSH="$HOME/.dots/zsh"
+    source "$DOTZSH/utils.sh"
     source "$DOTZSH/environment.sh"
     source "$DOTZSH/aesthetic.sh"
-    source "$DOTZSH/utils.sh"
     source "$DOTZSH/aliases.sh"
     source "$DOTZSH/completion.sh"
 

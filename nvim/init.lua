@@ -24,8 +24,8 @@ require "plugs.telescope"
 require "plugs.goyo"
 
 -- Color Schemes
--- require "plugs.vim_nightfox"
 require "plugs.dracula"
+require "plugs.vim_ayu"
 
 -- All linting requirements
 require "linting"

@@ -1,5 +1,7 @@
 Plug 'EdenEast/nightfox.nvim'
 
-vim.loaded.start_nightfox = function()
-    require('nightfox').load()
+if (vim.env.THEME == 'nightfox') then
+    vim.loaded.start_nightfox = function()
+        require('nightfox').load()
+    end
 end
