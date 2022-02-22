@@ -17,7 +17,6 @@ function boot_up() {
     # Open tmux automatically
     if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~  tmux ]] && [ -z "$TMUX" ] && [ $AUTO_TMUX ]
     then
-        export TERM=screen-256color # for italics in tmux
         exec tmux -f ~/.dots/tmux.conf
     else
         set_zsh_env

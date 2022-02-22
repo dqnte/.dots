@@ -21,7 +21,7 @@ local options = {
 	encoding="UTF-8",
 	updatetime=300,
     cursorline = true,
-    termguicolors = true
+    termguicolors = true,
 }
 
 for k, v in pairs(options) do
