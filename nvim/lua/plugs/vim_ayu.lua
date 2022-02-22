@@ -1,10 +1,13 @@
-Plug('Shatur/neovim-ayu', { name = 'ayu' })
+Plug('Shatur/neovim-ayu', {name = "ayu"})
 
-if (vim.env.THEME == 'ayu') then
-    vim.o.background = 'light'
+if (vim.env.THEME:find('ayu')) then
+    if (vim.env.THEME == "ayu-light") then
+        vim.o.background = "light"
+    else
+        vim.o.background = "dark"
+    end
+    vim.luatheme = "ayu"
     vim.loaded.start_ayu = function()
         require('ayu').colorscheme()
-        nvim_cmd("highlight Cursorline guibg=#eeeeee")
-        nvim_cmd("highlight GitSignsCurrentLineBlame guifg=#a8a8a8")
     end
 end

@@ -1,7 +1,16 @@
 #!/bin/bash
 
 DEFAULT_THEME=dracula
-declare -A ALLOWED_THEMES=( ["dracula"]=true ["ayu"]=true ["mono"]=true ["monochrome"]=true ["melange"]=true )
+declare -A ALLOWED_THEMES=(
+    ["dracula"]=true
+    ["ayu"]=true
+    ["ayu-light"]=true
+    ["ayu-mirage"]=true
+    ["mono"]=true
+    ["monochrome"]=true
+    ["melange"]=true
+    ["palenight"]=true
+)
 
 if [ $ALLOWED_THEMES[$1] ]; then
     THEME=$1
@@ -10,7 +19,7 @@ else
 fi
 
 # kitty theme change
-cp ~/.dots/kitty/$THEME.conf ~/.dots/kitty/theme.conf
+cp ~/.dots/kitty/themes/$THEME.conf ~/.dots/kitty/theme.conf
 kill -SIGUSR1 $(pgrep -a kitty)
 
 # update zsh env

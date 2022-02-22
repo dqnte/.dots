@@ -16,6 +16,7 @@ require "plugs.vim_ayu"
 require "plugs.monochrome"
 require "plugs.monotone"
 require "plugs.melange"
+require "plugs.palenight"
 
 -- Plugins
 require "plugs.fugitive"
