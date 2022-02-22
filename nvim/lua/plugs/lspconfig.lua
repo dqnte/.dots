@@ -76,7 +76,14 @@ local function configure_lsp()
     on_attach = on_attach,
     capabilities = capabilities
   })
-
+  -- configure_server("spectral", {
+  --   on_attach = on_attach,
+  --   capabilities = capabilities
+  -- })
+    configure_server("tsserver", {
+    on_attach = on_attach,
+    capabilities = capabilities
+  })
   -- configure_server("remark_ls", {
   --   on_attach = on_attach,
   --   capabilities = capabilities
