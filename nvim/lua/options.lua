@@ -20,7 +20,8 @@ local options = {
 	signcolumn = "yes",             -- prevent sign column from shifting
 	encoding="UTF-8",
 	updatetime=300,
-    cursorline = true
+    cursorline = true,
+    termguicolors = true,
 }
 
 for k, v in pairs(options) do
