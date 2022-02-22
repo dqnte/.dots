@@ -15,6 +15,7 @@ require "plugs.dracula"
 require "plugs.vim_ayu"
 require "plugs.monochrome"
 require "plugs.monotone"
+require "plugs.melange"
 
 -- Plugins
 require "plugs.fugitive"
