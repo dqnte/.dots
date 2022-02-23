@@ -4,14 +4,8 @@ source ~/.dots/zsh/utils.sh
 DEFAULT_THEME=dracula
 declare -A ALLOWED_THEMES=(
     ["ayu"]=true
-<<<<<<< Updated upstream
-    ["ayu-light"]=true
-    ["ayu-mirage"]=true
-    ["dracula"]=true
-=======
     ["dracula"]=true
     ["horizon"]=true
->>>>>>> Stashed changes
     ["melange"]=true
     ["mono"]=true
     ["monochrome"]=true
