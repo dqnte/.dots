@@ -4,9 +4,8 @@ source ~/.dots/zsh/utils.sh
 DEFAULT_THEME=dracula
 declare -A ALLOWED_THEMES=(
     ["ayu"]=true
-    ["ayu-light"]=true
-    ["ayu-mirage"]=true
     ["dracula"]=true
+    ["horizon"]=true
     ["melange"]=true
     ["mono"]=true
     ["monochrome"]=true

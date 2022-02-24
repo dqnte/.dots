@@ -12,11 +12,12 @@ vim.loaded = {}
 vim.call('plug#begin', '~/.dots/nvim/modules')
 -- Color Schemes
 require "plugs.dracula"
-require "plugs.vim_ayu"
+require "plugs.ayu"
 require "plugs.monochrome"
 require "plugs.monotone"
 require "plugs.melange"
 require "plugs.palenight"
+require "plugs.horizon"
 
 -- Plugins
 require "plugs.fugitive"
