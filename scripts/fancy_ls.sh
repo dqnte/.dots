@@ -1,5 +1,5 @@
-dirs=$(ls -l $1 | grep -i "^d" |  awk '{print $NF}')
-files=$(ls -l $1 | grep -i "^\-" | awk '{print $NF}')
+dirs=$(ls -p $1 | grep / | sed 's/\// /')
+files=$(ls -p $1 | grep -v / )
 
 longest_dir=$(echo $dirs | sed 's/ /\n/g' | sort | uniq | awk '{print length, $0}' | sort -nr | head -n 1 | cut -d " " -f 1)
 longest_file=$(echo $files | sed 's/ /\n/g' | sort | uniq | awk '{print length, $0}' | sort -nr | head -n 1 | cut -d " " -f 1)
@@ -18,6 +18,6 @@ num_cols=$((total_width / column_width ))
 echo
 fmt=$( yes "%-${column_width}s" | head -$num_cols | xargs | sed 's/ //g' )
 [ ! -z "$dirs" ] && printf "  $fmt\n" $dirs
-echo "  ----"
+echo -e "  \e[2m----\e[0m"
 [ ! -z "$files" ] && printf "  $fmt\n" $files
 echo
