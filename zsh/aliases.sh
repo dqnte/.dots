@@ -10,7 +10,7 @@ alias pe='poetry run python'
 alias theme="bash ~/.dots/scripts/theme.sh"
 
 alias ls="bash ~/.dots/scripts/fancy_ls.sh"
-alias g="bash ~/.dots/scripts/fancy_git.sh"
+alias g="~/.dots/scripts/fancy_git"
 
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←

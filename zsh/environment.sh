@@ -9,6 +9,7 @@ export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 
 # Python Setup
 export PYENV_ROOT=/usr/local/var/pyenv
+export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 
 # Lazy load pyenv - gotta work on it tho
