@@ -9,9 +9,9 @@ vim.loaded.start_lualine = function()
             lualine_a = {'mode'},
             lualine_b = {'FugitiveHead'},
             lualine_c = {},
-            lualine_x = {'filename'},
-            lualine_y = {'progress'},
-            lualine_z = {'location'}
+            lualine_x = {'diff'},
+            lualine_y = {'filename'},
+            lualine_z = {'progress'}
         }
     }
 end
