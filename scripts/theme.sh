@@ -6,6 +6,8 @@ declare -A ALLOWED_THEMES=(
     ["ayu"]=true
     ["dracula"]=true
     ["horizon"]=true
+    ["iceberg"]=true
+    ["iceberg_dark"]=true
     ["melange"]=true
     ["mono"]=true
     ["monochrome"]=true
@@ -34,6 +36,12 @@ function change_theme() {
     # update zsh env
     set_state_value THEME $THEME
     killall -SIGUSR1 zsh
+
+    # update nvim instances
+    # nvr  --serverlist | while read line; do
+    #     nvr --servername $line --remote-send "<esc>:let \$THEME = \"$THEME\"<enter>"
+    #     nvr --servername $line --remote-send "<esc>:source ~/.dots/nvim/init.lua<enter>"
+    # done
 }
 
 if [ -z $1 ]; then
