@@ -4,6 +4,17 @@
 -- remove trailing white spaces
 nvim_cmd("autocmd BufWritePre * :%s/\\s\\+$//e")
 
+-- specific tab sizes
+nvim_cmd([[
+    autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
+]])
+nvim_cmd([[
+    autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab
+]])
+nvim_cmd([[
+    autocmd FileType vue setlocal shiftwidth=2 softtabstop=2 expandtab
+]])
+
 -- enable spell in markdown files
 vim.api.nvim_exec(
 	[[
