@@ -33,6 +33,7 @@ require("plugs.kitty")
 require("plugs.lualine")
 require("plugs.alpha")
 require("plugs.telescope")
+require("plugs.nerdtree")
 require("plugs.goyo")
 require("plugs.hop")
 
