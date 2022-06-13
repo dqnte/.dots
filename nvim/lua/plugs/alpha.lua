@@ -214,14 +214,14 @@ vim.loaded.start_alpha = function()
     end
 
     local section = {
-        header = {
-            type = "text",
-            val = format_row(""),
-            opts = {
-                hl = "Type",
-                shrink_margin = false,
-            },
-        },
+        -- header = {
+        --     type = "text",
+        --     val = format_row(""),
+        --     opts = {
+        --         hl = "Type",
+        --         shrink_margin = false,
+        --     },
+        -- },
         top_button = {
             type = "group",
             val = {
