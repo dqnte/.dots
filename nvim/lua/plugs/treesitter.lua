@@ -2,7 +2,7 @@ Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 vim.loaded.start_treesitter = function ()
 	require'nvim-treesitter.configs'.setup {
-		ensure_installed = "maintained",
+		ensure_installed = "all",
 		sync_install = false,
 		ignore_install = { "" },
 		highlight = {
