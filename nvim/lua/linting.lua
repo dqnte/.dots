@@ -26,3 +26,8 @@ vim.api.nvim_exec(
 	]],
 	false
 )
+
+-- markdown styles
+Plug('godlygeek/tabular')
+Plug('preservim/vim-markdown')
+vim.g.vim_markdown_folding_disabled = 1
