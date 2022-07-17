@@ -7,4 +7,5 @@
 nvim/modules/*
 nvim/lua/secrets.lua
 zsh/plugins/*
+zsh/secrets.sh
 kitty/theme.conf

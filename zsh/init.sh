@@ -9,6 +9,8 @@ function set_zsh_env() {
     source "$DOTZSH/completion.sh"
     source "$DOTZSH/aliases.sh"
 
+    [ -f "$DOTZSH/secrets.sh" ] && source "$DOTZSH/secrets.sh"
+
     # Pluggins
     zsh_add_plugin "lukechilds/zsh-nvm"
 }
