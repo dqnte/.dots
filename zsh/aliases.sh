@@ -15,3 +15,6 @@ alias g="~/.dots/scripts/fancy_git"
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←
 bindkey '\e[1;3C' forward-word # ⌥→
+
+# fixes backspace issues when sshing into a server
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
