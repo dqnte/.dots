@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # keep on line 4 pls
 export THEME="$( get_state_value THEME )"
@@ -7,18 +7,16 @@ export THEME="$( get_state_value THEME )"
 setopt PROMPT_SUBST
 function parse_git() {
    branch=$(git branch --show-current 2> /dev/null | cut -d '-' -f 2-3)
-   if [ $branch ]
-   then
+   if [ $branch ]; then
       echo "($branch) "
    fi
 }
 
 function parse_venv() {
-   if [[ $PATH == *"pyenv-virtualenv"* ]]
-   then
-      echo "+>"
+   if [[ $PATH == *"pyenv-virtualenv"* ]]; then
+      echo "=>"
    else
-      echo ">"
+      echo "->"
    fi
 }
 
