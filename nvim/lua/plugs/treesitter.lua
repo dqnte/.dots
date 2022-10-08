@@ -7,7 +7,7 @@ vim.loaded.start_treesitter = function ()
 		ignore_install = { "" },
 		highlight = {
 			enable = true,
-			disable = { "c", "rust" },
+			disable = { "c", "rust", "sql" },
 			additional_vim_regex_highlighting = false,
 		},
 		indent = { enabled = true }
