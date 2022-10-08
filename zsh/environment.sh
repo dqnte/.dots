@@ -5,7 +5,7 @@ PATH="$PATH:~/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # PSQL cli
-export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@14/bin:$PATH"
 
 # Python Setup
 export PYENV_ROOT=/usr/local/var/pyenv

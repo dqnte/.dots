@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 source ~/.dots/zsh/utils.sh
 
-DEFAULT_THEME=dracula
+DEFAULT_THEME=iceberg
 declare -A ALLOWED_THEMES=(
     ["ayu"]=true
     ["dracula"]=true
@@ -11,6 +11,8 @@ declare -A ALLOWED_THEMES=(
     ["melange"]=true
     ["mono"]=true
     ["monochrome"]=true
+    ["lavender"]=true
+    ["colibri"]=true
     ["palenight"]=true
 )
 

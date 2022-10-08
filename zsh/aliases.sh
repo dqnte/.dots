@@ -8,9 +8,11 @@ alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
 alias theme="bash ~/.dots/scripts/theme.sh"
 alias stay="caffeinate -d"
+alias clr=clear
 
 alias ls="bash ~/.dots/scripts/fancy_ls.sh"
 alias g="~/.dots/scripts/fancy_git"
+alias gs="g status"
 
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←
