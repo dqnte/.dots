@@ -50,15 +50,3 @@ for _, caller in pairs(vim.loaded) do
 end
 
 vim.after.start_hop()
-
-for k, _ in pairs(package.loaded) do
-	if string.match(k, "plugs.dracula") then
-		package.loaded[k] = nil
-	end
-	if string.match(k, "plugs.mono") then
-		package.loaded[k] = nil
-	end
-	if string.match(k, "plugs.lualine") then
-		package.loaded[k] = nil
-	end
-end
