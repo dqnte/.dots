@@ -12,12 +12,12 @@ export PYENV_ROOT=/usr/local/var/pyenv
 export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# Lazy load pyenv - gotta work on it tho
+# Lazy load pyenv
 function pyenv() {
     unset -f pyenv
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-    pyenv $@
+    eval "$(pyenv init - 2> null)"
+    eval "$(pyenv virtualenv-init - 2> null)"
+    [ ! -z $@  ] && pyenv $@
 }
 
 function pyclean() {

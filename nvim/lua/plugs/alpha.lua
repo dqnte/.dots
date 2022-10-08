@@ -111,7 +111,9 @@ vim.loaded.start_alpha = function()
 
     local mru_opts = {
         ignore = function(path, ext)
-            return (string.find(path, "COMMIT_EDITMSG")) or (vim.tbl_contains(default_mru_ignore, ext))
+            return path:find("COMMIT_EDITMSG")
+                or vim.tbl_contains(default_mru_ignore, ext)
+                or path:find("dbext_sql_history.txt")
         end,
     }
 
@@ -149,7 +151,7 @@ vim.loaded.start_alpha = function()
         return ""
     end
 
-    local MAX_LENGTH = 40
+    local MAX_LENGTH = 45
 
     local function get_file_name(path)
         return path:sub(if_nil(path:find("/[^/]*$"), 0) + 1)
@@ -175,7 +177,12 @@ vim.loaded.start_alpha = function()
             end
             return short_base .. "..." .. path:sub(start)
         else
-            return path:sub(if_nil(path:find("/[^/]*$"), 0) + 1)
+            local file_name = path:sub(if_nil(path:find("/[^/]*$"), 0) + 1)
+            if file_name:len() > MAX_LENGTH then
+                return "..." .. file_name:sub(file_name:len() - MAX_LENGTH - 1)
+            else
+                return file_name
+            end
         end
     end
 
