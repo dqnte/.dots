@@ -1,6 +1,8 @@
 Plug 'kyazdani42/nvim-web-devicons'
 Plug "goolord/alpha-nvim"
 
+keymap("n", "<leader>a", "<cmd>Alpha<CR>", { noremap = true, silent = true })
+
 vim.loaded.start_alpha = function()
     local if_nil = vim.F.if_nil
     local fnamemodify = vim.fn.fnamemodify
