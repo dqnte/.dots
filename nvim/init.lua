@@ -42,6 +42,7 @@ require("linting")
 require("plugs.treesitter")
 require("plugs.lspconfig")
 require("plugs.null_ls")
+require("plugs.cmp")
 vim.call("plug#end")
 
 vim.cmd("doautocmd User PlugLoaded")
