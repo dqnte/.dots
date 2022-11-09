@@ -8,6 +8,9 @@ Plug("hrsh7th/nvim-cmp")
 Plug("hrsh7th/cmp-vsnip")
 Plug("hrsh7th/vim-vsnip")
 
+-- pretty formatting
+Plug("onsails/lspkind.nvim")
+
 vim.loaded.start_cmp = function()
 	local cmp = require("cmp")
 	cmp.setup({
@@ -21,9 +24,22 @@ vim.loaded.start_cmp = function()
 			["<Tab>"] = cmp.mapping.confirm({ select = true }),
 		}),
 		sources = cmp.config.sources({
-            -- in order of priority
-			{ name = "buffer", max_item_count = 2 },
-			{ name = "nvim_lsp", max_item_count = 2 },
+			-- in order of priority
+			{ name = "buffer", max_item_count = 1 },
+			{ name = "nvim_lsp", max_item_count = 3 },
 		}),
+		formatting = {
+			-- only display the kind icon and not the text
+			format = function(entry, vim_item)
+				local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+				local strings = vim.split(kind.kind, "%s", { trimempty = true })
+				kind.kind = " " .. strings[1]
+				return kind
+			end,
+			fields = { "abbr", "kind" },
+		},
+		experimental = {
+			ghost_text = true,
+		},
 	})
 end
