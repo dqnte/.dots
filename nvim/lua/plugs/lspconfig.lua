@@ -52,10 +52,11 @@ end
 
 local function configure_lsp()
 	require("lspconfig")
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 	configure_server("sumneko_lua", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -72,11 +73,11 @@ local function configure_lsp()
 	})
 	configure_server("bashls", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 	})
 	configure_server("vuels", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 	})
 	-- configure_server("spectral", {
 	--   on_attach = on_attach,
@@ -84,7 +85,7 @@ local function configure_lsp()
 	-- })
 	configure_server("tsserver", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 	})
 	-- configure_server("remark_ls", {
 	--   on_attach = on_attach,
@@ -95,7 +96,11 @@ local function configure_lsp()
 	-- })
 	configure_server("pyright", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
+	})
+	configure_server("rust_analyzer", {
+		on_attach = on_attach,
+		capabilities = capabilities,
 	})
 end
 
