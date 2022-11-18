@@ -36,6 +36,7 @@ require("plugs.telescope")
 require("plugs.nerdtree")
 require("plugs.goyo")
 require("plugs.hop")
+require("plugs.vue")
 
 -- All linting requirements
 require("linting")
