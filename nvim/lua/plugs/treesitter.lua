@@ -1,4 +1,5 @@
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("nvim-treesitter/playground", { ["do"] = ":TSUpdate" })
 
 vim.loaded.start_treesitter = function()
 	require("nvim-treesitter.configs").setup({
@@ -13,6 +14,9 @@ vim.loaded.start_treesitter = function()
 		indent = { enabled = true },
 		context_commentstring = {
 			enable = true,
+		},
+		playground = {
+			enable = false,
 		},
 	})
 end
