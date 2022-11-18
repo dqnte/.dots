@@ -2,7 +2,7 @@ Plug("neovim/nvim-lspconfig")
 Plug("williamboman/nvim-lsp-installer")
 
 local function lsp_highlight_document(client)
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
       augroup lsp_document_highlight
@@ -32,7 +32,7 @@ local function on_attach(client, bufnr)
 	lsp_highlight_document(client)
 
 	-- disables lsp formatting so only null-ls formats
-	client.resolved_capabilities.document_formatting = false
+	client.server_capabilities.documentFormattingProvider = false
 end
 
 local function configure_server(server_name, opts)
@@ -52,10 +52,11 @@ end
 
 local function configure_lsp()
 	require("lspconfig")
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 	configure_server("sumneko_lua", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -72,11 +73,11 @@ local function configure_lsp()
 	})
 	configure_server("bashls", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 	})
 	configure_server("vuels", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 	})
 	-- configure_server("spectral", {
 	--   on_attach = on_attach,
@@ -84,7 +85,7 @@ local function configure_lsp()
 	-- })
 	configure_server("tsserver", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
 	})
 	-- configure_server("remark_ls", {
 	--   on_attach = on_attach,
@@ -95,7 +96,11 @@ local function configure_lsp()
 	-- })
 	configure_server("pyright", {
 		on_attach = on_attach,
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = capabilities,
+	})
+	configure_server("rust_analyzer", {
+		on_attach = on_attach,
+		capabilities = capabilities,
 	})
 end
 
