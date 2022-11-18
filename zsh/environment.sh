@@ -16,8 +16,8 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # Lazy load pyenv
 function pyenv() {
     unset -f pyenv
-    eval "$(pyenv init - 2> null)"
-    eval "$(pyenv virtualenv-init - 2> null)"
+    eval "$(pyenv init - 2> /dev/null)"
+    eval "$(pyenv virtualenv-init - 2> /dev/null)"
     [ ! -z $@  ] && pyenv $@
 }
 
