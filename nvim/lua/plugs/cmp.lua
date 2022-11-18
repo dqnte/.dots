@@ -39,7 +39,7 @@ vim.loaded.start_cmp = function()
 			fields = { "abbr", "kind" },
 		},
 		experimental = {
-			ghost_text = true,
+			ghost_text = false,
 		},
 	})
 end
