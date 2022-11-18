@@ -22,7 +22,7 @@ local options = {
 	updatetime = 300,
 	cursorline = true,
 	termguicolors = true,
-	scrolloff = 8,
+	scrolloff = 5,
 	sidescrolloff = 8,
 }
 
