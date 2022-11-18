@@ -24,6 +24,7 @@ require("plugs.iceberg")
 -- Plugins
 require("plugs.fugitive")
 require("plugs.commentary")
+require("plugs.surround")
 require("plugs.sensible")
 require("plugs.dbext")
 require("plugs.planerly")
