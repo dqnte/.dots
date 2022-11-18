@@ -24,6 +24,7 @@ require("plugs.iceberg")
 -- Plugins
 require("plugs.fugitive")
 require("plugs.commentary")
+require("plugs.surround")
 require("plugs.sensible")
 require("plugs.dbext")
 require("plugs.planerly")
@@ -36,6 +37,7 @@ require("plugs.telescope")
 require("plugs.nerdtree")
 require("plugs.goyo")
 require("plugs.hop")
+require("plugs.vue")
 
 -- All linting requirements
 require("linting")

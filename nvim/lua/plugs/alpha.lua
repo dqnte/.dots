@@ -14,6 +14,8 @@ vim.loaded.start_alpha = function()
     local alpha = require("alpha")
 
     local DISPLAY_WIDTH = 60
+    local NUM_FILE_ROWS = 9
+    local MAX_LENGTH = 45
 
     local function format_row(row)
         local len = string.len(row)
@@ -153,8 +155,6 @@ vim.loaded.start_alpha = function()
         return ""
     end
 
-    local MAX_LENGTH = 45
-
     local function get_file_name(path)
         return path:sub(if_nil(path:find("/[^/]*$"), 0) + 1)
     end
@@ -207,7 +207,7 @@ vim.loaded.start_alpha = function()
 
     local function mru(start, cwd, items_number, opts)
         opts = opts or mru_opts
-        items_number = if_nil(items_number, 8)
+        items_number = if_nil(items_number, NUM_FILE_ROWS)
         local oldfiles = _get_old_files(opts, items_number, cwd)
         return {
             type = "group",

@@ -15,6 +15,7 @@ if (vim.env.THEME == "iceberg") or (vim.env.THEME == "iceberg_dark") then
 			nvim_cmd("hi DiagnosticSignInfo guifg=#89b8c2 guibg=none")
 			nvim_cmd("hi DiagnosticSignHint guifg=#6b7089 guibg=none")
 			nvim_cmd("hi LineNr guibg=none guifg=#9fa7bd")
+            nvim_cmd("hi Error guifg=#cc517a guibg=none")
 		end
 	else
 		vim.o.background = "dark"
@@ -30,6 +31,7 @@ if (vim.env.THEME == "iceberg") or (vim.env.THEME == "iceberg_dark") then
 			nvim_cmd("hi DiagnosticSignInfo guifg=#89b8c2 guibg=none")
 			nvim_cmd("hi DiagnosticSignHint guifg=#6b7089 guibg=none")
 			nvim_cmd("hi LineNr guibg=none guifg=#444b71")
+            nvim_cmd("hi Error guifg=#e27878 guibg=none")
 		end
 	end
 end
