@@ -11,8 +11,6 @@ vim.loaded.start_gitsigns = function()
 			-- Navigation
 			keymap("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
 			keymap("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
-			keymap("n", "<leader>gv", "<cmd>Gvdiff<CR>", { noremap = true, silent = true })
-			keymap("n", "<leader>gh", "<cmd>Ghdiff<CR>", { noremap = true, silent = true })
 		end,
 	})
 end
