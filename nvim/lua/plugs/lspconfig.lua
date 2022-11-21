@@ -18,12 +18,11 @@ end
 
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
-	local buf_keymap = vim.api.nvim_buf_set_keymap
 	buf_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
 	buf_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 end
 
@@ -52,7 +51,7 @@ end
 
 local function configure_lsp()
 	require("lspconfig")
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 	configure_server("sumneko_lua", {
 		on_attach = on_attach,
@@ -79,21 +78,10 @@ local function configure_lsp()
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
-	-- configure_server("spectral", {
-	--   on_attach = on_attach,
-	--   capabilities = capabilities
-	-- })
 	configure_server("tsserver", {
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
-	-- configure_server("remark_ls", {
-	--   on_attach = on_attach,
-	--   capabilities = capabilities
-	-- })
-	-- configure_server("pylsp", {
-	--   on_attach = on_attach,
-	-- })
 	configure_server("pyright", {
 		on_attach = on_attach,
 		capabilities = capabilities,

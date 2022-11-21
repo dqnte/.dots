@@ -1,3 +1,6 @@
+-- Sensible Defaults
+Plug("tpope/vim-sensible")
+
 -- Basic Settings
 local options = {
 	showmatch = true,
@@ -26,39 +29,10 @@ local options = {
 	sidescrolloff = 8,
 }
 
--- toggle number line
-keymap("n", "<leader>nn", "<cmd>set number!<CR>", { noremap = true, silent = true })
+vim.g.mapleader = ","
 
--- minimal mode
-vim.g.hidden_all = 0
-vim.g.hide_all = function()
-	if vim.g.hidden_all == 0 then
-		vim.g.hidden_all = 1
-		vim.opt.showmode = false
-		vim.opt.ruler = false
-		vim.opt.laststatus = 0
-		vim.opt.showcmd = false
-	else
-		vim.g.hidden_all = 0
-		vim.opt.showmode = true
-		vim.opt.ruler = true
-		vim.opt.laststatus = 2
-		vim.opt.showcmd = true
-	end
-end
-
-keymap("n", "<leader>q", "<cmd>lua vim.g.hide_all()<CR>", { noremap = true, silent = true })
-
--- restore cursor to beam on exit
-vim.api.nvim_exec(
-	[[
-        augroup RestoreCursorShapeOnExit
-            autocmd!
-            autocmd VimLeave * set guicursor=a:ver20
-        augroup END
-    ]],
-	false
-)
+-- remove trailing white spaces
+autocmd({ "BufWritePre" }, { pattern = { "*" }, command = [[%s/\s\+$//e]] })
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
