@@ -3,7 +3,7 @@
 # ALIASES
 alias k=kubectl
 alias gr='grep --exclude-dir=node_modules --exclude-dir=__pycache__ --exclude-dir=modules'
-alias v=nvim
+alias v="nvim -u ~/.dots/nvim/lua/init.lua"
 alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
 alias theme="bash ~/.dots/scripts/theme.sh"
