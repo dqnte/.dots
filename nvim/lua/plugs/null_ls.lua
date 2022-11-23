@@ -8,12 +8,6 @@ Plug("jose-elias-alvarez/null-ls.nvim")
 -- cargo install stylua
 
 vim.loaded.start_null_ls = function()
-	local on_attach = function(client)
-		if client.server_capabilities.documentFormattingProvider then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-		end
-	end
-
 	local null_ls = require("null-ls")
 	null_ls.setup({
 		sources = {
@@ -24,10 +18,9 @@ vim.loaded.start_null_ls = function()
 			-- js/ts
 			null_ls.builtins.diagnostics.eslint,
 			null_ls.builtins.formatting.prettier,
+            null_ls.builtins.formatting.eslint,
 			-- lua
 			null_ls.builtins.formatting.stylua,
 		},
-		-- format on save
-		-- on_attach = on_attach,
 	})
 end

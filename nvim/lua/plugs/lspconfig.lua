@@ -80,7 +80,6 @@ local function configure_lsp()
 	})
 	configure_server("tsserver", {
 		on_attach = on_attach,
-		capabilities = capabilities,
 	})
 	configure_server("pyright", {
 		on_attach = on_attach,
