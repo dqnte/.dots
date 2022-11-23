@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 autoload -Uz compinit && compinit
 
 # style not showing up for some reason...
