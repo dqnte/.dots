@@ -11,8 +11,10 @@ alias stay="caffeinate -d"
 alias clr=clear
 
 alias ls="bash ~/.dots/scripts/fancy_ls.sh"
-alias g="~/.dots/scripts/fancy_git"
-alias gs="g status"
+alias g="git"
+alias gs="~/.dots/scripts/fancy_git status"
+alias gl="~/.dots/scripts/fancy_git log"
+alias gb="~/.dots/scripts/fancy_git branch"
 
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←

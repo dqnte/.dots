@@ -282,7 +282,6 @@ vim.loaded.start_alpha = function()
 
     local opts = {
         layout = {
-            { type = "padding", val = 1 },
             section.header,
             { type = "padding", val = 1 },
             section.mru,
