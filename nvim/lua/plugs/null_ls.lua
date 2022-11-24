@@ -13,6 +13,7 @@ vim.loaded.start_null_ls = function()
             null_ls.builtins.formatting.eslint_d,
 			-- lua
 			null_ls.builtins.formatting.stylua,
+			null_ls.builtins.formatting.rustfmt,
 		},
 	})
 end
