@@ -2,6 +2,7 @@
 source ~/.dots/zsh/utils.sh
 
 DEFAULT_THEME=iceberg
+DEFAULT_THEME_DARK=iceberg_dark
 declare -A ALLOWED_THEMES=(
     ["ayu"]=true
     ["dracula"]=true
@@ -27,6 +28,8 @@ function show_all_themes() {
 function change_theme() {
     if [ "${ALLOWED_THEMES[$1]}" ]; then
         THEME=$1
+    elif [ $1 = "dark" ]; then
+        THEME=$DEFAULT_THEME_DARK
     else
         THEME=$DEFAULT_THEME
     fi
