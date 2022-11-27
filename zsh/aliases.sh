@@ -6,15 +6,14 @@ alias gr='grep --exclude-dir=node_modules --exclude-dir=__pycache__ --exclude-di
 alias v="nvim -u ~/.dots/nvim/lua/init.lua"
 alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
-alias theme="bash ~/.dots/scripts/theme.sh"
 alias stay="caffeinate -d"
 alias clr=clear
 
-alias ls="bash ~/.dots/scripts/fancy_ls.sh"
+alias ls="lx"
 alias g="git"
-alias gs="~/.dots/scripts/fancy_git status"
-alias gl="~/.dots/scripts/fancy_git log"
-alias gb="~/.dots/scripts/fancy_git branch"
+alias gs="fgit status"
+alias gl="fgit log"
+alias gb="fgit branch"
 
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←

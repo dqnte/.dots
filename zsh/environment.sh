@@ -32,3 +32,6 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # Rust Setup
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# scripts
+export PATH="$PATH:$HOME/.dots/scripts/exe"
