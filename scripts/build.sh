@@ -21,11 +21,22 @@ fi
 # add all config files
 if [ ! -f $DOTDIR/.state ]; then
     touch $DOTDIR/.state
-    echo "THEME=dracula" >> $DOTDIR/.state
+    echo "THEME=iceberg" >> $DOTDIR/.state
 fi
 [ ! -f $KITTYDIR/theme.conf ] && cp $KITTYDIR/dracula.conf $KITTYDIR/theme.conf
 [ ! -f $NVIMDIR/lua/secrets.lua ] && touch $NVIMDIR/lua/secrets.lua
 
+# build rust scripts
+cd $DOTDIR/scripts/grrs
+cargo build --release
+cd $DOTDIR
+
+# move scripts to /exe
+cp $DOTDIR/scripts/theme.sh $DOTDIR/scripts/exe/theme
+chmod u+x $DOTDIR/scripts/exe/theme
+cp $DOTDIR/scripts/fancy_git $DOTDIR/scripts/exe/fgit
+mv $DOTDIR/scripts/grrs/target/release/grrs $DOTDIR/scripts/exe/lx
+
 # reload terminal
 kill -SIGUSR1 $(pgrep kitty)
-export THEME=dracula
+export THEME=iceberg
