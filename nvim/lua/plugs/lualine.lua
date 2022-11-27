@@ -16,7 +16,3 @@ vim.loaded.start_lualine = function()
 		},
 	})
 end
-
--- Disable Lualine when displaying Alpha menu
-vim.cmd([[autocmd User AlphaReady lua vim.g.hide_all()]])
-vim.cmd([[autocmd User AlphaClosed lua vim.g.hide_all()]])
