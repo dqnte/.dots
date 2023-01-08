@@ -1,7 +1,6 @@
 Plug('fxn/vim-monochrome')
 
 if (vim.env.THEME == 'monochrome') then
-    vim.o.background = 'dark'
     vim.luatheme = "auto"
     vim.loaded.start_mono = function()
         vim.g.monochrome_italic_comments = 1

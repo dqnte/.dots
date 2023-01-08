@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-# keep on line 4 pls
-export THEME="$( get_state_value THEME )"
+export THEME="$( get_state_value "THEME=" )"
+export THEME_MODE="$( get_state_value "THEME_MODE=" )"
 
 # zsh prompt styles
 setopt PROMPT_SUBST
