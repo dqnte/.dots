@@ -1,8 +1,7 @@
 Plug("cocopon/iceberg.vim")
 
 if (vim.env.THEME == "iceberg") or (vim.env.THEME == "iceberg_dark") then
-	if vim.env.THEME == "iceberg" then
-		vim.o.background = "light"
+	if vim.env.THEME == "iceberg" and vim.env.THEME_MODE == "light" then
 		vim.loaded.start_iceberg = function()
 			nvim_cmd("colorscheme iceberg")
 			nvim_cmd("hi SignColumn guibg=none")
@@ -18,7 +17,6 @@ if (vim.env.THEME == "iceberg") or (vim.env.THEME == "iceberg_dark") then
             nvim_cmd("hi Error guifg=#cc517a guibg=none")
 		end
 	else
-		vim.o.background = "dark"
 		vim.loaded.start_iceberg = function()
 			nvim_cmd("colorscheme iceberg")
 			nvim_cmd("hi GitSignsCurrentLineBlame guifg=#3d435e")

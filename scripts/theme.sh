@@ -2,19 +2,18 @@
 source ~/.dots/zsh/utils.sh
 
 DEFAULT_THEME=iceberg
-DEFAULT_THEME_DARK=iceberg_dark
 declare -A ALLOWED_THEMES=(
     ["ayu"]=true
     ["dracula"]=true
     ["horizon"]=true
     ["iceberg"]=true
-    ["iceberg_dark"]=true
     ["melange"]=true
     ["mono"]=true
     ["monochrome"]=true
     ["lavender"]=true
     ["colibri"]=true
     ["palenight"]=true
+    ["rose-pine"]=true
 )
 
 function show_all_themes() {
@@ -25,21 +24,38 @@ function show_all_themes() {
     done
 }
 
+function set_kitty_theme() {
+    file=$THEME
+    [ "$THEME_MODE" = "light" ] && file="${THEME}_light"
+
+    # some themes only have light files, they won't have a file without a suffix
+    if [ ! -f ~/.dots/kitty/themes/$THEME.conf ]; then
+        THEME_MODE="light"
+        file="${THEME}_light"
+    elif [ ! -f ~/.dots/kitty/themes/$file.conf ]; then
+        THEME_MODE="dark"
+        file=$THEME
+    fi
+
+    # kitty theme change
+    cp ~/.dots/kitty/themes/$file.conf ~/.dots/kitty/theme.conf
+    kill -SIGUSR1 $(pgrep -a kitty)
+}
+
 function change_theme() {
-    if [ "${ALLOWED_THEMES[$1]}" ]; then
+    if [ $1 = "dark" ] || [ $1 = "light" ]; then
+        THEME_MODE="$1"
+    elif [ "${ALLOWED_THEMES[$1]}" ]; then
         THEME=$1
-    elif [ $1 = "dark" ]; then
-        THEME=$DEFAULT_THEME_DARK
     else
         THEME=$DEFAULT_THEME
     fi
 
-    # kitty theme change
-    cp ~/.dots/kitty/themes/$THEME.conf ~/.dots/kitty/theme.conf
-    kill -SIGUSR1 $(pgrep -a kitty)
+    set_kitty_theme
 
     # update zsh env
     set_state_value THEME $THEME
+    set_state_value THEME_MODE $THEME_MODE
     killall -SIGUSR1 zsh
 
     # update nvim instances

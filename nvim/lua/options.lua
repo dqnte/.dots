@@ -27,6 +27,7 @@ local options = {
 	termguicolors = true,
 	scrolloff = 5,
 	sidescrolloff = 8,
+    background = vim.env.THEME_MODE ~= "" and vim.env.THEME_MODE or "dark",
 }
 
 vim.g.mapleader = ","

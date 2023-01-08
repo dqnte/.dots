@@ -2,6 +2,7 @@
 
 TRAPUSR1() {
   if [[ -o INTERACTIVE ]]; then
-      export THEME=$(cat ~/.dots/.state | grep THEME | cut -d '=' -f 2)
+      export THEME=$(cat ~/.dots/.state | grep THEME= | cut -d '=' -f 2)
+      export THEME_MODE=$(cat ~/.dots/.state | grep THEME_MODE= | cut -d '=' -f 2)
   fi
 }
