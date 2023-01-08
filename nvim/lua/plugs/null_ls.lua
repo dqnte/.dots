@@ -5,14 +5,13 @@ vim.loaded.start_null_ls = function()
 	null_ls.setup({
 		sources = {
 			-- python
-			null_ls.builtins.diagnostics.flake8,
-			-- null_ls.builtins.diagnostics.mypy,
 			null_ls.builtins.formatting.black,
 			-- js/ts
 			null_ls.builtins.formatting.prettierd,
             null_ls.builtins.formatting.eslint_d,
 			-- lua
 			null_ls.builtins.formatting.stylua,
+            -- rust
 			null_ls.builtins.formatting.rustfmt,
 		},
 	})

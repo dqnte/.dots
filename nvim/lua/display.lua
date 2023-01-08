@@ -2,6 +2,7 @@ require("plugs/lualine")
 require("plugs/alpha")
 require("plugs/gitsigns")
 require("plugs/goyo")
+require("plugs/treesitter")
 
 -- toggle number line
 keymap("n", "<leader>nn", "<cmd>set number!<CR>", { noremap = true, silent = true })
