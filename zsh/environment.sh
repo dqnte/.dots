@@ -25,6 +25,18 @@ function pyclean() {
     find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
 }
 
+function poetry_clean() {
+    # Cleans out files installed by poetry in current env
+    POETRY_LOCATION=`poetry env info -p`
+
+    if [ ! -z $POETRY_LOCATION ]; then
+        echo -e "\n  Poetry is $POETRY_LOCATION\n"
+        rm -rf "$POETRY_LOCATION"
+    else
+        echo -e "\n No poetry environment found\n"
+    fi
+}
+
 # Go Setup
 export GOPATH=$HOME/go-workspace # don't forget to change your path correctly!
 export GOROOT=/usr/local/opt/go/libexec
