@@ -28,4 +28,3 @@ end
 local silent = { noremap = true, silent = true }
 keymap("n", "<leader>gv", "<cmd>lua vim.git_state.action('Gvdiff')<CR>", silent)
 keymap("n", "<leader>gh", "<cmd>lua vim.git_state.action('Ghdiff')<CR>", silent)
-keymap("n", "<leader>gs", "<cmd>:Git status<CR>", silent)
