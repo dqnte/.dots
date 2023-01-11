@@ -16,6 +16,7 @@ alias gl="fgit log"
 alias gb="fgit branch"
 
 alias TODO="v ~/TODO.md"
+alias NOTES="v ~/NOTES.md"
 
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←
