@@ -36,6 +36,8 @@ cp $DOTDIR/scripts/theme.sh $DOTDIR/scripts/exe/theme
 chmod u+x $DOTDIR/scripts/exe/theme
 cp $DOTDIR/scripts/fancy_git $DOTDIR/scripts/exe/fgit
 mv $DOTDIR/scripts/grrs/target/release/grrs $DOTDIR/scripts/exe/lx
+cp $DOTDIR/scripts/font.sh $DOTDIR/scripts/exe/font
+chmod u+x $DOTDIR/scripts/exe/font
 
 # reload terminal
 kill -SIGUSR1 $(pgrep kitty)

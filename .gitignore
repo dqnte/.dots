@@ -9,5 +9,6 @@ nvim/lua/secrets.lua
 zsh/plugins/*
 zsh/secrets.sh
 kitty/theme.conf
+kitty/font.conf
 scripts/exe/*
 scripts/grrs/target
