@@ -12,5 +12,9 @@ require("plugs/telescope")
 require("plugs/hop")
 require("plugs/nerdtree")
 
+-- keep highlight when indenting
+keymap('v', '<', '<gv', { noremap = true })
+keymap('v', '>', '>gv', { noremap = true })
+
 -- TODO: gf opens a new file if it doesn't exist
 -- keymap("n", "gf", "<cmd>edit <cfile><CR>", { noremap = true, silent = true })
