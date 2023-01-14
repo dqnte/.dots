@@ -1,6 +1,8 @@
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("nvim-treesitter/playground", { ["do"] = ":TSUpdate" })
 
+Plug("JoosepAlviste/nvim-ts-context-commentstring")
+
 vim.loaded.start_treesitter = function()
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = "all",

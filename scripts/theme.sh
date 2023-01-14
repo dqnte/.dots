@@ -14,6 +14,7 @@ declare -A ALLOWED_THEMES=(
     ["colibri"]=true
     ["palenight"]=true
     ["rose-pine"]=true
+    ["nord"]=true
 )
 
 function show_all_themes() {
