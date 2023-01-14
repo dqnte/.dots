@@ -1,3 +1,7 @@
-Plug 'preservim/nerdtree'
+Plug("preservim/nerdtree")
 
-keymap("n", "<leader>nt", "<cmd>NERDTree<CR>", { noremap = true, silent = true })
+-- close vim when nerdtree is last window
+autocmd({ "BufEnter" }, {
+	pattern = { "*" },
+	command = [[ if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif ]],
+})

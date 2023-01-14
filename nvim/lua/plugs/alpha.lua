@@ -1,7 +1,15 @@
 Plug("kyazdani42/nvim-web-devicons")
 Plug("goolord/alpha-nvim")
 
-keymap("n", "<leader>a", "<cmd>Alpha<CR>", { noremap = true, silent = true })
+vim.g.set_alpha_open = function(is_open)
+	vim.g.alpha_is_open = is_open
+
+	-- Disable Lualine when displaying Alpha menu
+	vim.g.hide_all(is_open)
+end
+
+vim.cmd([[autocmd User AlphaReady lua vim.g.set_alpha_open(true)]])
+vim.cmd([[autocmd User AlphaClosed lua vim.g.set_alpha_open(false)]])
 
 vim.loaded.start_alpha = function()
 	local if_nil = vim.F.if_nil

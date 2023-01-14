@@ -12,7 +12,7 @@ vim.g.telescope_wrapper = function(method)
 	if vim.fn.winwidth("%") <= 90 then
 		theme = "theme=dropdown"
 	end
-	nvim_cmd("Telescope " .. method .. " " .. theme)
+	nvim_cmd("Telescope " .. method .. " " .. theme .. " hidden=true")
 end
 
 vim.loaded.start_telescope = function()
@@ -20,16 +20,11 @@ vim.loaded.start_telescope = function()
 	telescope.setup({
 		defaults = {
 			file_ignore_patterns = {
-				"node_modules",
-				"__pycache__",
-				"modules",
+				"node_modules/",
+				"__pycache__/",
+				"modules/",
+				".git/",
 			},
-			-- layout_strategy = "bottom_pane",
-			layout_config = { height = 0.95 },
-			-- sorting_strategy = "ascending",
-			-- layout_config = {
-			-- horizontal = { width = 0.9 },
-			-- },
 			mappings = {
 				i = {
 					-- closes telescope on 1 escape press
