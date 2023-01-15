@@ -2,6 +2,12 @@ Plug("neovim/nvim-lspconfig")
 Plug("williamboman/nvim-lsp-installer")
 
 local function lsp_highlight_document()
+    -- some colorschemes don't have hightlight groups for this
+    -- we use pcall so function doesn't error is group is already set
+	pcall(nvim_cmd, "hi link LspReferenceText Visual")
+	pcall(nvim_cmd, "hi link LspReferenceRead Visual")
+	pcall(nvim_cmd, "hi link LspReferenceWrite Visual")
+
 	vim.cmd("autocmd CursorMoved <buffer> lua vim.g.document_highlight_toggle(false)")
 end
 
