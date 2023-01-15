@@ -1,25 +1,30 @@
 Plug("neovim/nvim-lspconfig")
 Plug("williamboman/nvim-lsp-installer")
 
-local function lsp_highlight_document(client)
-	if client.server_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-      ]],
-			false
-		)
+local function lsp_highlight_document()
+	vim.cmd("autocmd CursorMoved <buffer> lua vim.g.document_highlight_toggle(false)")
+end
+
+vim.g.highlight_toggle_on = false
+vim.g.document_highlight_toggle = function(override)
+	-- sent to inverse of override so state will toggle to override value
+	if not (override == nil) then
+		vim.g.highlight_toggle_on = not override
+	end
+
+	if vim.g.highlight_toggle_on then
+		vim.g.highlight_toggle_on = false
+		vim.lsp.buf.clear_references()
+	else
+		vim.g.highlight_toggle_on = true
+		vim.lsp.buf.document_highlight()
 	end
 end
 
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	buf_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	buf_keymap(bufnr, "n", "K", "<cmd>lua vim.g.document_highlight_toggle()<CR>", opts)
 	buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
@@ -28,7 +33,7 @@ end
 
 local function on_attach(client, bufnr)
 	lsp_keymaps(bufnr)
-	lsp_highlight_document(client)
+	lsp_highlight_document()
 
 	-- disables lsp formatting so only null-ls formats
 	client.server_capabilities.documentFormattingProvider = false
