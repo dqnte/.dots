@@ -4,6 +4,7 @@ require("utils")
 pcall(require, "secrets")
 
 -- instantiate hook tables
+vim.colorschemes = {}
 vim.loaded = {}
 vim.after = {}
 
@@ -22,6 +23,9 @@ for _, caller in pairs(vim.loaded) do
 	caller()
 end
 
+vim.colorschemes[vim.env.THEME]()
+
 for _, caller in pairs(vim.after) do
 	caller()
 end
+

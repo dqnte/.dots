@@ -1,6 +1,6 @@
 Plug("nvim-lualine/lualine.nvim")
 
-vim.loaded.start_lualine = function()
+vim.after.start_lualine = function()
 	local MAX_BRANCH_LEN = 35
 
 	-- shortens long branch lengths

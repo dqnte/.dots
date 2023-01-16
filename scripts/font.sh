@@ -1,28 +1,27 @@
 #!/usr/local/bin/bash
+source ~/.dots/zsh/utils.sh
 
-DEFAULT_FONT=fira
-declare -A ALLOWED_FONTS=(
-    ["lisa"]=true
-    ["fira"]=true
-    ["jet"]=true
-)
+DEFAULT_FONT=lisa
+FONTS_DIR="$HOME/.dots/kitty/fonts"
 
 function show_all_fonts() {
-    fonts_list=(${!ALLOWED_FONTS[@]})
-    IFS=$'\n' fonts_list=($(sort <<<"${themes_list[*]}")); unset IFS
-    for font_name in "${fonts_list[@]}"; do
-        echo $font_name
-    done
+    fonts_list=$(ls $FONTS_DIR | cut -d '.' -f 1)
+    echo ""
+    printf "  %s\n" $fonts_list
+    echo ""
 }
 
 function change_font() {
-    if [ "${ALLOWED_FONTS[$1]}" ]; then
+    if [ -f "$FONTS_DIR/$1.conf" ]; then
         FONT=$1
     else
-        FONT=$DEFAULT_FONT
+        echo -e "\n  \e[3mFont not found\n\e[0m"
+        exit 0
     fi
 
-    cp ~/.dots/kitty/fonts/$FONT.conf ~/.dots/kitty/font.conf
+    cp $FONTS_DIR/$FONT.conf ~/.dots/kitty/font.conf
+
+    set_state_value FONT $FONT # only really necessary for current font
     kill -SIGUSR1 $(pgrep -a kitty)
 }
 
@@ -30,7 +29,7 @@ function change_font() {
 if [ -z $1 ]; then
     change_font $DEFAULT_FONT
 elif [ "show" = $1 ]; then
-    echo $THEME
+    echo -e "\n  $FONT\n"
 elif [ "show-all" = $1 ]; then
     show_all_fonts
 else

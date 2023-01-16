@@ -1,8 +1,6 @@
 Plug("savq/melange", { name = "melange" })
 
-if (vim.env.THEME == "melange") then
-    vim.luatheme = "auto"
-    vim.loaded.start_melange = function()
-        nvim_cmd("colorscheme melange")
-    end
+vim.colorschemes.melange = function()
+	vim.luatheme = "auto"
+	nvim_cmd("colorscheme melange")
 end
