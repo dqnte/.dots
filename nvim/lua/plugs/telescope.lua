@@ -15,7 +15,7 @@ vim.g.telescope_wrapper = function(method)
 	nvim_cmd("Telescope " .. method .. " " .. theme .. " hidden=true")
 end
 
-vim.loaded.start_telescope = function()
+vim.after.start_telescope = function()
 	local telescope = require("telescope")
 	telescope.setup({
 		defaults = {

@@ -50,10 +50,9 @@ function change_theme() {
     killall -SIGUSR1 zsh
 
     # update nvim instances
-    # nvr  --serverlist | while read line; do
-    #     nvr --servername $line --remote-send "<esc>:let \$THEME = \"$THEME\"<enter>"
-    #     nvr --servername $line --remote-send "<esc>:source ~/.dots/nvim/init.lua<enter>"
-    # done
+    for path in $(nvr --nostart --serverlist); do
+        nvr --servername $path --remote-send "<esc>:lua vim.g.update_colorscheme('$1')<enter>:<esc>"
+    done
 }
 
 if [ -z $1 ]; then
