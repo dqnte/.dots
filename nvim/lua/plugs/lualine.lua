@@ -16,7 +16,7 @@ vim.after.start_lualine = function()
 	require("lualine").setup({
 		options = {
 			theme = vim.luatheme == nil and vim.env.THEME or vim.luatheme,
-			disabled_filetypes = { "markdown", "text" },
+			disabled_filetypes = { "markdown", "text", "alpha", "nerdtree" },
 		},
 		sections = {
 			lualine_a = { "mode" },

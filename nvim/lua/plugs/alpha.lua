@@ -3,9 +3,6 @@ Plug("goolord/alpha-nvim")
 
 vim.g.set_alpha_open = function(is_open)
 	vim.g.alpha_is_open = is_open
-
-	-- Disable Lualine when displaying Alpha menu
-	vim.g.hide_all(is_open)
 end
 
 vim.cmd([[autocmd User AlphaReady lua vim.g.set_alpha_open(true)]])
