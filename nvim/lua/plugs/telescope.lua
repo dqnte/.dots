@@ -30,7 +30,7 @@ local get_flat = function(opts)
 		borderchars = {
 			prompt = { " ", " ", " ", " ", " ", " ", " ", " " },
 			results = { " ", " ", " ", " ", " ", " ", " ", " " },
-			preview = { " ", " ", " ", " ", " ", " ", " ", " " },
+			preview = { " ", "  ", " ", "  ", " ", " ", " ", " " },
 		},
 	}
 
@@ -44,6 +44,8 @@ local set_custom_highlights = function()
 	local bg_color = get_color("Normal", "bg#")
 	local fg_color = get_color("Normal", "fg#")
 	local comment_color = get_color("Comment", "fg#")
+	local fg_visual = get_color("Visual", "fg#")
+	local bg_visual = get_color("Visual", "bg#")
 
 	local prompt_bg = shift_color(bg_color:gsub("#", ""), -4)
 	local result_bg = shift_color(bg_color:gsub("#", ""), 4)
@@ -64,10 +66,12 @@ local set_custom_highlights = function()
 	hi("TelescopeResultsBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
 	hi("TelescopeResultsNumber guibg=" .. result_bg)
 
-    hi("TelescopePreviewBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
+	hi("TelescopePreviewBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
 	hi("TelescopePreviewTitle guifg=" .. result_bg .. " guibg=" .. result_bg)
 
-    hi("TelescopeNormal guibg=" .. result_bg)
+	hi("TelescopeSelection guifg=" .. fg_visual .. " guibg=" .. bg_visual)
+
+	hi("TelescopeNormal guibg=" .. result_bg)
 end
 
 vim.g.telescope_wrapper = function(method)
