@@ -7,23 +7,22 @@ keymap("n", "<leader>fb", "<cmd>lua vim.g.telescope_wrapper('buffers')<cr>", { n
 keymap("n", "<leader>fg", "<cmd>lua vim.g.telescope_wrapper('live_grep')<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>gs", "<cmd>lua vim.g.telescope_wrapper('git_status')<cr>", { noremap = true, silent = true })
 
-vim.g.get_flat = function(opts)
+local get_flat = function(opts)
 	opts = opts or {}
-
-	require("nvim-web-devicons")
 
 	local theme_opts = {
 		theme = "flat",
 
 		results_title = false,
-
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
-		prompt_prefix = " ",
+		prompt_prefix = "  ",
 		selection_caret = "  ",
+
 		layout_config = {
 			preview_cutoff = 1,
-			height = 60,
+			height = vim.fn.winheight("%") - 4,
+			width = vim.fn.winwidth("%") - 10,
 			prompt_position = "top",
 		},
 
@@ -42,29 +41,33 @@ local set_custom_highlights = function()
 	local get_color = require("utils").get_color
 	local shift_color = require("utils").shift_color
 
-	local prompt_bg = get_color("Folded", "bg#")
-	local prompt_fg = get_color("Normal", "fg#")
 	local bg_color = get_color("Normal", "bg#")
-	local prompt_title = get_color("DiagnosticWarn", "fg#")
+	local fg_color = get_color("Normal", "fg#")
+	local comment_color = get_color("Comment", "fg#")
 
-	local result_bg = shift_color(bg_color:gsub("#", ""), 3)
-    if vim.o.background == "dark" then
-		result_bg = shift_color(bg_color:gsub("#", ""), -3)
+	local prompt_bg = shift_color(bg_color:gsub("#", ""), -4)
+	local result_bg = shift_color(bg_color:gsub("#", ""), 4)
+	if vim.o.background == "dark" then
+		prompt_bg = shift_color(bg_color:gsub("#", ""), 4)
+		result_bg = shift_color(bg_color:gsub("#", ""), -4)
 	end
 
-	hi("TelescopePromptBorder guifg=" .. prompt_bg .. " guibg=" .. prompt_bg)
-	hi("TelescopePromptNormal guibg=" .. prompt_bg .. " guifg=" .. prompt_fg)
-	hi("TelescopePromptCounter guibg=" .. prompt_bg)
+	local prompt_title = get_color("DiagnosticWarn", "fg#")
 
+	hi("TelescopePromptBorder guifg=" .. prompt_bg .. " guibg=" .. prompt_bg)
+	hi("TelescopePromptNormal guibg=" .. prompt_bg .. " guifg=" .. fg_color)
 	hi("TelescopePromptTitle guifg=" .. prompt_bg .. " guibg=" .. prompt_title)
+	hi("TelescopePromptCounter guibg=" .. prompt_bg .. " guifg=" .. comment_color)
 	hi("TelescopePromptPrefix guifg=" .. prompt_title .. " guibg=" .. prompt_bg)
 
-	hi("TelescopeResultsBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
-	hi("TelescopePreviewBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
-	hi("TelescopePreviewTitle guifg=" .. result_bg .. " guibg=" .. result_bg)
 	hi("TelescopeResultsNormal guibg=" .. result_bg)
+	hi("TelescopeResultsBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
 	hi("TelescopeResultsNumber guibg=" .. result_bg)
-	hi("TelescopeNormal guibg=" .. result_bg)
+
+    hi("TelescopePreviewBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
+	hi("TelescopePreviewTitle guifg=" .. result_bg .. " guibg=" .. result_bg)
+
+    hi("TelescopeNormal guibg=" .. result_bg)
 end
 
 vim.g.telescope_wrapper = function(method)
@@ -73,10 +76,8 @@ vim.g.telescope_wrapper = function(method)
 		layout_strategy = "vertical"
 	end
 
-	set_custom_highlights()
-
 	local caller = require("telescope.builtin")[method]
-	caller(vim.g.get_flat({ layout_strategy = layout_strategy }))
+	caller(get_flat({ layout_strategy = layout_strategy }))
 end
 
 vim.after.start_telescope = function()
@@ -93,8 +94,14 @@ vim.after.start_telescope = function()
 				i = {
 					-- closes telescope on 1 escape press
 					["<esc>"] = require("telescope.actions").close,
+
+					-- these don't seem to work for some reason
+					["<C-h>"] = { "<cmd>TmuxNavigateLeft<cr>", type = "command" },
+					["<C-l>"] = { "<cmd>TmuxNavigateRight<cr>", type = "command" },
 				},
 			},
 		},
 	})
+
+	set_custom_highlights()
 end
