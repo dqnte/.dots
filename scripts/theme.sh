@@ -29,6 +29,14 @@ function set_kitty_theme() {
     kill -SIGUSR1 $(pgrep -a kitty)
 }
 
+function set_device_mode() {
+    if [ $THEME_MODE = "dark" ]; then
+        osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
+    else
+        osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to false'
+    fi
+}
+
 function change_theme() {
     file="${THEMES_DIR}/${1}.conf"
     light_file="${THEMES_DIR}/${1}_light.conf"
@@ -53,6 +61,8 @@ function change_theme() {
     for path in $(nvr --nostart --serverlist); do
         nvr --servername $path --remote-send "<esc>:lua vim.g.update_colorscheme('$1')<enter>:<esc>"
     done
+
+    set_device_mode
 }
 
 if [ -z $1 ]; then
