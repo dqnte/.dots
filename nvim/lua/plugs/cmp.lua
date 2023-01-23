@@ -25,7 +25,7 @@ vim.loaded.start_cmp = function()
 		}),
 		sources = cmp.config.sources({
 			-- in order of priority
-			{ name = "buffer", max_item_count = 1 },
+			{ name = "buffer", max_item_count = 2 },
 			{ name = "nvim_lsp", max_item_count = 3 },
 		}),
 		formatting = {
