@@ -30,7 +30,7 @@ local get_flat = function(opts)
 		borderchars = {
 			prompt = { " ", " ", " ", " ", " ", " ", " ", " " },
 			results = { " ", " ", " ", " ", " ", " ", " ", " " },
-			preview = { " ", "  ", " ", "  ", " ", " ", " ", " " },
+			preview = { " ", " ", " ", " ", " ", " ", " ", " " },
 		},
 	}
 
