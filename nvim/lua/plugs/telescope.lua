@@ -54,7 +54,7 @@ local set_custom_highlights = function()
 		result_bg = shift_color(bg_color:gsub("#", ""), -4)
 	end
 
-	local prompt_title = get_color("DiagnosticWarn", "fg#")
+	local prompt_title = get_color("Function", "fg#")
 
 	hi("TelescopePromptBorder guifg=" .. prompt_bg .. " guibg=" .. prompt_bg)
 	hi("TelescopePromptNormal guibg=" .. prompt_bg .. " guifg=" .. fg_color)
