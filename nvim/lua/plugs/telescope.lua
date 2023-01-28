@@ -69,7 +69,8 @@ local set_custom_highlights = function()
 	hi("TelescopePreviewBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
 	hi("TelescopePreviewTitle guifg=" .. result_bg .. " guibg=" .. result_bg)
 
-	hi("TelescopeSelection guifg=" .. fg_visual .. " guibg=" .. bg_visual)
+	-- hi("TelescopeSelection guifg=" .. fg_visual .. " guibg=" .. bg_visual)
+	hi("link TelescopeSelection Visual")
 
 	hi("TelescopeNormal guibg=" .. result_bg)
 end
