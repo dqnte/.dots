@@ -5,18 +5,26 @@ Plug("hrsh7th/cmp-cmdline")
 Plug("hrsh7th/nvim-cmp")
 
 -- vsnip
-Plug("hrsh7th/cmp-vsnip")
-Plug("hrsh7th/vim-vsnip")
+-- Plug("hrsh7th/cmp-vsnip")
+-- Plug("hrsh7th/vim-vsnip")
+
+-- luasnip
+Plug("L3MON4D3/Luasnip")
+Plug("saadparwaiz1/cmp_luasnip")
+Plug("rafamadriz/friendly-snippets")
 
 -- pretty formatting
 Plug("onsails/lspkind.nvim")
 
 vim.loaded.start_cmp = function()
 	local cmp = require("cmp")
+
+	require("luasnip.loaders.from_vscode").lazy_load()
+
 	cmp.setup({
 		snippet = {
 			expand = function(args)
-				vim.fn["vsnip#anonymous"](args.body)
+				require("luasnip").lsp_expand(args.body)
 			end,
 		},
 		window = {},
@@ -25,6 +33,7 @@ vim.loaded.start_cmp = function()
 		}),
 		sources = cmp.config.sources({
 			-- in order of priority
+			{ name = "luasnip", max_item_count = 2 },
 			{ name = "buffer", max_item_count = 2 },
 			{ name = "nvim_lsp", max_item_count = 3 },
 		}),
