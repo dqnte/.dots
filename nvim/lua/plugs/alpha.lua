@@ -246,7 +246,7 @@ vim.loaded.start_alpha = function()
 		top_button = {
 			type = "group",
 			val = {
-				button("++", "  new file", "<cmd>ene <CR>"),
+				button("++", "  ~/.dots", "<cmd>cd ~/.dots<cr><cmd>lua require('alpha').redraw()<cr>"),
 			},
 		},
 		mru = {
