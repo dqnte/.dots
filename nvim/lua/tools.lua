@@ -16,9 +16,10 @@ keymap("v", "<", "<gv", { noremap = true })
 keymap("v", ">", ">gv", { noremap = true })
 
 -- aesthetic cli tools
-
 user_command("Font", "!font <q-args>", { nargs = 1 })
 user_command("Theme", "lua vim.g.set_colorscheme(<q-args>)", { nargs = 1 })
+
+user_command("TODO", "e ~/TODO.md", {})
 
 -- uses theme cli tool to flip colorscheme
 vim.g.set_colorscheme = function(new_theme)
