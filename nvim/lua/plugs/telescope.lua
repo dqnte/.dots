@@ -30,7 +30,7 @@ local get_flat = function(opts)
 		borderchars = {
 			prompt = { " ", " ", " ", " ", " ", " ", " ", " " },
 			results = { " ", " ", " ", " ", " ", " ", " ", " " },
-			preview = { " ", "  ", " ", "  ", " ", " ", " ", " " },
+			preview = { " ", " ", " ", " ", " ", " ", " ", " " },
 		},
 	}
 
@@ -44,8 +44,7 @@ local set_custom_highlights = function()
 	local bg_color = get_color("Normal", "bg#")
 	local fg_color = get_color("Normal", "fg#")
 	local comment_color = get_color("Comment", "fg#")
-	local fg_visual = get_color("Visual", "fg#")
-	local bg_visual = get_color("Visual", "bg#")
+	local bg_visual = get_color("CursorLine", "bg#")
 
 	local prompt_bg = shift_color(bg_color:gsub("#", ""), -4)
 	local result_bg = shift_color(bg_color:gsub("#", ""), 4)
@@ -54,7 +53,7 @@ local set_custom_highlights = function()
 		result_bg = shift_color(bg_color:gsub("#", ""), -4)
 	end
 
-	local prompt_title = get_color("DiagnosticWarn", "fg#")
+	local prompt_title = get_color("Function", "fg#")
 
 	hi("TelescopePromptBorder guifg=" .. prompt_bg .. " guibg=" .. prompt_bg)
 	hi("TelescopePromptNormal guibg=" .. prompt_bg .. " guifg=" .. fg_color)
@@ -64,12 +63,11 @@ local set_custom_highlights = function()
 
 	hi("TelescopeResultsNormal guibg=" .. result_bg)
 	hi("TelescopeResultsBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
-	hi("TelescopeResultsNumber guibg=" .. result_bg)
 
 	hi("TelescopePreviewBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
 	hi("TelescopePreviewTitle guifg=" .. result_bg .. " guibg=" .. result_bg)
 
-	hi("TelescopeSelection guifg=" .. fg_visual .. " guibg=" .. bg_visual)
+	hi("TelescopeSelection guifg=" .. fg_color .. " guibg=" .. bg_visual)
 
 	hi("TelescopeNormal guibg=" .. result_bg)
 end

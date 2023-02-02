@@ -27,12 +27,16 @@ vim.loaded.start_alpha = function()
 		return row .. string.rep(" ", DISPLAY_WIDTH - len)
 	end
 
-	local function button(sc, txt, keybind, keybind_opts)
+	local function button(sc, txt, keybind, keybind_opts, sc_display)
+		if sc_display == nil then
+			sc_display = sc
+		end
+
 		local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
 		local opts = {
 			position = "center",
-			shortcut = " " .. sc,
+			shortcut = " " .. sc_display,
 			cursor = 62,
 			width = DISPLAY_WIDTH,
 			align_shortcut = "right",
@@ -246,7 +250,7 @@ vim.loaded.start_alpha = function()
 		top_button = {
 			type = "group",
 			val = {
-				button("++", "  new file", "<cmd>ene <CR>"),
+				button("++", "  ~/.dots", "<cmd>cd ~/.dots<cr><cmd>lua require('alpha').redraw()<cr>"),
 			},
 		},
 		mru = {
@@ -292,7 +296,9 @@ vim.loaded.start_alpha = function()
 		},
 		footer = {
 			type = "group",
-			val = {},
+			val = {
+				button("<esc>", "", "<cmd>lua vim.g.toggle_alpha()<cr>", nil, ""),
+			},
 		},
 	}
 
