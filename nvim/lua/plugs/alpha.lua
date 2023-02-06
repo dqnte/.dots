@@ -1,5 +1,5 @@
 Plug("kyazdani42/nvim-web-devicons")
-Plug("goolord/alpha-nvim")
+Plug("dqnte/alpha-nvim")
 
 vim.g.set_alpha_open = function(is_open)
 	vim.g.alpha_is_open = is_open
