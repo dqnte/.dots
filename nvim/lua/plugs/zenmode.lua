@@ -7,12 +7,10 @@ vim.loaded.start_zen = function()
 		},
 
 		on_open = function()
-			vim.opt.signcolumn = "yes:2"
             vim.cmd("Gitsigns detach")
             vim.g.in_zen = true
 		end,
 		on_close = function()
-			vim.opt.signcolumn = "yes"
             vim.cmd("Gitsigns attach")
             vim.g.in_zen = false
 		end,
