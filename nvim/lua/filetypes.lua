@@ -3,7 +3,6 @@ vim.cmd([[autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expand
 vim.cmd([[autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab]])
 
 -- Vue.js
-Plug("posva/vim-vue") -- highlighting
 vim.cmd([[autocmd FileType vue setlocal shiftwidth=2 softtabstop=2 expandtab]])
 
 -- txt

@@ -10,7 +10,7 @@ vim.loaded.start_treesitter = function()
 		ignore_install = { "t32" },
 		highlight = {
 			enable = true,
-			disable = { "c", "rust", "sql", "vue", "markdown" },
+			disable = { "c", "rust", "sql", "markdown" },
 			additional_vim_regex_highlighting = false,
 		},
 		indent = { enabled = true },
