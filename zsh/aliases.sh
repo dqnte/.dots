@@ -15,8 +15,11 @@ alias gs="fgit status"
 alias gl="fgit log"
 alias gb="fgit branch"
 
+alias kitty-font="kitty --debug-font-fallback"
+
 alias TODO="v ~/TODO.md"
 alias NOTES="v ~/NOTES.md"
+alias dots="cd ~/.dots"
 
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←
