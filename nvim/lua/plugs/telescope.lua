@@ -6,6 +6,7 @@ keymap("n", "<leader>ff", "<cmd>lua vim.g.telescope_wrapper('find_files')<cr>", 
 keymap("n", "<leader>fb", "<cmd>lua vim.g.telescope_wrapper('buffers')<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>fg", "<cmd>lua vim.g.telescope_wrapper('live_grep')<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>gs", "<cmd>lua vim.g.telescope_wrapper('git_status')<cr>", { noremap = true, silent = true })
+keymap("n", "<leader>gr", "<cmd>lua vim.g.telescope_wrapper('lsp_references')<cr>", { noremap = true, silent = true })
 
 local get_flat = function(opts)
 	opts = opts or {}
@@ -13,6 +14,8 @@ local get_flat = function(opts)
 	local theme_opts = {
 		theme = "flat",
 
+        hidden = true, -- show hidden files
+		preview_title = false,
 		results_title = false,
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
@@ -65,11 +68,11 @@ local set_custom_highlights = function()
 	hi("TelescopeResultsBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
 
 	hi("TelescopePreviewBorder guifg=" .. result_bg .. " guibg=" .. result_bg)
-	hi("TelescopePreviewTitle guifg=" .. result_bg .. " guibg=" .. result_bg)
+	hi("TelescopePreviewTitle guifg=" .. prompt_bg .. " guibg=" .. prompt_title)
 
 	hi("TelescopeSelection guifg=" .. fg_color .. " guibg=" .. bg_visual)
 
-	hi("TelescopeNormal guibg=" .. result_bg)
+	hi("TelescopeNormal guibg=" .. result_bg .. " guifg=" .. fg_color)
 end
 
 vim.g.telescope_wrapper = function(method)
