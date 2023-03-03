@@ -9,23 +9,22 @@ vim.loaded = {}
 vim.after = {}
 
 vim.call("plug#begin", "~/.dots/nvim/modules")
-require("colors/base")
-require("options")
-require("display")
-require("tools")
-require("terminal")
-require("filetypes")
-require("langserver")
+pcall(require, "colors/base")
+pcall(require, "options")
+pcall(require, "display")
+pcall(require, "tools")
+pcall(require, "terminal")
+pcall(require, "filetypes")
+pcall(require, "langserver")
 vim.call("plug#end")
 
 -- Trigger loaded hooks
 for _, caller in pairs(vim.loaded) do
-	caller()
+	pcall(caller)
 end
 
 vim.colorschemes[vim.env.THEME]()
 
 for _, caller in pairs(vim.after) do
-	caller()
+	pcall(caller)
 end
-
