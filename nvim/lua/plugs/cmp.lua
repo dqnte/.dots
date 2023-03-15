@@ -13,8 +13,18 @@ Plug("L3MON4D3/Luasnip")
 Plug("saadparwaiz1/cmp_luasnip")
 Plug("rafamadriz/friendly-snippets")
 
+-- tabnine
+Plug("tzachar/cmp-tabnine", { ["do"] = "./install.sh" })
+
 -- pretty formatting
 Plug("onsails/lspkind.nvim")
+
+local dropdown_fmt = function(entry, vim_item)
+	local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+	local strings = vim.split(kind.kind, "%s", { trimempty = true })
+	kind.kind = " " .. strings[1]
+	return kind
+end
 
 vim.loaded.start_cmp = function()
 	local cmp = require("cmp")
@@ -33,22 +43,32 @@ vim.loaded.start_cmp = function()
 		}),
 		sources = cmp.config.sources({
 			-- in order of priority
-			{ name = "luasnip", max_item_count = 2 },
+			{ name = "cmp_tabnine", max_item_count = 2 },
+			-- { name = "luasnip", max_item_count = 2 },
 			{ name = "buffer", max_item_count = 2 },
 			{ name = "nvim_lsp", max_item_count = 3 },
 		}),
 		formatting = {
 			-- only display the kind icon and not the text
-			format = function(entry, vim_item)
-				local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-				local strings = vim.split(kind.kind, "%s", { trimempty = true })
-				kind.kind = " " .. strings[1]
-				return kind
-			end,
+			format = dropdown_fmt,
 			fields = { "abbr", "kind" },
 		},
 		experimental = {
-			ghost_text = false,
+			ghost_text = true,
 		},
+	})
+
+	-- tabnine configs
+	local tabnine = require("cmp-tabnine.config")
+	tabnine:setup({
+		max_lines = 1000,
+		max_num_results = 20,
+		sort = true,
+		run_on_every_keystroke = true,
+		snippet_placeholder = "..",
+		ignored_file_types = {
+			-- lua = true
+		},
+		show_prediction_strength = false,
 	})
 end
