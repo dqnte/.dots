@@ -29,6 +29,7 @@ end
 
 -- separate command for cli signal
 vim.g.update_colorscheme = function(new_theme)
+	vim.luatheme = nil
 	if new_theme == "light" or new_theme == "dark" then
 		vim.opt.background = new_theme
 		vim.env.THEME_MODE = new_theme
