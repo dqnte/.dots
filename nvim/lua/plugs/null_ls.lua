@@ -8,10 +8,10 @@ vim.loaded.start_null_ls = function()
 			null_ls.builtins.formatting.black,
 			-- js/ts
 			null_ls.builtins.formatting.prettierd,
-            null_ls.builtins.formatting.eslint_d,
+			null_ls.builtins.formatting.eslint_d,
 			-- lua
 			null_ls.builtins.formatting.stylua,
-            -- rust
+			-- rust
 			null_ls.builtins.formatting.rustfmt,
 		},
 	})
