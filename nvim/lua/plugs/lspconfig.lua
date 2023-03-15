@@ -1,5 +1,4 @@
 Plug("neovim/nvim-lspconfig")
-Plug("williamboman/nvim-lsp-installer")
 
 local function lsp_highlight_document()
 	-- some colorschemes don't have hightlight groups for this
@@ -31,6 +30,7 @@ local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	buf_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	buf_keymap(bufnr, "n", "K", "<cmd>lua vim.g.document_highlight_toggle()<CR>", opts)
+	buf_keymap(bufnr, "n", "D", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
@@ -46,25 +46,48 @@ local function on_attach(client, bufnr)
 end
 
 local function configure_server(server_name, opts)
-	local lsp_installer_servers = require("nvim-lsp-installer.servers")
-	local active, server = lsp_installer_servers.get_server(server_name)
+	require("lspconfig")[server_name].setup(opts)
+end
 
-	if active then
-		server:on_ready(function()
-			server:setup(opts)
-		end)
-	else
-		if not server:is_installed() then
-			server:install()
+local function configure_vue(capabilities)
+	local util = require("lspconfig.util")
+	local global_ts = "/usr/local/lib/node_modules/typescript/lib"
+
+	local function get_typescript_server_path(root_dir)
+		local found_ts = ""
+		local function check_dir(path)
+			found_ts = util.path.join(path, "node_modules", "typescript", "lib")
+			if util.path.exists(found_ts) then
+				return path
+			end
+		end
+		if util.search_ancestors(root_dir, check_dir) then
+			return found_ts
+		else
+			return global_ts
 		end
 	end
+
+	configure_server("volar", {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = { "typescript", "vue", "json" },
+		init_options = {
+			typescript = {
+				-- using root typescript directory
+				tsdk = get_typescript_server_path(vim.fn.getcwd()),
+			},
+		},
+		on_new_config = function(new_config, new_root_dir)
+			new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+		end,
+	})
 end
 
 local function configure_lsp()
 	require("lspconfig")
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-	configure_server("sumneko_lua", {
+	configure_server("lua_ls", {
 		on_attach = on_attach,
 		capabilities = capabilities,
 		settings = {
@@ -78,19 +101,11 @@ local function configure_lsp()
 						[vim.fn.stdpath("config") .. "/lua"] = true,
 					},
 				},
+				telemetry = {
+					enable = false,
+				},
 			},
 		},
-	})
-	configure_server("bashls", {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-	configure_server("vuels", {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-	configure_server("tsserver", {
-		on_attach = on_attach,
 	})
 	configure_server("pyright", {
 		on_attach = on_attach,
@@ -100,6 +115,8 @@ local function configure_lsp()
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
+
+	configure_vue(capabilities)
 end
 
 local function configure_diagnostics()
@@ -139,7 +156,23 @@ local function configure_diagnostics()
 	vim.diagnostic.config(config)
 end
 
+local function configure_installer()
+	require("mason").setup({
+		ui = {
+			icons = {
+				package_installed = "✓",
+				package_pending = "➜",
+				package_uninstalled = "✗",
+			},
+		},
+	})
+	require("mason-lspconfig").setup({
+		ensure_installed = { "lua_ls" },
+	})
+end
+
 vim.loaded.start_lsp = function()
+	-- configure_installer()
 	configure_lsp()
 	configure_diagnostics()
 end
