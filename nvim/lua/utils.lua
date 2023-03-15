@@ -13,6 +13,7 @@ local utils = {}
 
 local fn = vim.fn
 utils.get_color = function(group, attr)
+	-- (Normal, "fg#")
 	return fn.synIDattr(fn.synIDtrans(fn.hlID(group)), attr)
 end
 
@@ -25,8 +26,8 @@ utils.shift_color = function(col, amt)
 	local r = math.floor(num / 0x10000) + amt
 	local g = (math.floor(num / 0x100) % 0x100) + amt
 	local b = (num % 0x100) + amt
-    local str  = string.format("%#x", clamp(r) * 0x10000 + clamp(g) * 0x100 + clamp(b))
-    return "#" .. str:gsub("0x","")
+	local str = string.format("%#x", clamp(r) * 0x10000 + clamp(g) * 0x100 + clamp(b))
+	return "#" .. str:gsub("0x", "")
 end
 
 return utils
