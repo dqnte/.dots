@@ -1,5 +1,3 @@
-Plug("neovim/nvim-lspconfig")
-
 local function lsp_highlight_document()
 	-- some colorschemes don't have hightlight groups for this
 	-- we use pcall so function doesn't error if group is already set
@@ -171,8 +169,11 @@ local function configure_installer()
 	})
 end
 
-vim.loaded.start_lsp = function()
-	-- configure_installer()
-	configure_lsp()
-	configure_diagnostics()
-end
+lazy({
+	"neovim/nvim-lspconfig",
+	config = function()
+		-- configure_installer()
+		configure_lsp()
+		configure_diagnostics()
+	end,
+})

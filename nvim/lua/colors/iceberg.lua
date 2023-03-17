@@ -1,5 +1,3 @@
-Plug("cocopon/iceberg.vim")
-
 vim.colorschemes.iceberg = function()
 	nvim_cmd("colorscheme iceberg")
 	if vim.env.THEME_MODE == "light" then
@@ -28,3 +26,5 @@ vim.colorschemes.iceberg = function()
 		nvim_cmd("hi Error guifg=#e27878 guibg=none")
 	end
 end
+
+lazy({ "cocopon/iceberg.vim", priority = 100, config = require("utils").enable_colorscheme })

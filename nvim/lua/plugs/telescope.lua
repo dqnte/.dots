@@ -1,7 +1,3 @@
-Plug("nvim-telescope/telescope.nvim")
-
--- ripgrep required for live greping
-
 keymap("n", "<leader>ff", "<cmd>lua vim.g.telescope_wrapper('find_files')<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>fb", "<cmd>lua vim.g.telescope_wrapper('buffers')<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>fg", "<cmd>lua vim.g.telescope_wrapper('live_grep')<cr>", { noremap = true, silent = true })
@@ -14,7 +10,7 @@ local get_flat = function(opts)
 	local theme_opts = {
 		theme = "flat",
 
-        hidden = true, -- show hidden files
+		hidden = true, -- show hidden files
 		preview_title = false,
 		results_title = false,
 		sorting_strategy = "ascending",
@@ -40,7 +36,21 @@ local get_flat = function(opts)
 	return vim.tbl_deep_extend("force", theme_opts, opts)
 end
 
+vim.g.telescope_wrapper = function(method)
+	local layout_strategy = "horizontal"
+	if vim.fn.winwidth("%") <= 90 then
+		layout_strategy = "vertical"
+	end
+
+	local caller = require("telescope.builtin")[method]
+	caller(get_flat({ layout_strategy = layout_strategy }))
+end
+
 local set_custom_highlights = function()
+	-- if vim.g.colors_name == nil then
+	--     return
+	-- end
+
 	local get_color = require("utils").get_color
 	local shift_color = require("utils").shift_color
 
@@ -75,17 +85,7 @@ local set_custom_highlights = function()
 	hi("TelescopeNormal guibg=" .. result_bg .. " guifg=" .. fg_color)
 end
 
-vim.g.telescope_wrapper = function(method)
-	local layout_strategy = "horizontal"
-	if vim.fn.winwidth("%") <= 90 then
-		layout_strategy = "vertical"
-	end
-
-	local caller = require("telescope.builtin")[method]
-	caller(get_flat({ layout_strategy = layout_strategy }))
-end
-
-vim.after.start_telescope = function()
+vim.after_colorscheme.telescope = function()
 	local telescope = require("telescope")
 	telescope.setup({
 		defaults = {
@@ -110,3 +110,11 @@ vim.after.start_telescope = function()
 
 	set_custom_highlights()
 end
+
+lazy({
+	"nvim-telescope/telescope.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
+	config = vim.after_colorscheme.telescope,
+})
