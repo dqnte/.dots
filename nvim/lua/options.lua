@@ -1,6 +1,3 @@
--- Sensible Defaults
-Plug("tpope/vim-sensible")
-
 -- Basic Settings
 local options = {
 	showmatch = true,
@@ -27,14 +24,11 @@ local options = {
 	termguicolors = true,
 	scrolloff = 5,
 	sidescrolloff = 8,
-    background = vim.env.THEME_MODE ~= "" and vim.env.THEME_MODE or "dark",
+	background = vim.env.THEME_MODE ~= "" and vim.env.THEME_MODE or "dark",
 }
-
-vim.g.mapleader = ","
-
--- remove trailing white spaces
-autocmd({ "BufWritePre" }, { pattern = { "*" }, command = [[%s/\s\+$//e]] })
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+
+vim.g.mapleader = ","

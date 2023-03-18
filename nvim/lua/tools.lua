@@ -1,11 +1,11 @@
-Plug("nvim-lua/plenary.nvim")
-Plug("tpope/vim-commentary")
-Plug("tpope/vim-surround")
-Plug("vim-scripts/dbext.vim")
+-- Plug("nvim-lua/plenary.nvim")
+lazy({ "tpope/vim-commentary" })
+-- Plug("tpope/vim-surround")
+lazy({ "vim-scripts/dbext.vim" })
 
 -- benchmarking
-Plug("dstein64/vim-startuptime")
-Plug("lewis6991/impatient.nvim")
+lazy({ "dstein64/vim-startuptime", lazy = true })
+-- Plug("lewis6991/impatient.nvim")
 
 require("plugs/fugitive")
 require("plugs/telescope")
@@ -29,6 +29,7 @@ end
 
 -- separate command for cli signal
 vim.g.update_colorscheme = function(new_theme)
+	vim.luatheme = nil
 	if new_theme == "light" or new_theme == "dark" then
 		vim.opt.background = new_theme
 		vim.env.THEME_MODE = new_theme
@@ -38,7 +39,7 @@ vim.g.update_colorscheme = function(new_theme)
 
 	vim.colorschemes[vim.env.THEME]()
 
-	for _, caller in pairs(vim.after) do
+	for _, caller in pairs(vim.after_colorscheme) do
 		caller()
 	end
 end

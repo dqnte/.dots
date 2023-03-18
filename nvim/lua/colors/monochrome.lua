@@ -1,5 +1,3 @@
-Plug("fxn/vim-monochrome")
-
 vim.colorschemes.monochrome = function()
 	vim.luatheme = "auto"
 	vim.g.monochrome_italic_comments = 1
@@ -10,3 +8,5 @@ vim.colorschemes.monochrome = function()
 	nvim_cmd("highlight GitSignsChange ctermfg=5 guibg=none")
 	nvim_cmd("highlight GitSignsDelete ctermfg=12 guibg=none")
 end
+
+lazy({ "fxn/vim-monochrome", priority = 100, config = require("utils").enable_colorscheme })

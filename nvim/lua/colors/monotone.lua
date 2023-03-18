@@ -1,5 +1,3 @@
-Plug("Lokaltog/vim-monotone")
-
 vim.colorschemes.mono = function()
 	local colors = {
 		black = "#121111",
@@ -58,3 +56,5 @@ vim.colorschemes.mono = function()
 	nvim_cmd("hi NonText guifg=#5c5c5c")
 	nvim_cmd("hi EndOfBuffer guifg=#2b2b2b")
 end
+
+lazy({ "Lokaltog/vim-monotone", priority = 100, config = require("utils").enable_colorscheme })

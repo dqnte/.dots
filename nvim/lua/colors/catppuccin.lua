@@ -1,5 +1,3 @@
-Plug("catppuccin/nvim", { as = "catppuccin" })
-
 vim.colorschemes["catppuccin"] = function()
 	local flavour = "mocha"
 	if vim.env.THEME_MODE == "light" then
@@ -43,3 +41,10 @@ vim.colorschemes["catppuccin"] = function()
 
 	vim.cmd("colorscheme catppuccin")
 end
+
+lazy({
+	"catppuccin/nvim",
+	name = "catppuccin",
+	priority = 100,
+	config = require("utils").enable_colorscheme,
+})

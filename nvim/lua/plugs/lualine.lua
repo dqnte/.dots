@@ -1,6 +1,4 @@
-Plug("nvim-lualine/lualine.nvim")
-
-vim.after.start_lualine = function()
+vim.after_colorscheme.lualine = function()
 	local MAX_BRANCH_LEN = 35
 
 	-- shortens long branch lengths
@@ -83,3 +81,8 @@ vim.after.start_lualine = function()
 	-- removes edges color styling
 	hi("StatusLine guibg=none")
 end
+
+lazy({
+	"nvim-lualine/lualine.nvim",
+	config = vim.after_colorscheme.lualine,
+})

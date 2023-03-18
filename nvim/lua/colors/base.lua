@@ -1,3 +1,7 @@
+-- instantiate colorschemes table
+vim.colorschemes = {}
+vim.after_colorscheme = {}
+
 require("colors/iceberg")
 require("colors/ayu")
 require("colors/dracula")

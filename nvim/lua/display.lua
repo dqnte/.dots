@@ -45,7 +45,7 @@ end
 
 vim.g.toggle_alpha = function()
 	local alpha_was_open = vim.g.alpha_is_open
-    local zen_was_open = vim.g.in_zen
+	local zen_was_open = vim.g.in_zen
 
 	vim.cmd("NERDTreeClose") -- always close NERDTree on Alpha open
 	vim.cmd("Alpha")

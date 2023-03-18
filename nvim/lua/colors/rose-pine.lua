@@ -1,15 +1,13 @@
-Plug("rose-pine/neovim")
-
 vim.colorschemes["rose-pine"] = function()
 	vim.cmd("colorscheme rose-pine")
 
 	local p = require("rose-pine.palette")
 
 	local shift_color = require("utils").shift_color
-	local c_bg = shift_color(p.overlay:gsub("#",""), 8)
+	local c_bg = shift_color(p.overlay:gsub("#", ""), 8)
 
-	if vim.o.background == 'dark' then
-	    c_bg = p.surface
+	if vim.o.background == "dark" then
+		c_bg = p.surface
 	end
 
 	vim.luatheme = {
@@ -41,12 +39,12 @@ vim.colorschemes["rose-pine"] = function()
 		normal = {
 			a = { bg = p.rose, fg = p.base, gui = "bold" },
 			b = { bg = p.overlay, fg = p.rose },
-			c = { bg = c_bg , fg = p.text },
+			c = { bg = c_bg, fg = p.text },
 		},
 		insert = {
 			a = { bg = p.foam, fg = p.base, gui = "bold" },
 			b = { bg = p.overlay, fg = p.foam },
-			c = { bg = c_bg , fg = p.text },
+			c = { bg = c_bg, fg = p.text },
 		},
 		visual = {
 			a = { bg = p.iris, fg = p.base, gui = "bold" },
@@ -70,3 +68,10 @@ vim.colorschemes["rose-pine"] = function()
 		},
 	}
 end
+
+lazy({
+	"rose-pine/neovim",
+	name = "rose-pine",
+	priority = 100,
+	config = require("utils").enable_colorscheme,
+})

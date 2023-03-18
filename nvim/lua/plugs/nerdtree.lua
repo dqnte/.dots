@@ -1,4 +1,4 @@
-Plug("preservim/nerdtree")
+lazy({ "preservim/nerdtree" })
 
 -- close vim when nerdtree is last window
 autocmd({ "BufEnter" }, {
