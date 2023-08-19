@@ -14,6 +14,7 @@ alias g="git"
 alias gs="fgit status"
 alias gl="fgit log"
 alias gb="fgit branch"
+alias gbk="git checkout -"
 
 alias kitty-font="kitty --debug-font-fallback"
 
