@@ -255,7 +255,7 @@ lazy({
 					{
 						type = "text",
 						val = format_row("Recent"),
-						opts = { position = "center", hl = "Directory" },
+						opts = { position = "center", hl = "markdownH4" },
 					},
 					{ type = "padding", val = 1 },
 					{
@@ -274,7 +274,7 @@ lazy({
 						type = "text",
 						val = mru_title,
 						opts = {
-							hl = "Directory",
+							hl = "markdownH4",
 							position = "center",
 							shrink_margin = false,
 						},
@@ -301,8 +301,8 @@ lazy({
 			layout = {
 				section.header,
 				{ type = "padding", val = 1 },
-				section.mru,
 				section.mru_cwd,
+				section.mru,
 				{ type = "padding", val = 1 },
 				section.top_button,
 				section.footer,
