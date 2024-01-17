@@ -39,7 +39,8 @@ function poetry_clean() {
 
 # Go Setup
 export GOPATH=$HOME/go-workspace # don't forget to change your path correctly!
-export GOROOT=/usr/local/opt/go/libexec
+# export GOROOT=/usr/local/opt/go/libexec This was on the intel mac, maybe they install in different places?
+export GOROOT=/usr/local/go
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # Rust Setup
