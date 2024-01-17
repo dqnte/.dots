@@ -27,6 +27,8 @@ user_command("Theme", "lua vim.g.set_colorscheme(<q-args>)", { nargs = 1 })
 
 user_command("TODO", "e ~/TODO.md", {})
 
+user_command("Gpop", "G reset HEAD^", {})
+
 -- uses theme cli tool to flip colorscheme
 vim.g.set_colorscheme = function(new_theme)
 	vim.cmd("!theme " .. new_theme)
