@@ -3,7 +3,7 @@
 # ALIASES
 alias k=kubectl
 alias gr='grep --exclude-dir=node_modules --exclude-dir=__pycache__ --exclude-dir=modules'
-alias v="nvim -u ~/.dots/nvim/lua/init.lua"
+alias v="nvim"
 alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
 alias stay="caffeinate -d"
@@ -13,9 +13,11 @@ alias ls="lx"
 alias g="git"
 alias gs="fgit status"
 alias gl="fgit log"
-alias gb="fgit branch"
+alias gb="git branch | grep '^ ' | tr -d ' ' | fzf --header ' $(git branch --show-current)' | xargs git checkout"
 alias gbk="git checkout -"
 alias gpop="git reset HEAD^"
+alias z="source ~/.dots/scripts/z_ls.sh"
+alias ff="find * -type f -not -path '*node_modules/*' | fzf | xargs nvim"
 
 alias kitty-font="kitty --debug-font-fallback"
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 source ~/.dots/zsh/utils.sh
 
-DEFAULT_THEME=iceberg
+DEFAULT_THEME=everforest
 THEMES_DIR="$HOME/.dots/kitty/themes"
 
 function show_all_themes() {
