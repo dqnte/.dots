@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 source ~/.dots/zsh/utils.sh
 
 DEFAULT_THEME=everforest
@@ -26,7 +26,7 @@ function set_kitty_theme() {
 
     # kitty theme change
     cp $THEMES_DIR/$file.conf ~/.dots/kitty/theme.conf
-    kill -SIGUSR1 $(pgrep -a kitty)
+    kill -s USR1 $(pgrep -a kitty)
 }
 
 function set_device_mode() {

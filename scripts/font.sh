@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 source ~/.dots/zsh/utils.sh
 
 DEFAULT_FONT=lisa
@@ -22,7 +22,7 @@ function change_font() {
     cp $FONTS_DIR/$FONT.conf ~/.dots/kitty/font.conf
 
     set_state_value FONT $FONT # only really necessary for current font
-    kill -SIGUSR1 $(pgrep -a kitty)
+    kill -s USR1 $(pgrep -a kitty)
 }
 
 

@@ -21,9 +21,10 @@ fi
 # add all config files
 if [ ! -f $DOTDIR/.state ]; then
     touch $DOTDIR/.state
-    echo "THEME=iceberg" >> $DOTDIR/.state
+    echo "THEME=rose-pine" >> $DOTDIR/.state
+    echo "THEME_MODE=dark" >> $DOTDIR/.state
 fi
-[ ! -f $KITTYDIR/theme.conf ] && cp $KITTYDIR/dracula.conf $KITTYDIR/theme.conf
+[ ! -f $KITTYDIR/theme.conf ] && cp $KITTYDIR/themes/rose-pine.conf $KITTYDIR/theme.conf
 [ ! -f $NVIMDIR/lua/secrets.lua ] && touch $NVIMDIR/lua/secrets.lua
 
 # build rust scripts
@@ -44,5 +45,5 @@ cp $DOTDIR/scripts/font.sh $DOTDIR/scripts/exe/font
 chmod u+x $DOTDIR/scripts/exe/font
 
 # reload terminal
-kill -SIGUSR1 $(pgrep kitty)
+kill -s USR1 $(pgrep kitty)
 export THEME=iceberg

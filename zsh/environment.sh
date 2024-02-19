@@ -8,6 +8,7 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="$PATH:/usr/local/opt/postgresql@14/bin"
 
 # Python Setup
+export PATH="$PATH:$HOME/Library/Python/3.9/bin"
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH="$PATH:$PYENV_ROOT/shim"
 
