@@ -95,6 +95,8 @@ vim.after_colorscheme.telescope = function()
 				"modules/",
 				".git/",
                 "grrs/"
+                ".mypy_cache/",
+                ".pytest_cache/"
 			},
 			mappings = {
 				i = {

@@ -1,7 +1,13 @@
--- Plug("nvim-lua/plenary.nvim")
 lazy({ "tpope/vim-commentary" })
--- Plug("tpope/vim-surround")
 lazy({ "vim-scripts/dbext.vim" })
+lazy({
+	"sustech-data/wildfire.nvim",
+	event = "VeryLazy",
+	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	config = function()
+		require("wildfire").setup()
+	end,
+})
 
 -- benchmarking
 lazy({ "dstein64/vim-startuptime", lazy = true })
@@ -20,6 +26,8 @@ user_command("Font", "!font <q-args>", { nargs = 1 })
 user_command("Theme", "lua vim.g.set_colorscheme(<q-args>)", { nargs = 1 })
 
 user_command("TODO", "e ~/TODO.md", {})
+
+user_command("Gpop", "G reset HEAD^", {})
 
 -- uses theme cli tool to flip colorscheme
 vim.g.set_colorscheme = function(new_theme)

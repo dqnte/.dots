@@ -69,7 +69,7 @@ local function configure_vue(capabilities)
 	configure_server("volar", {
 		on_attach = on_attach,
 		capabilities = capabilities,
-		filetypes = { "typescript", "vue", "json" },
+		filetypes = { "javascript", "typescript", "vue", "json" },
 		init_options = {
 			typescript = {
 				-- using root typescript directory
