@@ -13,7 +13,7 @@ alias ls="lx"
 alias g="git"
 alias gs="fgit status"
 alias gl="fgit log"
-alias gb="fgit branch"
+alias gb="git branch | grep '^ ' | tr -d ' ' | fzf --header ' $(git branch --show-current)' | xargs git checkout"
 alias gbk="git checkout -"
 alias gpop="git reset HEAD^"
 
