@@ -8,6 +8,7 @@ function set_zsh_env() {
     source "$DOTZSH/aesthetic.sh"
     source "$DOTZSH/aliases.sh"
     source "$DOTZSH/completion.sh"
+    source "$DOTZSH/fzf.sh"
 
     [ -f "$DOTZSH/secrets.sh" ] && source "$DOTZSH/secrets.sh"
 

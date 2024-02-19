@@ -5,5 +5,8 @@ TRAPUSR1() {
       export THEME=$(cat ~/.dots/.state | grep THEME= | cut -d '=' -f 2)
       export THEME_MODE=$(cat ~/.dots/.state | grep THEME_MODE= | cut -d '=' -f 2)
       export FONT=$(cat ~/.dots/.state | grep FONT= | cut -d '=' -f 2)
+
+      # fzf needs it's "FZF_DEFAULT_OPTS" string changed with the theme
+      source ~/.dots/zsh/fzf.sh
   fi
 }
