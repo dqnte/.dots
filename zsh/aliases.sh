@@ -14,10 +14,13 @@ alias g="git"
 alias gs="fgit status"
 alias gl="fgit log"
 alias gb="sh ~/.dots/scripts/gb.sh"
+alias ga="git ls-files --others --exclude-standard --modified | fzf -m | xargs git add"
 alias gbk="git checkout -"
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"
+
 alias ff="find * -type f -not -path '*node_modules/*' | fzf | xargs nvim"
+alias fg="git ls-files --others --exclude-standard --modified | fzf | xargs nvim"
 
 alias kitty-font="kitty --debug-font-fallback"
 
