@@ -38,7 +38,7 @@ end
 
 vim.g.telescope_wrapper = function(method)
 	local layout_strategy = "horizontal"
-	if vim.fn.winwidth("%") <= 90 then
+	if vim.fn.winwidth("%") <= 150 then
 		layout_strategy = "vertical"
 	end
 
