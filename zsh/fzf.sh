@@ -17,12 +17,20 @@ if [ $THEME = 'everforest' ]; then
 
 elif [ $THEME = 'rose-pine' ]; then
   if [ $THEME_MODE = 'dark' ]; then
-      COLOR_POP_1="#ebbcba"
+      COLOR_POP_1="#ea9a97"
       COLOR_POP_2="#c4a7e7"
       COLOR_FG="#e0def4"
       COLOR_FG_SUBTLE="#6e6a86"
-      COLOR_BG_OVERLAY="#151320"
-      COLOR_BG_HI="#21202e"
+      COLOR_BG_OVERLAY="#1f1d32"
+      COLOR_BG_HI="#2a283e"
+
+      # these are rose-pine-main themes
+      # COLOR_POP_1="#ebbcba"
+      # COLOR_POP_2="#c4a7e7"
+      # COLOR_FG="#e0def4"
+      # COLOR_FG_SUBTLE="#6e6a86"
+      # COLOR_BG_OVERLAY="#151320"
+      # COLOR_BG_HI="#21202e"
   else
       COLOR_POP_1="#d7827e"
       COLOR_POP_2="#907aa9"
