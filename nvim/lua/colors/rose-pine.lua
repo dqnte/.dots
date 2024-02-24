@@ -1,5 +1,9 @@
 vim.colorschemes["rose-pine"] = function()
-	vim.cmd("colorscheme rose-pine-moon")
+	if vim.o.background == "dark" then
+		vim.cmd("colorscheme rose-pine-moon")
+	else
+		vim.cmd("colorscheme rose-pine")
+	end
 
 	local p = require("rose-pine.palette")
 
