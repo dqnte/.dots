@@ -46,4 +46,3 @@ chmod u+x $DOTDIR/scripts/exe/font
 
 # reload terminal
 kill -s USR1 $(pgrep kitty)
-export THEME=iceberg
