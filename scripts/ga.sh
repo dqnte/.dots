@@ -12,5 +12,5 @@ choices=$(source "$HOME/.dots/scripts/gs.sh" \
 
 if [ ! -z "$choices" ]; then
     echo "$choices" | xargs git add
-    source "$HOME/.dots/scripts/gs.sh"
+    source "$HOME/.dots/scripts/gs.sh" -p
 fi
