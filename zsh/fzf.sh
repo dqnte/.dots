@@ -47,7 +47,6 @@ elif [ $THEME = 'neon' ]; then
       COLOR_FG_SUBTLE="#7e8294"
       COLOR_BG_OVERLAY="#242830"
       COLOR_BG_HI="#202328"
-
     else
       COLOR_POP_1="#2257a0" # TelescopePromptPrefix fg
       COLOR_POP_2="#ff6655" # Dealers choice
@@ -55,6 +54,22 @@ elif [ $THEME = 'neon' ]; then
       COLOR_FG_SUBTLE="#7e8294" # TelescopePromptCounter
       COLOR_BG_OVERLAY="#d7d7d7" # TelescopeResultsNormal bg
       COLOR_BG_HI="#d0d0d0" # TelescopeSelection bg
+    fi
+elif [ $THEME = 'tokyonight' ]; then
+    if [ $THEME_MODE = 'dark' ]; then
+      COLOR_POP_1="#82aaff"
+      COLOR_POP_2="#ff966c"
+      COLOR_FG="#c8d3f5"
+      COLOR_FG_SUBTLE="#26283a"
+      COLOR_BG_OVERLAY="#1e2032"
+      COLOR_BG_HI="#2f334d"
+    else
+      COLOR_POP_1="#2e7de9" # TelescopePromptPrefix fg
+      COLOR_POP_2="#c64343" # Dealers choice
+      COLOR_FG="#3760bf" # Normal fg
+      COLOR_FG_SUBTLE="#848cb5" # TelescopePromptCounter fg
+      COLOR_BG_OVERLAY="#e5e6eb" # TelescopeResultsNormal bg
+      COLOR_BG_HI="#c4c8da" # TelescopeSelection bg
     fi
 fi
 
