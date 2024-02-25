@@ -41,10 +41,10 @@ elif [ $THEME = 'rose-pine' ]; then
   fi
 fi
 
-FZF_COLOR_OPTS="fg:$COLOR_FG,fg+:regular:$COLOR_FG,query:regular:$COLOR_FG"
+FZF_COLOR_OPTS="fg:$COLOR_FG,fg+:regular:$COLOR_FG,query:regular:$COLOR_FG,header:$COLOR_FG"
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,bg:$COLOR_BG_OVERLAY,gutter:$COLOR_BG_OVERLAY,border:$COLOR_BG_OVERLAY"
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,bg+:$COLOR_BG_HI,info:$COLOR_FG_SUBTLE,separator:$COLOR_FG_SUBTLE"
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,prompt:$COLOR_POP_1,hl+:$COLOR_POP_1,hl:bold:$COLOR_POP_1"
-FZF_COLOR_OPTS="$FZF_COLOR_OPTS,header:bold:$COLOR_POP_2,marker:$COLOR_POP_2"
+FZF_COLOR_OPTS="$FZF_COLOR_OPTS,marker:$COLOR_POP_2"
 
-export FZF_DEFAULT_OPTS="--margin 5%,5% --prompt='  ' --pointer=' ' --color='$FZF_COLOR_OPTS' --border='double' --layout='reverse' --cycle --marker='• ' --info='right' --header-first"
+export FZF_DEFAULT_OPTS="--margin 5%,5% --prompt='  ' --pointer=' ' --color='$FZF_COLOR_OPTS' --border='double' --layout='reverse' --cycle --marker='• ' --info='right'"
