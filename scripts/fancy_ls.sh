@@ -18,6 +18,6 @@ num_cols=$((total_width / column_width ))
 echo
 fmt=$( yes "%-${column_width}s" | head -$num_cols | xargs | sed 's/ //g' )
 [ ! -z "$dirs" ] && printf "  $fmt\n" $dirs
-echo -e "  \e[2m----\e[0m"
+echo -e "  \e[2m────\e[0m"
 [ ! -z "$files" ] && printf "  $fmt\n" $files
 echo

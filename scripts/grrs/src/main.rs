@@ -7,7 +7,7 @@ use std::fs;
 use termsize; // finds the number of columns in the terminal
 
 static MIN_LEN: usize = 16; // minimum column length
-static DELIMITER: &str = "----"; // splits dirs and files
+static DELIMITER: &str = "────"; // splits dirs and files
 static LEFT_PADDING: &str = "  ";
 
 #[derive(Parser)]
