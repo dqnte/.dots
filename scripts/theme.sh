@@ -65,8 +65,16 @@ function change_theme() {
     set_device_mode
 }
 
+function picker() {
+    choice=$(ls $THEMES_DIR | cut -d '.' -f 1 | sed s/_light// | uniq | fzf)
+
+    if [ ! -z "$choice" ]; then
+        change_theme "$choice"
+    fi
+}
+
 if [ -z $1 ]; then
-    change_theme $DEFAULT_THEME
+    picker
 elif [ "show" = $1 ]; then
     echo -e "\n  $THEME\n"
 elif [ "show-all" = $1 ]; then

@@ -79,7 +79,7 @@ vim.after_colorscheme.lualine = function()
 	})
 
 	-- removes edges color styling
-	hi("StatusLine guibg=none")
+	-- hi("StatusLine guibg=none")
 end
 
 lazy({

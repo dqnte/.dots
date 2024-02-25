@@ -11,13 +11,17 @@ alias clr=clear
 
 alias ls="lx"
 alias g="git"
-alias gs="fgit status"
+alias gs="sh ~/.dots/scripts/gs.sh -p"
 alias gl="fgit log"
 alias gb="sh ~/.dots/scripts/gb.sh"
+alias ga="sh ~/.dots/scripts/ga.sh"
 alias gbk="git checkout -"
+
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"
+
 alias ff="find * -type f -not -path '*node_modules/*' | fzf | xargs nvim"
+alias fg="git ls-files --others --exclude-standard --modified | fzf | xargs nvim"
 
 alias kitty-font="kitty --debug-font-fallback"
 

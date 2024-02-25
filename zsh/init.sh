@@ -13,7 +13,7 @@ function set_zsh_env() {
     [ -f "$DOTZSH/secrets.sh" ] && source "$DOTZSH/secrets.sh"
 
     # Pluggins
-    zsh_add_plugin "lukechilds/zsh-nvm"
+    # zsh_add_plugin "lukechilds/zsh-nvm"
 }
 
 function boot_up() {
