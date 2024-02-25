@@ -39,6 +39,23 @@ elif [ $THEME = 'rose-pine' ]; then
       COLOR_BG_OVERLAY="#fef8f1"
       COLOR_BG_HI="#f4ede8"
   fi
+elif [ $THEME = 'neon' ]; then
+    if [ $THEME_MODE = 'dark' ]; then
+      COLOR_POP_1="#6cb6eb"
+      COLOR_POP_2="#907aa9"
+      COLOR_FG="#bbc2cf"
+      COLOR_FG_SUBTLE="#7e8294"
+      COLOR_BG_OVERLAY="#242830"
+      COLOR_BG_HI="#202328"
+
+    else
+      COLOR_POP_1="#2257a0" # TelescopePromptPrefix fg
+      COLOR_POP_2="#ff6655" # Dealers choice
+      COLOR_FG="#4c566a" # Normal fg
+      COLOR_FG_SUBTLE="#7e8294" # TelescopePromptCounter
+      COLOR_BG_OVERLAY="#d7d7d7" # TelescopeResultsNormal bg
+      COLOR_BG_HI="#d0d0d0" # TelescopeSelection bg
+    fi
 fi
 
 FZF_COLOR_OPTS="fg:$COLOR_FG,fg+:regular:$COLOR_FG,query:regular:$COLOR_FG,header:$COLOR_FG"
