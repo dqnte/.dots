@@ -11,11 +11,12 @@ alias clr=clear
 
 alias ls="lx"
 alias g="git"
-alias gs="fgit status"
+alias gs="sh ~/.dots/scripts/gs.sh"
 alias gl="fgit log"
 alias gb="sh ~/.dots/scripts/gb.sh"
-alias ga="sh ~/.dots/scripts/ga.sh"
+alias ga="sh ~/.dots/scripts/ga.sh && gs"
 alias gbk="git checkout -"
+
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"
 
