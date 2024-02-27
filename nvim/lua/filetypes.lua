@@ -10,6 +10,6 @@ vim.cmd([[autocmd FileType vue setlocal shiftwidth=2 softtabstop=2 expandtab]])
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.txt", command = "setlocal signcolumn=yes:2" }) -- better margins
 
 -- Markdown
-lazy({ "godlygeek/tabular" })
-lazy({ "preservim/vim-markdown" })
+-- lazy({ "godlygeek/tabular" })
+-- lazy({ "preservim/vim-markdown" })
 vim.g.vim_markdown_folding_disabled = 1

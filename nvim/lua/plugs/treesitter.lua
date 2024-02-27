@@ -11,7 +11,7 @@ lazy({
 			ignore_install = { "t32" },
 			highlight = {
 				enable = true,
-				disable = { "c", "rust", "sql", "markdown" },
+				disable = { "c", "rust" },
 				additional_vim_regex_highlighting = false,
 			},
 			indent = { enabled = true },
