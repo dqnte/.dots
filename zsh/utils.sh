@@ -28,3 +28,19 @@ function set_state_value() {
     new_value=$2
     sed -i "" "s/$key=.*/$key=$new_value/" ~/.dots/.state
 }
+
+export ZBOLD="[1m"
+export ZDIM="[2m"
+export ZITALICS="[3m"
+export ZUNDERLINE="[4m"
+
+export ZBLACK="[30m"
+export ZRED="[31m"
+export ZGREEN="[32m"
+export ZYELLOW="[33m"
+export ZBLUE="[34m"
+export ZPURPLE="[35m"
+export ZCYAN="[36m"
+export ZWHITE="[37m"
+export ZPLAIN="[0m"
+export ZPADDING="  "

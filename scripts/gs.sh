@@ -1,29 +1,19 @@
-bold="[1m"
-black="\\\e\\[30m"
-red="\\\e\\[31m"
-green="\\\e\\[32m"
-yellow="\\\e\\[33m"
-blue="\\\e\\[34m"
-purple="\\\e\\[35m"
-cyan="\\\e\\[36m"
-white="\\\e\\[37m"
-plain="\\\e\\[0m"
-
 separator="\/="
+branch_indicator="\*\/"
 
-[ ! -z $1 ] && padding="   "
+[ ! -z $1 ] && padding=$ZPADDING
 
-branch_sub="s/^##/${padding}${yellow}${plain}/"
-staged_sub="s/^\(.\)\(.\)/${padding}$green\1$red\2${plain}/1"
-modified_sub="s/^ ./${padding}${red}&${plain}/"
-unmerged_sub="s/^../${padding}${red}&${plain}/"
-untracked_sub="s/^??/${padding}${purple} ~${plain}/"
+staged_sub="s/^\(.\)\(.\)/${padding}$ZGREEN\1$ZRED\2${ZPLAIN}/1"
+modified_sub="s/^ ./${padding}${ZRED}&${ZPLAIN}/"
+unmerged_sub="s/^../${padding}${ZRED}&${ZPLAIN}/"
+untracked_sub="s/^??/${padding}${ZPURPLE} ~${ZPLAIN}/"
+
 git_status=$(git status -s -b -uall)
 branch=$(echo "$git_status" | grep '##' | \
-    sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding $yellow*$plain $bold\1$plain $separator \2/"  \
-    -e "s/^## \([[:graph:]]*\)/$padding $yellow* $plain$bold\1$plain/"  \
-        -e "s/ahead \([[:digit:]]*\)/$green\+\1$plain/" \
-        -e "s/behind \([[:digit:]]*\)/$red\-\1$plain/" \
+    sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN $separator \2/"  \
+    -e "s/^## \([[:graph:]]*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN$ZBOLD\1$ZPLAIN/"  \
+        -e "s/ahead \([[:digit:]]*\)/$ZGREEN\+\1$ZPLAIN/" \
+        -e "s/behind \([[:digit:]]*\)/$ZRED\-\1$ZPLAIN/" \
         -e "s/]\$//" \
         -e "s/ \[/ /" \
         )
