@@ -1,4 +1,11 @@
 
+### SQL
+
+Formating sql strings inside vim:
+```vim
+:'<,'>!sqlformat --reindent_aligned -
+```
+
 ### SQLAlchemy
 
 Simple script to connect to a PostgreSQL database using sqlalchemy:
