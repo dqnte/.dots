@@ -18,7 +18,10 @@ lazy({
 		-- "hrsh7th/vim-vsnip",
 
 		-- luasnip
-		"L3MON4D3/Luasnip",
+		{
+			"L3MON4D3/Luasnip",
+			version = "v2.*",
+		},
 		"saadparwaiz1/cmp_luasnip",
 		-- "rafamadriz/friendly-snippets",
 
@@ -62,7 +65,7 @@ lazy({
 lazy({
 	{
 		"tzachar/cmp-tabnine",
-		build = './install.sh',
+		build = "./install.sh",
 		dependencies = { "hrsh7th/nvim-cmp" },
 	},
 })
