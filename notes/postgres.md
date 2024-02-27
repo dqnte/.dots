@@ -41,7 +41,7 @@ def first(sql: str, args={}):
 ### DB Search Queries
 
 Find tables with given column pattern:
-```
+```sql
 select t.table_schema,
        t.table_name,
        c.column_name
@@ -59,7 +59,7 @@ select t.table_schema,
 ### DB Management Queries
 
 My currently running queries:
-```
+```sql
 select pid,
        now() - pg_stat_activity.query_start as duration,
        state,
@@ -70,22 +70,22 @@ select pid,
 
 
 Stop a query:
-```
+```sql
 select pg_cancel_backend(__pid__);
 ```
 
 A force terminate that could lead to a database refresh:
-```
+```sql
 -- select pg_terminate_backend(__pid__);
 ```
 
 Idle queries:
-```
+```sql
 select * from pg_stat_activity where state != 'idle';
 ```
 
 Blocking queries (i think):
-```
+```sql
 with active as (
         select
                 pid,
