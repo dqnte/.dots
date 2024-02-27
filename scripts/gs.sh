@@ -1,6 +1,7 @@
 separator="\/="
+branch_indicator="\*\/"
 
-[ ! -z $1 ] && padding="   "
+[ ! -z $1 ] && padding=$ZPADDING
 
 staged_sub="s/^\(.\)\(.\)/${padding}$ZGREEN\1$ZRED\2${ZPLAIN}/1"
 modified_sub="s/^ ./${padding}${ZRED}&${ZPLAIN}/"
@@ -9,8 +10,8 @@ untracked_sub="s/^??/${padding}${ZPURPLE} ~${ZPLAIN}/"
 
 git_status=$(git status -s -b -uall)
 branch=$(echo "$git_status" | grep '##' | \
-    sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding $ZYELLOW*$ZPLAIN $ZBOLD\1$ZPLAIN $separator \2/"  \
-    -e "s/^## \([[:graph:]]*\)/$padding $ZYELLOW* $ZPLAIN$ZBOLD\1$ZPLAIN/"  \
+    sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN $separator \2/"  \
+    -e "s/^## \([[:graph:]]*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN$ZBOLD\1$ZPLAIN/"  \
         -e "s/ahead \([[:digit:]]*\)/$ZGREEN\+\1$ZPLAIN/" \
         -e "s/behind \([[:digit:]]*\)/$ZRED\-\1$ZPLAIN/" \
         -e "s/]\$//" \

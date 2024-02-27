@@ -30,6 +30,10 @@ function set_state_value() {
 }
 
 export ZBOLD="[1m"
+export ZDIM="[2m"
+export ZITALICS="[3m"
+export ZUNDERLINE="[4m"
+
 export ZBLACK="[30m"
 export ZRED="[31m"
 export ZGREEN="[32m"
@@ -39,3 +43,4 @@ export ZPURPLE="[35m"
 export ZCYAN="[36m"
 export ZWHITE="[37m"
 export ZPLAIN="[0m"
+export ZPADDING="  "
