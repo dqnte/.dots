@@ -8,7 +8,9 @@ lazy({
 			current_line_blame = true,
 			current_line_blame_opts = {
 				virt_text_pos = "eol",
-				and_something_here = "here",
+			},
+			current_line_blame_formatter_opts = {
+				relative_time = true,
 			},
 			on_attach = function()
 				-- Navigation
