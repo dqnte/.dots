@@ -13,7 +13,7 @@ lazy({
 				relative_time = true,
 			},
 			preview_config = {
-				border = { " ", " " ," ", " ", " ", " ", " ", " " },
+				border = { "", "", "", "", "", "", "", " " },
 			},
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
