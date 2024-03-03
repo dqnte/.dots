@@ -148,7 +148,6 @@ local function configure_diagnostics()
 		float = {
 			focusable = false,
 			style = "minimal",
-			-- border = "single",
 			guibg = "red",
 			source = "always",
 			header = "",
