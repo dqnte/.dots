@@ -69,7 +69,7 @@ local function configure_vue(capabilities)
 	configure_server("volar", {
 		on_attach = on_attach,
 		capabilities = capabilities,
-		filetypes = { "javascript", "typescript", "vue", "json" },
+		filetypes = { "vue" },
 		init_options = {
 			typescript = {
 				-- using root typescript directory
@@ -113,6 +113,10 @@ local function configure_lsp()
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
+	configure_server("tsserver", {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 
 	configure_vue(capabilities)
 end
@@ -144,7 +148,6 @@ local function configure_diagnostics()
 		float = {
 			focusable = false,
 			style = "minimal",
-			-- border = "single",
 			guibg = "red",
 			source = "always",
 			header = "",
