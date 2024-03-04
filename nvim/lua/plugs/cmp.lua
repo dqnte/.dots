@@ -1,7 +1,12 @@
 local dropdown_fmt = function(entry, vim_item)
 	local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
 	local strings = vim.split(kind.kind, "%s", { trimempty = true })
-	kind.kind = " " .. strings[1]
+
+	if strings[1] == "TabNine" then
+		kind.kind = " "
+	else
+		kind.kind = " " .. strings[1]
+	end
 	return kind
 end
 
