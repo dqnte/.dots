@@ -15,9 +15,9 @@ vim.after_colorscheme.hop = function()
 	-- check terminal color is defined
 	if vim.g["terminal_color_1"] then
 		nvim_cmd("hi default link HopUnmatched Comment")
-		nvim_cmd("hi HopNextKey gui=bold guifg=" .. vim.g.terminal_color_1)
-		nvim_cmd("hi HopNextKey1 gui=bold guifg=" .. vim.g.terminal_color_3)
-		nvim_cmd("hi HopNextKey2 guifg=" .. vim.g.terminal_color_3)
+		nvim_cmd("hi HopNextKey gui=bold guifg=" .. vim.g.terminal_color_1 .. " guibg=none")
+		nvim_cmd("hi HopNextKey1 gui=bold guifg=" .. vim.g.terminal_color_3 .. " guibg=none")
+		nvim_cmd("hi HopNextKey2 guifg=" .. vim.g.terminal_color_3 .. " guibg=none")
 	end
 end
 

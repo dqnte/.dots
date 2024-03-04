@@ -1,7 +1,12 @@
 local dropdown_fmt = function(entry, vim_item)
 	local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
 	local strings = vim.split(kind.kind, "%s", { trimempty = true })
-	kind.kind = " " .. strings[1]
+
+	if strings[1] == "TabNine" then
+		kind.kind = " "
+	else
+		kind.kind = " " .. strings[1]
+	end
 	return kind
 end
 
@@ -18,7 +23,10 @@ lazy({
 		-- "hrsh7th/vim-vsnip",
 
 		-- luasnip
-		"L3MON4D3/Luasnip",
+		{
+			"L3MON4D3/Luasnip",
+			version = "v2.*",
+		},
 		"saadparwaiz1/cmp_luasnip",
 		-- "rafamadriz/friendly-snippets",
 
@@ -62,7 +70,7 @@ lazy({
 lazy({
 	{
 		"tzachar/cmp-tabnine",
-		build = './install.sh',
+		build = "./install.sh",
 		dependencies = { "hrsh7th/nvim-cmp" },
 	},
 })
