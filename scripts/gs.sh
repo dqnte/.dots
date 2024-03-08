@@ -11,7 +11,8 @@ untracked_sub="s/^??/${padding}${ZPURPLE} ~${ZPLAIN}/"
 git_status=$(git status -s -b -uall)
 branch=$(echo "$git_status" | grep '##' | \
     sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN $separator \2/"  \
-    -e "s/^## \([[:graph:]]*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN$ZBOLD\1$ZPLAIN/"  \
+    -e "s/^## \([[:graph:]]*\)$/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN/"  \
+    -e "s/^## \(.*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN \1/"  \
         -e "s/ahead \([[:digit:]]*\)/$ZGREEN\+\1$ZPLAIN/" \
         -e "s/behind \([[:digit:]]*\)/$ZRED\-\1$ZPLAIN/" \
         -e "s/]\$//" \
