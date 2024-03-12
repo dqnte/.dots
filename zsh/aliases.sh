@@ -27,6 +27,7 @@ alias kitty-font="kitty --debug-font-fallback"
 
 alias TODO="v ~/TODO.md"
 alias NOTES="v ~/NOTES.md"
+alias notes="cd ~/notes"
 alias dots="cd ~/.dots"
 
 # key binding for kitty
