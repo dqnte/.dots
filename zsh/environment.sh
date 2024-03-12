@@ -6,11 +6,12 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 
 # PSQL cli
 export PATH="$PATH:/usr/local/opt/postgresql@14/bin"
+export PATH="$PATH:/opt/homebrew/opt/libpq/bin"
 
 # Python Setup
 export PATH="$PATH:$HOME/Library/Python/3.9/bin"
-export PYENV_ROOT="/usr/local/var/pyenv"
-export PATH="$PATH:$PYENV_ROOT/shim"
+PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
@@ -46,6 +47,20 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # Rust Setup
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# Java Setup
+export JAVA_HOME="/opt/homebrew/opt/openjdk/bin/java"
+
+# Node and friends
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+export PNPM_HOME="/Users/dtobar/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PATH:$PNPM_HOME" ;;
+esac
 
 # scripts
 export PATH="$PATH:$HOME/.dots/scripts/exe"
