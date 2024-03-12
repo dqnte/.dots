@@ -8,10 +8,10 @@ lazy({
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = "all",
 			sync_install = false,
-			ignore_install = { "t32" },
+			ignore_install = { "t32", "wing" },
 			highlight = {
 				enable = true,
-				disable = { "c", "rust" },
+				disable = { "c", "rust", "wing" },
 				additional_vim_regex_highlighting = false,
 			},
 			indent = { enabled = true },
