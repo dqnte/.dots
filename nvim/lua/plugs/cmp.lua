@@ -50,9 +50,8 @@ lazy({
 			}),
 			sources = cmp.config.sources({
 				-- in order of priority
-				{ name = "cmp_tabnine", max_item_count = 2 },
 				-- { name = "luasnip", max_item_count = 2 },
-				{ name = "buffer", max_item_count = 2 },
+				-- { name = "buffer", max_item_count = 2 },
 				{ name = "nvim_lsp", max_item_count = 3 },
 			}),
 			formatting = {
@@ -67,10 +66,41 @@ lazy({
 	end,
 })
 
+-- Took this from:
+-- https://www.reddit.com/r/neovim/comments/14efftl/whats_your_copilot_setup/
 lazy({
-	{
-		"tzachar/cmp-tabnine",
-		build = "./install.sh",
-		dependencies = { "hrsh7th/nvim-cmp" },
+	"zbirenbaum/copilot.lua",
+	dependencies = {
+		"hrsh7th/nvim-cmp",
 	},
+	cmd = "Copilot",
+	build = ":Copilot auth",
+	event = "InsertEnter",
+	config = function()
+		require("copilot").setup({
+			panel = {
+				enabled = true,
+				auto_refresh = true,
+			},
+			suggestion = {
+				enabled = true,
+				-- use the built-in keymapping for "accept" (<M-l>)
+				auto_trigger = true,
+				accept = false, -- disable built-in keymapping
+			},
+		})
+
+		-- hide copilot suggestions when cmp menu is open
+		-- to prevent odd behavior/garbled up suggestions
+		local cmp_status_ok, cmp = pcall(require, "cmp")
+		if cmp_status_ok then
+			cmp.event:on("menu_opened", function()
+				vim.b.copilot_suggestion_hidden = true
+			end)
+
+			cmp.event:on("menu_closed", function()
+				vim.b.copilot_suggestion_hidden = false
+			end)
+		end
+	end,
 })
