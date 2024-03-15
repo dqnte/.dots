@@ -13,8 +13,6 @@ export PATH="$PATH:$HOME/Library/Python/3.9/bin"
 PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
-export PATH="$HOME/.poetry/bin:$PATH"
-
 # Lazy load pyenv
 function pyenv() {
     unset -f pyenv
@@ -48,9 +46,6 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 # Rust Setup
 export PATH="$PATH:$HOME/.cargo/bin"
 
-# Java Setup
-export JAVA_HOME="/opt/homebrew/opt/openjdk/bin/java"
-
 # Node and friends
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
@@ -61,6 +56,10 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PATH:$PNPM_HOME" ;;
 esac
+
+# Java Setup
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # scripts
 export PATH="$PATH:$HOME/.dots/scripts/exe"
