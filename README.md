@@ -39,8 +39,14 @@ brew install npm
 npm install -g eslint_d @fsouza/prettierd typescript-language-server typescript
 ```
 
-Kotlin
+Java
 
+Install sdkman for package mgmt
+```sh
+curl -s "https://beta.sdkman.io" | bash
+```
+
+Kotlin
 This is a weird one since it depends on what version of java you have running... I pulled from github
 then followed the instructions to build it. Not sure if that's the right way. Here's the link:
 ```
