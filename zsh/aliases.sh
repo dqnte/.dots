@@ -30,6 +30,12 @@ alias NOTES="v ~/NOTES.md"
 alias notes="cd ~/notes"
 alias dots="cd ~/.dots"
 
+# docker aliases
+alias d="docker"
+alias dup="docker-compose up -d --build"
+alias ddown="docker-compose down"
+alias dfollow="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.Ports}}' | tail -n +2 | fzf | awk '{print \$1}' | xargs docker logs --follow"
+
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←
 bindkey '\e[1;3C' forward-word # ⌥→
