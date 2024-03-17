@@ -52,7 +52,7 @@ lazy({
 				-- in order of priority
 				-- { name = "luasnip", max_item_count = 2 },
 				-- { name = "buffer", max_item_count = 2 },
-				{ name = "nvim_lsp", max_item_count = 3 },
+				-- { name = "nvim_lsp", max_item_count = 3 },
 			}),
 			formatting = {
 				-- only display the kind icon and not the text
@@ -84,9 +84,11 @@ lazy({
 			},
 			suggestion = {
 				enabled = true,
-				-- use the built-in keymapping for "accept" (<M-l>)
 				auto_trigger = true,
-				accept = false, -- disable built-in keymapping
+				keymap = {
+					accept = "<Tab>",
+					reject = "<S-Tab>",
+				},
 			},
 		})
 
