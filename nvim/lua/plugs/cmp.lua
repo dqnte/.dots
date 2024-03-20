@@ -46,7 +46,7 @@ lazy({
 			},
 			window = {},
 			mapping = cmp.mapping.preset.insert({
-				["<Tab>"] = cmp.mapping.confirm({ select = true }),
+				["<M-l>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			sources = cmp.config.sources({
 				-- in order of priority
@@ -85,10 +85,6 @@ lazy({
 			suggestion = {
 				enabled = true,
 				auto_trigger = true,
-				keymap = {
-					accept = "<Tab>",
-					reject = "<S-Tab>",
-				},
 			},
 		})
 
