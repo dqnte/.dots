@@ -12,7 +12,7 @@ Install Homebrew
 
 ### CLI Tools
 ```sh
-brew install git tmux nvim fzf nvr ripgrep
+brew install git tmux nvim fzf nvr ripgrep jq sqlparse
 ```
 
 ### Build Custom CLI Tools
@@ -29,8 +29,9 @@ brew install lua-language-server stylua
 
 Python
 ```sh
+npm install -g pyright
 brew install mypy
-pip install black flake8 pyright
+pip install black flake8
 ```
 
 Javascript
@@ -52,6 +53,11 @@ then followed the instructions to build it. Not sure if that's the right way. He
 ```
 https://github.com/fwcd/kotlin-language-server
 ```
+
+```sh
+brew install ktlint
+```
+
 
 ### Font Configuration for Kitty
 You may need to restart kitty after downloading fonts for them to appear
