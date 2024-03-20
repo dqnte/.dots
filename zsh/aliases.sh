@@ -20,7 +20,7 @@ alias gbk="git checkout -"
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"
 
-alias ff="find * -type f -not -path '*node_modules/*' | fzf | xargs nvim"
+alias ff="sh ~/.dots/scripts/ff.sh"
 alias fg="git ls-files --others --exclude-standard --modified | fzf | xargs nvim"
 
 alias kitty-font="kitty --debug-font-fallback"
