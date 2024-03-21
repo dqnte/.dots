@@ -2,7 +2,7 @@ keymap("n", "<leader>ff", "<cmd>lua vim.g.telescope_wrapper('find_files')<cr>", 
 keymap("n", "<leader>fb", "<cmd>lua vim.g.telescope_wrapper('buffers')<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>fg", "<cmd>lua vim.g.telescope_wrapper('live_grep')<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>gs", "<cmd>lua vim.g.telescope_wrapper('git_status')<cr>", { noremap = true, silent = true })
-keymap("n", "<leader>gr", "<cmd>lua vim.g.telescope_wrapper('lsp_references')<cr>", { noremap = true, silent = true })
+keymap("n", "gr", "<cmd>lua vim.g.telescope_wrapper('lsp_references')<cr>", { noremap = true, silent = true })
 
 local get_flat = function(opts)
 	opts = opts or {}
