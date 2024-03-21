@@ -20,14 +20,21 @@ alias gbk="git checkout -"
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"
 
-alias ff="find * -type f -not -path '*node_modules/*' | fzf | xargs nvim"
+alias ff="sh ~/.dots/scripts/ff.sh"
 alias fg="git ls-files --others --exclude-standard --modified | fzf | xargs nvim"
 
 alias kitty-font="kitty --debug-font-fallback"
 
 alias TODO="v ~/TODO.md"
 alias NOTES="v ~/NOTES.md"
+alias notes="cd ~/notes"
 alias dots="cd ~/.dots"
+
+# docker aliases
+alias d="docker"
+alias dup="docker-compose up -d --build"
+alias ddown="docker-compose down"
+alias dfollow="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.Ports}}' | tail -n +2 | fzf | awk '{print \$1}' | xargs docker logs --follow"
 
 # key binding for kitty
 bindkey '\e[1;3D' backward-word # ⌥←

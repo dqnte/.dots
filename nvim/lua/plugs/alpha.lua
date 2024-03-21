@@ -14,7 +14,7 @@ lazy({
 		local alpha = require("alpha")
 
 		local DISPLAY_WIDTH = 60
-		local NUM_FILE_ROWS = 9
+		local NUM_FILE_ROWS = 10
 		local MAX_LENGTH = 45
 
 		local function format_row(row)
@@ -269,6 +269,8 @@ lazy({
 			mru_cwd = {
 				type = "group",
 				val = {
+					{ type = "padding", val = 1 },
+					{ type = "padding", val = 1 },
 					{ type = "padding", val = 1 },
 					{
 						type = "text",

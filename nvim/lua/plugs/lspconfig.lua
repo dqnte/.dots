@@ -108,6 +108,15 @@ local function configure_lsp()
 	configure_server("pyright", {
 		on_attach = on_attach,
 		capabilities = capabilities,
+		before_init = function(_, config)
+			local Path = require("plenary.path")
+			local venv = Path:new((config.root_dir:gsub("/", Path.path.sep)), ".venv")
+			if venv:joinpath("bin"):is_dir() then
+				config.settings.python.pythonPath = tostring(venv:joinpath("bin", "python"))
+			else
+				config.settings.python.pythonPath = tostring(venv:joinpath("Scripts", "python.exe"))
+			end
+		end,
 	})
 	configure_server("rust_analyzer", {
 		on_attach = on_attach,
@@ -116,6 +125,12 @@ local function configure_lsp()
 	configure_server("tsserver", {
 		on_attach = on_attach,
 		capabilities = capabilities,
+	})
+	configure_server("kotlin_language_server", {
+		on_attach = on_attach,
+		capabilities = capabilities,
+        -- kls caches in the root directory of the project by default
+		init_options = { storagePath = vim.fn.expand("$HOME/.cache/") },
 	})
 
 	configure_vue(capabilities)

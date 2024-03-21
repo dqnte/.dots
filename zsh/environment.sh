@@ -6,13 +6,12 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 
 # PSQL cli
 export PATH="$PATH:/usr/local/opt/postgresql@14/bin"
+export PATH="$PATH:/opt/homebrew/opt/libpq/bin"
 
 # Python Setup
 export PATH="$PATH:$HOME/Library/Python/3.9/bin"
-export PYENV_ROOT="/usr/local/var/pyenv"
-export PATH="$PATH:$PYENV_ROOT/shim"
-
-export PATH="$HOME/.poetry/bin:$PATH"
+PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Lazy load pyenv
 function pyenv() {
@@ -47,5 +46,21 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 # Rust Setup
 export PATH="$PATH:$HOME/.cargo/bin"
 
+# Node and friends
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+export PNPM_HOME="/Users/dtobar/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PATH:$PNPM_HOME" ;;
+esac
+
+# Java Setup
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # scripts
 export PATH="$PATH:$HOME/.dots/scripts/exe"
+export PATH="$PATH:$HOME/Code/kotlin-language-server/server/build/install/server/bin"
