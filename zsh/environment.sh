@@ -63,3 +63,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # scripts
 export PATH="$PATH:$HOME/.dots/scripts/exe"
+export PATH="$PATH:$HOME/Code/kotlin-language-server/server/build/install/server/bin"
