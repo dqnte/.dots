@@ -12,7 +12,7 @@ Install Homebrew
 
 ### CLI Tools
 ```sh
-brew install git tmux nvim fzf nvr ripgrep jq sqlparse
+brew install git tmux nvim fzf nvr ripgrep jq sqlparse isort
 ```
 
 ### Build Custom CLI Tools
