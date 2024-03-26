@@ -7,7 +7,7 @@ choices=$(source "$HOME/.dots/scripts/gs.sh" \
     | tail -n +3 \
     | fzf --ansi -m --preview='echo {} | sed "s/...\(.*\)$/\1/" | xargs git diff --color | tail -n +3' \
     --preview-window="$WINDOW_POSITION" --header "$branch" --header-first \
-    | sed "s/...\(.*\)$/\1/" \
+    | awk 'NF>1{print $NF}'  \
 )
 
 if [ ! -z "$choices" ]; then
