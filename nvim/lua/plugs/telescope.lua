@@ -11,6 +11,7 @@ local get_flat = function(opts)
 		theme = "flat",
 
 		hidden = true, -- show hidden files
+		no_ignore = true, -- show ignored files
 		preview_title = false,
 		results_title = false,
 		sorting_strategy = "ascending",
@@ -90,14 +91,27 @@ vim.after_colorscheme.telescope = function()
 	telescope.setup({
 		defaults = {
 			file_ignore_patterns = {
-				"node_modules/",
-				"__pycache__/",
-				"modules/",
 				".git/",
-                "grrs/",
-                ".mypy_cache/",
-                ".pytest_cache/",
-                ".venv",
+				"modules/",
+
+				-- js ignores
+				"node_modules/",
+
+				-- rust ignores
+				"grrs/",
+
+				-- python ignores
+				"__pycache__/",
+				".mypy_cache/",
+				".pytest_cache/",
+				".venv",
+				".tox",
+				".hypothesis",
+
+				-- kotlin ignores
+				".gradle/",
+				"gradle/",
+				"build/",
 			},
 			mappings = {
 				i = {
