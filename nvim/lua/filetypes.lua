@@ -13,3 +13,6 @@ autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.txt", command = "setlocal si
 -- lazy({ "godlygeek/tabular" })
 -- lazy({ "preservim/vim-markdown" })
 vim.g.vim_markdown_folding_disabled = 1
+
+-- Kotlin
+vim.cmd([[autocmd FileType kotlin setlocal commentstring=//\ %s]])
