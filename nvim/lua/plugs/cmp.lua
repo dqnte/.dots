@@ -80,6 +80,7 @@ lazy({
 		require("copilot").setup({
 			filetypes = {
 				markdown = true,
+                env = false,
 			},
 			panel = {
 				enabled = true,
