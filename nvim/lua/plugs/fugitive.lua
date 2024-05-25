@@ -1,5 +1,7 @@
 -- Fancy git command integrations
-lazy({ "tpope/vim-fugitive" })
+lazy({ "tpope/vim-fugitive", dependencies = {
+	"tpope/vim-rhubarb",
+} })
 
 -- allows for toggleable diffs
 vim.git_state = {}
