@@ -7,6 +7,7 @@ alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
 alias stay="caffeinate -d"
 alias clr=clear
+alias x="xargs "
 
 alias ls="lx"
 alias g="git"
