@@ -26,6 +26,9 @@ lazy({
 				null_ls.builtins.diagnostics.mypy.with({
 					command = find_poetry_bin_path("mypy"),
 				}),
+				null_ls.builtins.formatting.isort.with({
+					command = find_poetry_bin_path("isort"),
+				}),
 				-- js/ts
 				null_ls.builtins.formatting.prettierd,
 				null_ls.builtins.formatting.eslint_d,
