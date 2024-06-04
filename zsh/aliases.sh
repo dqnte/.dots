@@ -2,12 +2,12 @@
 
 # ALIASES
 alias k=kubectl
-alias gr='grep --exclude-dir=node_modules --exclude-dir=__pycache__ --exclude-dir=modules'
 alias v="nvim"
 alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
 alias stay="caffeinate -d"
 alias clr=clear
+alias x="xargs "
 
 alias ls="lx"
 alias g="git"
@@ -15,6 +15,7 @@ alias gs="sh ~/.dots/scripts/gs.sh -p"
 alias gl="sh ~/.dots/scripts/gl.sh"
 alias gb="sh ~/.dots/scripts/gb.sh"
 alias ga="sh ~/.dots/scripts/ga.sh"
+alias gr="sh ~/.dots/scripts/gr.sh"
 alias gbk="git checkout -"
 
 alias gpop="git reset HEAD^"
