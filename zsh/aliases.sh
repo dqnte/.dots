@@ -5,6 +5,7 @@ alias k=kubectl
 alias v="nvim"
 alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
+alias pr='poetry run'
 alias stay="caffeinate -d"
 alias clr=clear
 alias x="xargs "
@@ -17,6 +18,7 @@ alias gb="sh ~/.dots/scripts/gb.sh"
 alias ga="sh ~/.dots/scripts/ga.sh"
 alias gr="sh ~/.dots/scripts/gr.sh"
 alias gbk="git checkout -"
+alias gch="gr | x g checkout"
 
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"

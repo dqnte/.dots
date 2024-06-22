@@ -1,4 +1,5 @@
 lazy({ "tpope/vim-commentary" })
+lazy({ "tpope/vim-surround" })
 lazy({ "vim-scripts/dbext.vim" })
 lazy({
 	"sustech-data/wildfire.nvim",
@@ -10,7 +11,7 @@ lazy({
 })
 
 -- benchmarking
-lazy({ "dstein64/vim-startuptime", lazy = true })
+-- lazy({ "dstein64/vim-startuptime", lazy = true })
 -- Plug("lewis6991/impatient.nvim")
 
 require("plugs/fugitive")
