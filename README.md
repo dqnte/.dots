@@ -40,6 +40,11 @@ brew install npm
 npm install -g eslint_d @fsouza/prettierd typescript-language-server typescript
 ```
 
+SCSS
+```sh
+npm i -g some-sass-language-server
+```
+
 Java
 
 Install sdkman for package mgmt
