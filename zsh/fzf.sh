@@ -71,6 +71,23 @@ elif [ $THEME = 'tokyonight' ]; then
       COLOR_BG_OVERLAY="#e5e6eb" # TelescopeResultsNormal bg
       COLOR_BG_HI="#c4c8da" # TelescopeSelection bg
     fi
+elif [ $THEME = 'oxocarbon' ]; then
+    if [ $THEME_MODE = 'dark' ]; then
+      COLOR_POP_1="#82aaff"
+      COLOR_POP_2="#ff966c"
+      COLOR_FG="#d0d0d0"
+      COLOR_FG_SUBTLE="#525252"
+      COLOR_BG_OVERLAY="#121212"
+      COLOR_BG_HI="#262626"
+    else
+      COLOR_POP_1="#ff7eb6" # TelescopePromptPrefix fg
+      COLOR_POP_2="#be95ff" # Dealers choice
+      COLOR_FG="#37474f" # Normal fg
+      COLOR_FG_SUBTLE="#b3b3b3" # TelescopePromptCounter fg
+      COLOR_BG_OVERLAY="#ffffff" # TelescopeResultsNormal bg
+      COLOR_BG_HI="#f2f2f2" # TelescopeSelection bg
+    fi
+
 fi
 
 FZF_COLOR_OPTS="fg:$COLOR_FG,fg+:regular:$COLOR_FG,query:regular:$COLOR_FG,header:$COLOR_FG"
@@ -78,5 +95,7 @@ FZF_COLOR_OPTS="$FZF_COLOR_OPTS,bg:$COLOR_BG_OVERLAY,gutter:$COLOR_BG_OVERLAY,bo
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,bg+:$COLOR_BG_HI,info:$COLOR_FG_SUBTLE,separator:$COLOR_FG_SUBTLE"
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,prompt:$COLOR_POP_1,hl+:$COLOR_POP_1,hl:bold:$COLOR_POP_1"
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,marker:$COLOR_POP_2"
+FZF_LAYOUT="--margin 5%,5%  --border='double' --layout='reverse' --info='right' --cycle"
+FZF_ICONS="--prompt='  ' --pointer=' ' --marker='• '"
 
-export FZF_DEFAULT_OPTS="--margin 5%,5% --prompt='  ' --pointer=' ' --color='$FZF_COLOR_OPTS' --border='double' --layout='reverse' --cycle --marker='• ' --info='right'"
+export FZF_DEFAULT_OPTS="--color='$FZF_COLOR_OPTS' $FZF_ICONS $FZF_LAYOUT"
