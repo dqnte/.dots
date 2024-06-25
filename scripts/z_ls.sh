@@ -2,8 +2,7 @@
 
 MARGIN=5%
 
-WINDOW_POSITION="top"
-[  $(tput cols) -gt 150  ] && WINDOW_POSITION="right"
+WINDOW_POSITION="right"
 
 
 HEADER=" $ZBOLD$(pwd | sed "s=$HOME=$ZYELLOW~$ZWHITE=")"
