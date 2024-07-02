@@ -87,6 +87,22 @@ elif [ $THEME = 'oxocarbon' ]; then
       COLOR_BG_OVERLAY="#ffffff" # TelescopeResultsNormal bg
       COLOR_BG_HI="#f2f2f2" # TelescopeSelection bg
     fi
+elif [ $THEME = 'iceberg' ]; then
+    if [ $THEME_MODE = 'dark' ]; then
+      COLOR_POP_1="#84a0c6"
+      COLOR_POP_2="#ff966c"
+      COLOR_FG="#c6c8d1"
+      COLOR_FG_SUBTLE="#6b7089"
+      COLOR_BG_OVERLAY="#12141d"
+      COLOR_BG_HI="#1e2132"
+    else
+      COLOR_POP_1="#2d539e" # TelescopePromptPrefix fg
+      COLOR_POP_2="#757ca3" # Dealers choice
+      COLOR_FG="#33374c" # Normal fg
+      COLOR_FG_SUBTLE="#8389a3" # TelescopePromptCounter fg
+      COLOR_BG_OVERLAY="#ecedf0" # TelescopeResultsNormal bg
+      COLOR_BG_HI="#dcdfe7" # TelescopeSelection bg
+    fi
 
 fi
 
