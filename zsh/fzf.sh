@@ -103,7 +103,13 @@ elif [ $THEME = 'iceberg' ]; then
       COLOR_BG_OVERLAY="#ecedf0" # TelescopeResultsNormal bg
       COLOR_BG_HI="#dcdfe7" # TelescopeSelection bg
     fi
-
+elif [ $THEME = 'poimandres' ]; then
+    COLOR_POP_1="#add7ff" # TelescopePromptPrefix fg
+    COLOR_POP_2="#5de4c7" # Dealers choice
+    COLOR_FG="#e4f0fb" # Normal fg
+    COLOR_FG_SUBTLE="#a6accd" # TelescopePromptCounter fg
+    COLOR_BG_OVERLAY="#171a24" # TelescopeResultsNormal bg
+    COLOR_BG_HI="#303340" # TelescopeSelection bg
 fi
 
 FZF_COLOR_OPTS="fg:$COLOR_FG,fg+:regular:$COLOR_FG,query:regular:$COLOR_FG,header:$COLOR_FG"
