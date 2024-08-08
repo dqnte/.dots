@@ -130,6 +130,10 @@ local function configure_lsp()
         on_attach = on_attach,
         capabilities = capabilities,
     })
+    configure_server("jsonls", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
 
 	configure_server("kotlin_language_server", {
 		on_attach = on_attach,

@@ -19,9 +19,12 @@ alias ga="sh ~/.dots/scripts/ga.sh"
 alias gr="sh ~/.dots/scripts/gr.sh"
 alias gbk="git checkout -"
 alias gch="gr | x g checkout"
+alias grm="gr | x rm"
 
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"
+alias zr="source ~/.dots/scripts/zr.sh"
+alias zrm="zr | x rm"
 
 alias ff="sh ~/.dots/scripts/ff.sh"
 alias fg="git ls-files --others --exclude-standard --modified | fzf | xargs nvim"

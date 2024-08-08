@@ -37,7 +37,7 @@ pip install black flake8
 Javascript
 ```sh
 brew install npm
-npm install -g eslint_d @fsouza/prettierd typescript-language-server typescript
+npm install -g eslint_d @fsouza/prettierd typescript-language-server typescript vscode-langservers-extracted
 ```
 
 SCSS
