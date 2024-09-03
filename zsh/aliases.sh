@@ -20,6 +20,7 @@ alias gr="sh ~/.dots/scripts/gr.sh"
 alias gbk="git checkout -"
 alias gch="gr | x g checkout"
 alias grm="gr | x rm"
+alias m="sh ~/.dots/scripts/m.sh"
 
 alias gpop="git reset HEAD^"
 alias z="source ~/.dots/scripts/z_ls.sh"
