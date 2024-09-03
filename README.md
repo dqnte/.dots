@@ -15,6 +15,23 @@ Install Homebrew
 brew install git tmux nvim fzf nvr ripgrep jq sqlparse isort
 ```
 
+### Install Installers
+```sh
+brew install nvm pipx
+pipx ensurepath
+nvm install node
+```
+
+### Install Rust and Go
+
+Rust
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Go
+You can download the installer from the website
+
 ### Build Custom CLI Tools
 ```sh
 sh scripts/build.sh
@@ -36,7 +53,6 @@ pip install black flake8
 
 Javascript
 ```sh
-brew install npm
 npm install -g eslint_d @fsouza/prettierd typescript-language-server typescript vscode-langservers-extracted
 ```
 
@@ -65,9 +81,26 @@ brew install ktlint
 
 
 ### Font Configuration for Kitty
-You may need to restart kitty after downloading fonts for them to appear
+You may need to restart kitty after downloading fonts for them to appear.
+
+You can download `Symbols Nerd Font` from your icloud.
 
 
 
 Snap tool for window management
 https://apps.apple.com/us/app/snap/id418073146?mt=12
+
+
+### Database Tools
+
+MongoDB
+```sh
+brew install mongosh
+```
+
+Postgres
+```sh
+brew doctor
+brew update
+brew install libpq
+```
