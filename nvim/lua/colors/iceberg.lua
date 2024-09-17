@@ -25,6 +25,8 @@ vim.colorschemes.iceberg = function()
 		nvim_cmd("hi LineNr guibg=none guifg=#444b71")
 		nvim_cmd("hi Error guifg=#e27878 guibg=none")
 	end
+
+    nvim_cmd("hi Comment gui=italic cterm=italic term=italic")
 end
 
 lazy({ "cocopon/iceberg.vim", priority = 100, config = require("utils").enable_colorscheme })
