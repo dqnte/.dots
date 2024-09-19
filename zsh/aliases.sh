@@ -6,7 +6,7 @@ alias v="nvim"
 alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
 alias pr='poetry run'
-alias stay="caffeinate -d"
+alias stay="caffeinate -d cmatrix"
 alias clr=clear
 alias x="xargs "
 
