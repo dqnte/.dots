@@ -6,7 +6,7 @@ WINDOW_POSITION="right"
 
 
 HEADER=" $ZBOLD$(pwd | sed "s=$HOME=$ZYELLOW~$ZWHITE=")"
-PREVIEW="if [ -d '{}' ]; then; ls -F {}; else; cat {}; fi"
+PREVIEW="if [ -d '{}' ]; then; tree -L 2 -F --gitignore {} | cut -c 5- | tail -n +2 ; else; cat {}; fi"
 lines=$(LS -ap)
 choice="$(echo $lines | \
     grep -v -x -F './' | \
