@@ -25,7 +25,7 @@ nvm install node
 ### Install Rust and Go
 
 Rust
-```
+```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
