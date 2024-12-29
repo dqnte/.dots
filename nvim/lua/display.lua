@@ -4,6 +4,7 @@ require("plugs/treesitter")
 require("plugs/alpha")
 require("plugs/nerdtree")
 require("plugs/zenmode")
+require("plugs/markdown")
 
 -- toggle number line
 keymap("n", "<leader>nn", "<cmd>set number!<CR>", { noremap = true, silent = true })
