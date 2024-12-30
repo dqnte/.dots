@@ -95,7 +95,8 @@ https://apps.apple.com/us/app/snap/id418073146?mt=12
 
 MongoDB
 ```sh
-brew install mongosh
+brew tap mongodb/brew
+brew install mongodb-community@8.0
 ```
 
 Postgres
