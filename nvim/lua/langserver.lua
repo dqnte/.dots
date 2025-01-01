@@ -11,6 +11,23 @@ local function find_poetry_bin_path(cmd)
 	end
 end
 
+local function find_pnpm_options()
+	local file = vim.fn.findfile("node_modules/.bin/pnpm", ";Fabric;Code")
+
+	if file == "" then
+		return {}
+	else
+		return {
+			command = "pnpm",
+			args = {
+				"prettier",
+				"--stdin-filepath",
+				"$FILENAME",
+			},
+		}
+	end
+end
+
 lazy({
 	"jose-elias-alvarez/null-ls.nvim",
 	config = function()
@@ -30,8 +47,8 @@ lazy({
 					command = find_poetry_bin_path("isort"),
 				}),
 				-- js/ts
-				null_ls.builtins.formatting.prettierd,
-				null_ls.builtins.formatting.eslint_d,
+				null_ls.builtins.formatting.prettier.with(find_pnpm_options()),
+				null_ls.builtins.formatting.eslint,
 				-- lua
 				null_ls.builtins.formatting.stylua,
 				-- rust
