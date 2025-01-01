@@ -8,7 +8,12 @@ modified_sub="s/^ ./${padding}${ZRED}&${ZPLAIN}/"
 unmerged_sub="s/^../${padding}${ZRED}&${ZPLAIN}/"
 untracked_sub="s/^??/${padding}${ZPURPLE} ~${ZPLAIN}/"
 
-git_status=$(git status -s -b -uall)
+git_status=$(git status -s -b -uall 2>&1)
+if echo "$git_status" | grep -q "fatal:" ; then
+    echo "$git_status" | sed -e "s/fatal:/$ZRED$ZPADDING!!$ZPLAIN/"
+    exit 1
+fi
+
 branch=$(echo "$git_status" | grep '##' | \
     sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN $separator \2/"  \
     -e "s/^## \([[:graph:]]*\)$/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN/"  \
