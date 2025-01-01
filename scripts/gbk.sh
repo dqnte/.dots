@@ -5,10 +5,10 @@ if echo "$output" | grep -q "error" ; then
         -e "/Please commit your changes or stash them before you switch branches./d" \
         -e "/Aborting/d"
 else
-    echo "$output\n" | sed -e "s/^/${ZPADDING}/" \
+    echo "$output" | sed -e "s/^/${ZPADDING}/" \
         -e "s/'/$ZBOLD/" \
         -e  "s/'/$ZPLAIN/" \
         -e "s/Switched to branch /$ZYELLOW>>$ZPLAIN /"
 
-    source "$HOME/.dots/scripts/gs.sh" -p | tail -n +3
+    source "$HOME/.dots/scripts/gs.sh" -p | tail -n +2
 fi
