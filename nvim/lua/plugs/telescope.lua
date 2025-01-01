@@ -92,7 +92,7 @@ vim.after_colorscheme.telescope = function()
 		defaults = {
 			file_ignore_patterns = {
 				".git/",
-				"modules/",
+				-- "modules/", -- projects in gyant use modules directory
 
 				-- js ignores
 				"node_modules/",
