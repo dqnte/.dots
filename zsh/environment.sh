@@ -5,25 +5,25 @@ PATH="$PATH:~/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # PSQL cli
-export PATH="$PATH:/usr/local/opt/postgresql@14/bin"
 export PATH="$PATH:/opt/homebrew/opt/libpq/bin"
 
 # Python Setup
+export PATH="$PATH:/Users/dtobar/.local/bin"
 export PATH="$PATH:$HOME/Library/Python/3.9/bin"
-PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Lazy load pyenv
-function pyenv() {
-    unset -f pyenv
-    eval "$(pyenv init - 2> /dev/null)"
-    eval "$(pyenv virtualenv-init - 2> /dev/null)"
-    [ ! -z $@  ] && pyenv $@
-}
+# function pyenv() {
+#     unset -f pyenv
+#     eval "$(pyenv init - 2> /dev/null)"
+#     eval "$(pyenv virtualenv-init - 2> /dev/null)"
+#     [ ! -z $@  ] && pyenv $@
+# }
 
-function pyclean() {
-    find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
-}
+# function pyclean() {
+#     find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
+# }
 
 function poetry_clean() {
     # Cleans out files installed by poetry in current env
