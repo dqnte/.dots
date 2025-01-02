@@ -22,7 +22,6 @@ else
         --preview="echo; echo {} | $preview" \
         | tr -d " ")
     if [ ! -z "$new_branch" ]; then
-        git checkout "$new_branch" -q
-        source "$HOME/.dots/scripts/gs.sh" -p
+        source "$HOME/.dots/scripts/gcheckout.sh" "$new_branch"
     fi
 fi
