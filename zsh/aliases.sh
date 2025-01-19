@@ -23,7 +23,7 @@ alias grm="gr | x rm"
 alias gcd='cd "$(gr | x dirname)"'
 alias m="sh ~/.dots/scripts/m.sh"
 
-alias gpop="git reset HEAD^"
+alias gpop="sh ~/.dots/scripts/gpop.sh"
 alias z="source ~/.dots/scripts/z_ls.sh"
 alias zr="source ~/.dots/scripts/zr.sh"
 alias zrm="zr | x rm"
