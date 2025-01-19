@@ -10,7 +10,7 @@ alias stay="caffeinate -d cmatrix"
 alias clr=clear
 alias x="xargs "
 
-alias ls="lx"
+alias ls="sh ~/.dots/scripts/fancy_ls.sh"
 alias g="git"
 alias gs="sh ~/.dots/scripts/gs.sh -p"
 alias gl="sh ~/.dots/scripts/gl.sh"

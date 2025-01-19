@@ -24,7 +24,6 @@ function parse_venv() {
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # export PS1="%F{blue}\$(parse_git)%f%1~ \$(parse_venv) "
 export PS1="%1~ \$(parse_venv) "
-export LSCOLORS=cxxxxxxxdxxxxxxxxxxxxx
 alias ls="ls -G" # better ls colors
 
 # changes cursor back to a beam on vim exit
