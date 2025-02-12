@@ -7,9 +7,15 @@ export FONT="$( get_state_value "FONT=" )"
 # zsh prompt styles
 setopt PROMPT_SUBST
 function parse_git() {
-   branch=$(git branch --show-current 2> /dev/null | cut -d '-' -f 2-3)
+   branch=$(git branch --show-current 2> /dev/null | cut -d '/' -f 2-3)
    if [ $branch ]; then
-      echo "($branch) "
+       num_files=$(git status --porcelain | wc -l | xargs)
+       if [ $num_files -gt 0 ]; then
+           num_files="%F{8}~$num_files%f"
+       else
+           num_files="%F{8}--%f"
+       fi
+       echo "%B$branch%b $num_files"
    fi
 }
 
@@ -22,9 +28,9 @@ function parse_venv() {
 }
 
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# export PS1="%F{blue}\$(parse_git)%f%1~ \$(parse_venv) "
-export PS1="%1~ \$(parse_venv) "
-alias ls="ls -G" # better ls colors
+# export PS1="%1~ \$(parse_venv) "
+export PS1="%1~ -> "
+export RPROMPT="\$(parse_git)"
 
 # changes cursor back to a beam on vim exit
 _fix_cursor() {
