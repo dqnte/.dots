@@ -27,10 +27,15 @@ function parse_venv() {
    fi
 }
 
+function get_dir() {
+    echo $PWD | sed "s|$HOME|001|"
+}
+
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # export PS1="%1~ \$(parse_venv) "
-export PS1="%1~ -> "
-export RPROMPT="\$(parse_git)"
+export PS1="%1d %F{8}::%f "
+
+# export RPROMPT="\$(parse_git)"
 
 # changes cursor back to a beam on vim exit
 _fix_cursor() {
