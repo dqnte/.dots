@@ -110,6 +110,13 @@ elif [ $THEME = 'poimandres' ]; then
     COLOR_FG_SUBTLE="#a6accd" # TelescopePromptCounter fg
     COLOR_BG_OVERLAY="#171a24" # TelescopeResultsNormal bg
     COLOR_BG_HI="#303340" # TelescopeSelection bg
+elif [ $THEME = 'e-ink' ]; then
+    COLOR_POP_1="#333333" # TelescopePromptPrefix fg
+    COLOR_POP_2="#333333" # Dealers choice
+    COLOR_FG="#5e5e5e" # Normal fg
+    COLOR_FG_SUBTLE="#909090" # TelescopePromptCounter fg
+    COLOR_BG_OVERLAY="#d0d0d0" # TelescopeResultsNormal bg
+    COLOR_BG_HI="#c2c2c2" # TelescopeSelection bg
 fi
 
 FZF_COLOR_OPTS="fg:$COLOR_FG,fg+:regular:$COLOR_FG,query:regular:$COLOR_FG,header:$COLOR_FG"
