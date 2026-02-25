@@ -122,27 +122,19 @@ local function configure_lsp()
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
-	configure_server("tsserver", {
+	configure_server("ts_ls", {
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
-    configure_server("somesass_ls", {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
-    configure_server("tailwindcss", {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
-    configure_server("jsonls", {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
+	configure_server("jsonls", {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 
 	configure_server("kotlin_language_server", {
 		on_attach = on_attach,
 		capabilities = capabilities,
-        -- kls caches in the root directory of the project by default
+		-- kls caches in the root directory of the project by default
 		init_options = { storagePath = vim.fn.expand("$HOME/.cache/") },
 	})
 
