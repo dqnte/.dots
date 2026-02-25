@@ -185,25 +185,9 @@ local function configure_diagnostics()
 	vim.diagnostic.config(config)
 end
 
-local function configure_installer()
-	require("mason").setup({
-		ui = {
-			icons = {
-				package_installed = "✓",
-				package_pending = "➜",
-				package_uninstalled = "✗",
-			},
-		},
-	})
-	require("mason-lspconfig").setup({
-		ensure_installed = { "lua_ls" },
-	})
-end
-
 lazy({
 	"neovim/nvim-lspconfig",
 	config = function()
-		-- configure_installer()
 		configure_lsp()
 		configure_diagnostics()
 	end,
