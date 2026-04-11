@@ -29,6 +29,25 @@ function set_kitty_theme() {
     kill -s USR1 $(pgrep -a kitty)
 }
 
+function set_ghostty_theme() {
+    file=$THEME
+    [ "$THEME_MODE" = "light" ] && file="${THEME}_light"
+
+    ghostty_themes="$HOME/.dots/ghostty/themes"
+
+    # some themes only have light variants
+    if [ ! -f "$ghostty_themes/$THEME" ]; then
+        file="${THEME}_light"
+    elif [ ! -f "$ghostty_themes/$file" ]; then
+        file=$THEME
+    fi
+
+    [ ! -f "$ghostty_themes/$file" ] && return
+
+    cp "$ghostty_themes/$file" ~/.dots/ghostty/theme
+    cmux reload-config >/dev/null 2>&1
+}
+
 function set_device_mode() {
     if [ $THEME_MODE = "dark" ]; then
         osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
@@ -51,6 +70,7 @@ function change_theme() {
     fi
 
     set_kitty_theme
+    set_ghostty_theme
 
     # update zsh env
     set_state_value THEME $THEME
