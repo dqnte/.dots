@@ -1,0 +1,14 @@
+foreground = #d2cfcf
+background = #121111
+selection-foreground = #ffffff
+selection-background = #44475a
+cursor-color = #d2cfcf
+cursor-text = background
+palette = 0=#121111
+palette = 1=#7788aa
+palette = 2=#88aa77
+palette = 3=#d2cfcf
+palette = 4=#d2cfcf
+palette = 5=#d2cfcf
+palette = 6=#d2cfcf
+palette = 7=#d2cfcf

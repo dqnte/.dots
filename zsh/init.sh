@@ -11,16 +11,14 @@ function set_zsh_env() {
     source "$DOTZSH/fzf.sh"
 
     [ -f "$DOTZSH/secrets.sh" ] && source "$DOTZSH/secrets.sh"
-
-    # Pluggins
-    # zsh_add_plugin "lukechilds/zsh-nvm"
 }
 
 function boot_up() {
     # Open tmux automatically
     if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~  tmux ]] && [ -z "$TMUX" ] && [ $AUTO_TMUX ]
     then
-        exec tmux -f ~/.dots/tmux.conf
+        # exec tmux -f ~/.dots/tmux.conf
+        set_zsh_env
     else
         set_zsh_env
     fi

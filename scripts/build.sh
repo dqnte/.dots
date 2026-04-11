@@ -2,6 +2,7 @@
 
 DOTDIR=$HOME/.dots
 KITTYDIR=$DOTDIR/kitty
+GHOSTTYDIR=$DOTDIR/ghostty
 ZSHDIR=$DOTDIR/zsh
 NVIMDIR=$DOTDIR/nvim
 
@@ -23,6 +24,11 @@ fi
 
 if [ ! -f $HOME/.config/kitty/kitty.conf ]; then
     ln -s $KITTYDIR/kitty.conf ~/.config/kitty/kitty.conf
+fi
+
+if [ ! -f $HOME/.config/ghostty/config ]; then
+    mkdir $HOME/.config/ghostty
+    ln -s $GHOSTTYDIR/config ~/.config/ghostty/config
 fi
 
 if [ ! -d $HOME/.config/nvim ]; then
