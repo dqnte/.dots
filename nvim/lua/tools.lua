@@ -3,7 +3,6 @@ lazy({ "tpope/vim-surround" })
 lazy({ "windwp/nvim-ts-autotag", config = true })
 lazy({ "windwp/nvim-autopairs", event = "InsertEnter", config = true })
 lazy({ "vim-scripts/dbext.vim" })
-lazy({ "tpope/vim-dadbod" })
 lazy({
 	"sustech-data/wildfire.nvim",
 	event = "VeryLazy",

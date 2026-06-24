@@ -31,7 +31,7 @@ local function lsp_keymaps(bufnr)
 	buf_keymap(bufnr, "n", "D", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	-- buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
+	-- buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
 	buf_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 end
 
@@ -122,27 +122,19 @@ local function configure_lsp()
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
-	configure_server("tsserver", {
+	configure_server("ts_ls", {
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
-    configure_server("somesass_ls", {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
-    configure_server("tailwindcss", {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
-    configure_server("jsonls", {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
+	configure_server("jsonls", {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 
 	configure_server("kotlin_language_server", {
 		on_attach = on_attach,
 		capabilities = capabilities,
-        -- kls caches in the root directory of the project by default
+		-- kls caches in the root directory of the project by default
 		init_options = { storagePath = vim.fn.expand("$HOME/.cache/") },
 	})
 
@@ -185,25 +177,9 @@ local function configure_diagnostics()
 	vim.diagnostic.config(config)
 end
 
-local function configure_installer()
-	require("mason").setup({
-		ui = {
-			icons = {
-				package_installed = "✓",
-				package_pending = "➜",
-				package_uninstalled = "✗",
-			},
-		},
-	})
-	require("mason-lspconfig").setup({
-		ensure_installed = { "lua_ls" },
-	})
-end
-
 lazy({
 	"neovim/nvim-lspconfig",
 	config = function()
-		-- configure_installer()
 		configure_lsp()
 		configure_diagnostics()
 	end,
