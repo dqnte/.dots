@@ -26,7 +26,7 @@ function set_kitty_theme() {
 
     # kitty theme change
     cp $THEMES_DIR/$file.conf ~/.dots/kitty/theme.conf
-    kill -s USR1 $(pgrep -a kitty)
+    # kill -s USR1 $(pgrep -a kitty)
 }
 
 function set_ghostty_theme() {
@@ -45,6 +45,16 @@ function set_ghostty_theme() {
     [ ! -f "$ghostty_themes/$file" ] && return
 
     cp "$ghostty_themes/$file" ~/.dots/ghostty/theme
+    cmux reload-config >/dev/null 2>&1
+}
+
+function set_cmux_theme() {
+    source ~/.dots/zsh/fzf.sh
+
+    cmux_settings="$HOME/.config/cmux/settings.json"
+    tmp=$(mktemp)
+    jq --arg color "$COLOR_POP_1" '.workspaceColors.selectionColor = $color' "$cmux_settings" > "$tmp" && mv "$tmp" "$cmux_settings"
+
     cmux reload-config >/dev/null 2>&1
 }
 
@@ -71,6 +81,7 @@ function change_theme() {
 
     set_kitty_theme
     set_ghostty_theme
+    set_cmux_theme
 
     # update zsh env
     set_state_value THEME $THEME
