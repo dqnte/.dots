@@ -1,0 +1,29 @@
+{
+  "name": "Iceberg Light",
+  "base": "light",
+  "overrides": {
+    "claude": "#2d539e",
+    "claudeShimmer": "#22478e",
+    "professionalBlue": "#2d539e",
+    "text": "#33374c",
+    "inverseText": "#e8e9ec",
+    "inactive": "#8389a3",
+    "subtle": "#9fa7bd",
+    "success": "#668e3d",
+    "error": "#cc517a",
+    "warning": "#c57339",
+    "merged": "#7759b4",
+    "planMode": "#3f83a6",
+    "autoAccept": "#7759b4",
+    "fastMode": "#c57339",
+    "bashBorder": "#cc517a",
+    "userMessageBackground": "#dcdfe7",
+    "userMessageBackgroundHover": "#d2d4dd",
+    "memoryBackgroundColor": "#dcdfe7",
+    "bashMessageBackgroundColor": "#dcdfe7",
+    "diffAdded": "#d4dbd1",
+    "diffRemoved": "#e3d2da",
+    "diffAddedWord": "#bfcdb5",
+    "diffRemovedWord": "#dcbfcb"
+  }
+}

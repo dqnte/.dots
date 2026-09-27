@@ -58,6 +58,21 @@ function set_cmux_theme() {
     cmux reload-config >/dev/null 2>&1
 }
 
+function set_claude_theme() {
+    file=$THEME
+    [ "$THEME_MODE" = "light" ] && file="${THEME}_light"
+
+    claude_themes="$HOME/.dots/claude/themes"
+    claude_settings="$HOME/.claude/settings.json"
+
+    # fall back to the built-in light/dark theme when there's no custom one
+    theme="$THEME_MODE"
+    [ -f "$claude_themes/$file.json" ] && theme="custom:$file"
+
+    tmp=$(mktemp)
+    jq --arg theme "$theme" '.theme = $theme' "$claude_settings" > "$tmp" && mv "$tmp" "$claude_settings"
+}
+
 function set_device_mode() {
     if [ $THEME_MODE = "dark" ]; then
         osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
@@ -82,6 +97,7 @@ function change_theme() {
     set_kitty_theme
     set_ghostty_theme
     set_cmux_theme
+    set_claude_theme
 
     # update zsh env
     set_state_value THEME $THEME
