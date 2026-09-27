@@ -1,7 +1,7 @@
 
 
 # THEME
-config-file = ~/.dots/ghostty/theme
+config-file = ?~/.dots/ghostty/theme
 
 # FONTS
 font-family = "MonoLisa"
