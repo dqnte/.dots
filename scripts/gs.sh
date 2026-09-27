@@ -3,10 +3,28 @@ branch_indicator="\*\/"
 
 [ ! -z $1 ] && padding=$ZPADDING
 
-staged_sub="s/^\(.\)\(.\)/${padding}$ZGREEN\1$ZRED\2${ZPLAIN}/1"
-modified_sub="s/^ ./${padding}${ZRED}&${ZPLAIN}/"
-unmerged_sub="s/^../${padding}${ZRED}&${ZPLAIN}/"
-untracked_sub="s/^??/${padding}${ZPURPLE} ~${ZPLAIN}/"
+# fall back to raw escapes in case the shell hasn't sourced utils.sh
+esc=$(printf '\033')
+: ${ZBOLD:="$esc[1m"} ${ZDIM:="$esc[2m"} ${ZITALICS:="$esc[3m"}
+: ${ZUNDERLINE:="$esc[4m"} ${ZSTRIKE:="$esc[9m"} ${ZPLAIN:="$esc[0m"}
+
+# letter styles, layered on top of the status colors
+#   staged, modified  bold
+#   partially staged  underline
+#   deleted           strikethrough
+#   renamed/copied    italics
+#   untracked         italics
+#   conflicted        bold + underline
+style_letter() {
+    letter=$1 style=$2
+
+    case "$letter" in
+        D) style="$style$ZSTRIKE" ;;
+        R|C) style="$style$ZITALICS" ;;
+    esac
+
+    printf "%s" "$style$letter$ZPLAIN"
+}
 
 git_status=$(git status -s -b -uall 2>&1)
 if echo "$git_status" | grep -q "fatal:" ; then
@@ -15,20 +33,50 @@ if echo "$git_status" | grep -q "fatal:" ; then
 fi
 
 branch=$(echo "$git_status" | grep '##' | \
-    sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN $separator \2/"  \
+    sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN $separator $ZITALICS\2$ZPLAIN/"  \
     -e "s/^## \([[:graph:]]*\)$/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN/"  \
-    -e "s/^## \(.*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN \1/"  \
-        -e "s/ahead \([[:digit:]]*\)/$ZGREEN\+\1$ZPLAIN/" \
-        -e "s/behind \([[:digit:]]*\)/$ZRED\-\1$ZPLAIN/" \
+    -e "s/^## \(.*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZITALICS\1$ZPLAIN/"  \
+        -e "s/ahead \([[:digit:]]*\)/$ZGREEN$ZBOLD\+\1$ZPLAIN/" \
+        -e "s/behind \([[:digit:]]*\)/$ZRED$ZBOLD\-\1$ZPLAIN/" \
+        -e "s/gone/$ZRED$ZSTRIKE&$ZPLAIN/" \
         -e "s/]\$//" \
         -e "s/ \[/ /" \
         )
-staged=$(echo "$git_status" | grep '^[MTADRC]' | sed "$staged_sub" )
-modified=$( echo "$git_status" | grep '^ .' | sed "$modified_sub" )
-unmerged=$(echo "$git_status" | grep '^[U]' | sed "$unmerged_sub" )
-untracked=$( echo "$git_status" | grep '^[!?][!?]' | sed "$untracked_sub" )
 
-if [ -z "$staged" ] && [ -z "$modified" ] && [ -z "$untracked" ]; then
+staged="" modified="" unmerged="" untracked=""
+nl='
+'
+while IFS= read -r line; do
+    case "$line" in '##'*|'') continue ;; esac
+
+    rest=${line#?}
+    x=${line%"$rest"}
+    y=${rest%"${rest#?}"}
+    file=${line#???}
+
+    partial=""
+    [ "$x" != " " ] && [ "$y" != " " ] && partial="$ZUNDERLINE"
+
+    case "$x$y" in
+        DD|AU|UD|UA|DU|AA|UU)
+            unmerged="$unmerged$nl$padding$ZRED$ZBOLD$ZUNDERLINE$x$y$ZPLAIN $file" ;;
+        '??')
+            untracked="$untracked$nl$padding$ZPURPLE$ZITALICS ~$ZPLAIN $file" ;;
+        ' '?)
+            modified="$modified$nl$padding $(style_letter "$y" "$ZRED$ZBOLD") $file" ;;
+        *)
+            staged="$staged$nl$padding$(style_letter "$x" "$ZGREEN$ZBOLD$partial")$(style_letter "$y" "$ZRED$ZBOLD$partial") $file" ;;
+    esac
+done <<STATUS
+$git_status
+STATUS
+
+staged=${staged#"$nl"}
+modified=${modified#"$nl"}
+unmerged=${unmerged#"$nl"}
+untracked=${untracked#"$nl"}
+
+if [ -z "$staged" ] && [ -z "$modified" ] && [ -z "$unmerged" ] && [ -z "$untracked" ]; then
     output="$branch"
 else
     output="$branch\n"
@@ -39,4 +87,4 @@ fi
 [ ! -z "$unmerged" ] && output="$output\n\n$unmerged"
 [ ! -z "$untracked" ] && output="$output\n$untracked"
 
-[ ! -z "$git_status" ] && printf "$output\n"
+[ ! -z "$git_status" ] && printf "%b\n" "$output"

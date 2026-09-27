@@ -33,6 +33,7 @@ export ZBOLD="[1m"
 export ZDIM="[2m"
 export ZITALICS="[3m"
 export ZUNDERLINE="[4m"
+export ZSTRIKE="[9m"
 
 export ZBLACK="[30m"
 export ZRED="[31m"
