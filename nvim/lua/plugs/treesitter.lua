@@ -8,7 +8,7 @@ lazy({
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = "all",
 			sync_install = false,
-			ignore_install = { "t32", "wing" },
+			ignore_install = { "t32", "wing", "ipkg" },
 			highlight = {
 				enable = true,
 				disable = { "c", "rust", "wing" },
