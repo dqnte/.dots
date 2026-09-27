@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+  "app": {
+    "appearance": "system"
+  },
+  "sidebarAppearance": {
+    "matchTerminalBackground": true
+  },
+  "workspaceColors": {
+    "indicatorStyle": "leftRail",
+    "selectionColor": "#2d539e"
+  },
+  "shortcuts": {
+    "bindings": {
+      "focusLeft": "cmd+opt+h",
+      "focusDown": "cmd+opt+j",
+      "focusUp": "cmd+opt+k",
+      "focusRight": "cmd+opt+l"
+    }
+  }
+}
