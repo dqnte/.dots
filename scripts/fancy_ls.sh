@@ -1,5 +1,5 @@
 #!/bin/sh
-# long listing trimmed to size, date, and name
+# long listing trimmed to size and name
 # grouped by type (dirs, links, files, other) and sorted by name within each group
 
 ls -ho --color=always -D '%y-%m-%d %T ' "$@" | awk \
@@ -16,12 +16,12 @@ ls -ho --color=always -D '%y-%m-%d %T ' "$@" | awk \
     NF < 7 { flush(); print; next }
 
     {
-        # drop perms, links, owner, and size while keeping the spacing in names
+        # drop perms, links, owner, size, date, and time while keeping the spacing in names
         rest = $0
         for (i = 0; i < 4; i++) sub(/^[^ ]+ +/, "", rest)
+        sub(/^[^ ]+ [^ ]+  /, "", rest)
 
-        # italicize dir names by slipping the code in after the date and time
-        if ($1 ~ /^d/) sub(/^[^ ]+ [^ ]+ +/, "&" italic, rest)
+        if ($1 ~ /^d/) rest = italic rest
         line = sprintf("%s%s%-6s%s%s", pad, yellow, $4, plain, rest)
 
         # measure without escape codes so colored lines are not cut early
