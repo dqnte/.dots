@@ -97,8 +97,8 @@ vim.after_colorscheme.telescope = function()
 				-- js ignores
 				"node_modules/",
                 ".next/",
+                ".cache/",
                 "dist/",
-                "coverage/",
 
 				-- rust ignores
 				"grrs/",

@@ -48,7 +48,8 @@ fn format_group(mut list: Vec<String>, column_len: usize, num_cols: usize) -> Re
 }
 
 fn find_column_len(list: Vec<String>) -> Result<(usize, usize)> {
-    let termsize::Size { rows, cols } = termsize::get().unwrap();
+    // termsize finds nothing when output is piped, so fall back to 80 columns
+    let cols = termsize::get().map_or(80, |size| size.cols);
 
     // there's probably a better way to do this
     let mut longest_len = 0;
@@ -61,7 +62,8 @@ fn find_column_len(list: Vec<String>) -> Result<(usize, usize)> {
     longest_len = cmp::max(longest_len, MIN_LEN);
 
     // casting col as usize since it's actual type is u16
-    let num_cols = (cols as usize - 2 * LEFT_PADDING.len()) / (longest_len + 2);
+    // max keeps at least one column when a name is wider than the terminal
+    let num_cols = cmp::max((cols as usize).saturating_sub(2 * LEFT_PADDING.len()) / (longest_len + 2), 1);
     Ok((longest_len, num_cols))
 }
 
@@ -72,8 +74,8 @@ fn main() -> Result<()> {
 
     let ls_path = args.path;
 
-    // unwrap is shorthand for unwrapping the Result struct
-    let items = fs::read_dir(ls_path).unwrap();
+    // context turns a missing or unreadable path into an error message instead of a panic
+    let items = fs::read_dir(&ls_path).with_context(|| format!("could not read `{}`", ls_path))?;
 
     // arrays in rust have a fixed length, you cannot append
     // let files: [&str; 10] = some array of strings of length 10
@@ -83,9 +85,12 @@ fn main() -> Result<()> {
     let mut dirs = Vec::new();
 
     for item in items {
-        // unwrap seems to modify the item so you can't unwrap twice
-        let path = item.unwrap().path();
-        let file_name = path.file_name().unwrap().to_str().unwrap().to_string();
+        // skip entries that disappear or can't be read while listing
+        let Ok(item) = item else { continue };
+        let path = item.path();
+
+        // lossy keeps names that aren't valid utf-8 instead of panicking on them
+        let file_name = item.file_name().to_string_lossy().to_string();
 
         if file_name.starts_with('.') && !args.all {
             continue;
@@ -94,11 +99,10 @@ fn main() -> Result<()> {
         // cloning the value here lets you pass it to the new function.
         // if you don't clone it, the value gets removed from the memory
         // of this function so it can't be used later.
+        // anything that isn't a dir counts as a file, so broken symlinks still show up
         if path.is_dir() {
             dirs.push(format!("{}/", file_name.clone()));
-        }
-
-        if path.is_file() {
+        } else {
             files.push(file_name.clone());
         }
     }

@@ -9,6 +9,7 @@ alias pr='poetry run'
 alias stay="caffeinate -d cmatrix"
 alias clr=clear
 alias x="xargs "
+alias c=claude
 
 alias ls="sh ~/.dots/scripts/fancy_ls.sh"
 alias g="git"

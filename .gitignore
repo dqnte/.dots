@@ -11,3 +11,4 @@ kitty/theme.conf
 kitty/font.conf
 scripts/exe/*
 scripts/grrs/target
+ghostty/theme

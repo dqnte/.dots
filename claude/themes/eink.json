@@ -1,0 +1,29 @@
+{
+  "name": "E-ink",
+  "base": "dark",
+  "overrides": {
+    "claude": "#d8d6d0",
+    "claudeShimmer": "#8b8a85",
+    "professionalBlue": "#d8d6d0",
+    "text": "#d8d6d0",
+    "inverseText": "#161616",
+    "inactive": "#8b8a85",
+    "subtle": "#55544f",
+    "success": "#d8d6d0",
+    "error": "#d8d6d0",
+    "warning": "#8b8a85",
+    "merged": "#8b8a85",
+    "planMode": "#8b8a85",
+    "autoAccept": "#d8d6d0",
+    "fastMode": "#d8d6d0",
+    "bashBorder": "#8b8a85",
+    "userMessageBackground": "#1e1e1d",
+    "userMessageBackgroundHover": "#2c2c2a",
+    "memoryBackgroundColor": "#1e1e1d",
+    "bashMessageBackgroundColor": "#1e1e1d",
+    "diffAdded": "#2c2c2a",
+    "diffRemoved": "#1e1e1d",
+    "diffAddedWord": "#44433f",
+    "diffRemovedWord": "#2c2c2a"
+  }
+}

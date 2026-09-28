@@ -25,6 +25,7 @@ local options = {
 	scrolloff = 5,
 	sidescrolloff = 8,
 	background = vim.env.THEME_MODE ~= "" and vim.env.THEME_MODE or "dark",
+    backupcopy = "yes",
 }
 
 for k, v in pairs(options) do

@@ -30,32 +30,73 @@ end
 
 lazy({
 	"stevearc/conform.nvim",
-	opts = {},
 	config = function()
-		local conform = require("conform")
-		conform.setup({
+		require("conform").setup({
 			formatters_by_ft = {
+				python = {
+					"black",
+					"isort",
+					"mypy",
+				},
+				javascript = {
+					"prettierd",
+					"eslint_d",
+				},
+				typescript = {
+					"prettierd",
+					"eslint_d",
+				},
 				lua = { "stylua" },
-				python = { "black", "isort" },
-				typescript = { { "prettier" } },
-				typescriptreact = { "prettier" },
-				javascript = { "prettier" },
-				javascriptreact = { "prettier" },
-				json = { "prettier" },
-				html = { "prettier" },
-				css = { "prettier" },
 				rust = { "rustfmt" },
 				kotlin = { "ktlint" },
-			},
-			formatters = {
-				prettier = {
-					command = "./node_modules/.bin/prettier",
-				},
 			},
 		})
 	end,
 })
 
-vim.keymap.set("n", "<leader>lf", function()
-	require("conform").format({ async = true })
-end)
+lazy({
+	"mfussenegger/nvim-lint",
+	config = function()
+		require("lint").linters_by_ft = {
+			python = { "flake8" },
+			javascript = { "eslint" },
+			typescript = { "eslint" },
+			-- lua = { "luacheck" },
+			rust = { "cargo" },
+			kotlin = { "ktlint" },
+		}
+	end,
+})
+
+-- lazy({
+-- 	"jose-elias-alvarez/null-ls.nvim",
+-- 	config = function()
+-- 		local null_ls = require("null-ls")
+-- 		null_ls.setup({
+-- 			-- debug = true,
+-- 			sources = {
+-- 				-- python
+-- 				-- null_ls.builtins.diagnostics.flake8,
+-- 				null_ls.builtins.formatting.black.with({
+-- 					command = find_poetry_bin_path("black"),
+-- 				}),
+-- 				null_ls.builtins.diagnostics.mypy.with({
+-- 					command = find_poetry_bin_path("mypy"),
+-- 				}),
+-- 				null_ls.builtins.formatting.isort.with({
+-- 					command = find_poetry_bin_path("isort"),
+-- 				}),
+-- 				-- js/ts
+-- 				null_ls.builtins.formatting.prettierd,
+-- 				-- null_ls.builtins.formatting.prettier.with(find_pnpm_options()),
+-- 				null_ls.builtins.formatting.eslint_d,
+-- 				-- lua
+-- 				null_ls.builtins.formatting.stylua,
+-- 				-- rust
+-- 				null_ls.builtins.formatting.rustfmt,
+-- 				-- kotlin
+-- 				null_ls.builtins.formatting.ktlint,
+-- 			},
+-- 		})
+-- 	end,
+-- })

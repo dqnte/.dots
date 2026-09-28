@@ -26,7 +26,7 @@ function set_kitty_theme() {
 
     # kitty theme change
     cp $THEMES_DIR/$file.conf ~/.dots/kitty/theme.conf
-    kill -s USR1 $(pgrep -a kitty)
+    # kill -s USR1 $(pgrep -a kitty)
 }
 
 function set_ghostty_theme() {
@@ -46,6 +46,31 @@ function set_ghostty_theme() {
 
     cp "$ghostty_themes/$file" ~/.dots/ghostty/theme
     cmux reload-config >/dev/null 2>&1
+}
+
+function set_cmux_theme() {
+    source ~/.dots/zsh/fzf.sh
+
+    cmux_settings="$HOME/.config/cmux/settings.json"
+    tmp=$(mktemp)
+    jq --arg color "$COLOR_POP_1" '.workspaceColors.selectionColor = $color' "$cmux_settings" > "$tmp" && mv "$tmp" "$cmux_settings"
+
+    cmux reload-config >/dev/null 2>&1
+}
+
+function set_claude_theme() {
+    file=$THEME
+    [ "$THEME_MODE" = "light" ] && file="${THEME}_light"
+
+    claude_themes="$HOME/.dots/claude/themes"
+    claude_settings="$HOME/.claude/settings.json"
+
+    # fall back to the built-in light/dark theme when there's no custom one
+    theme="$THEME_MODE"
+    [ -f "$claude_themes/$file.json" ] && theme="custom:$file"
+
+    tmp=$(mktemp)
+    jq --arg theme "$theme" '.theme = $theme' "$claude_settings" > "$tmp" && mv "$tmp" "$claude_settings"
 }
 
 function set_device_mode() {
@@ -71,6 +96,8 @@ function change_theme() {
 
     set_kitty_theme
     set_ghostty_theme
+    set_cmux_theme
+    set_claude_theme
 
     # update zsh env
     set_state_value THEME $THEME

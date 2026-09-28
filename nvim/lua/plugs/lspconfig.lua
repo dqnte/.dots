@@ -31,15 +31,17 @@ local function lsp_keymaps(bufnr)
 	buf_keymap(bufnr, "n", "D", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	-- buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	-- buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
 	buf_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+
+	-- using conform here
+	buf_keymap(bufnr, "n", "<leader>lf", "<cmd>lua require'conform'.format()<CR>", opts)
 end
 
 local function on_attach(client, bufnr)
 	lsp_keymaps(bufnr)
 	lsp_highlight_document()
 
-	-- disables lsp formatting so only null-ls formats
+	-- disables lsp formatting so only conform formats
 	client.server_capabilities.documentFormattingProvider = false
 end
 
@@ -47,7 +49,7 @@ local function configure_server(server_name, opts)
 	require("lspconfig")[server_name].setup(opts)
 end
 
-local function configure_vue(capabilities)
+local function configure_vue()
 	local util = require("lspconfig.util")
 	local global_ts = "/usr/local/lib/node_modules/typescript/lib"
 
@@ -68,7 +70,6 @@ local function configure_vue(capabilities)
 
 	configure_server("volar", {
 		on_attach = on_attach,
-		capabilities = capabilities,
 		filetypes = { "vue" },
 		init_options = {
 			typescript = {
@@ -84,10 +85,8 @@ end
 
 local function configure_lsp()
 	require("lspconfig")
-	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 	configure_server("lua_ls", {
 		on_attach = on_attach,
-		capabilities = capabilities,
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -105,40 +104,41 @@ local function configure_lsp()
 			},
 		},
 	})
-	configure_server("pyright", {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		before_init = function(_, config)
-			local Path = require("plenary.path")
-			local venv = Path:new((config.root_dir:gsub("/", Path.path.sep)), ".venv")
-			if venv:joinpath("bin"):is_dir() then
-				config.settings.python.pythonPath = tostring(venv:joinpath("bin", "python"))
-			else
-				config.settings.python.pythonPath = tostring(venv:joinpath("Scripts", "python.exe"))
-			end
-		end,
-	})
+	-- configure_server("pyright", {
+	-- 	on_attach = on_attach,
+	-- 	before_init = function(_, config)
+	-- 		local Path = require("plenary.path")
+	-- 		local venv = Path:new((config.root_dir:gsub("/", Path.path.sep)), ".venv")
+	-- 		if venv:joinpath("bin"):is_dir() then
+	-- 			config.settings.python.pythonPath = tostring(venv:joinpath("bin", "python"))
+	-- 		else
+	-- 			config.settings.python.pythonPath = tostring(venv:joinpath("Scripts", "python.exe"))
+	-- 		end
+	-- 	end,
+	-- })
 	configure_server("rust_analyzer", {
 		on_attach = on_attach,
-		capabilities = capabilities,
 	})
 	configure_server("ts_ls", {
 		on_attach = on_attach,
-		capabilities = capabilities,
+	})
+	configure_server("somesass_ls", {
+		on_attach = on_attach,
+	})
+	configure_server("tailwindcss", {
+		on_attach = on_attach,
 	})
 	configure_server("jsonls", {
 		on_attach = on_attach,
-		capabilities = capabilities,
 	})
 
 	configure_server("kotlin_language_server", {
 		on_attach = on_attach,
-		capabilities = capabilities,
 		-- kls caches in the root directory of the project by default
 		init_options = { storagePath = vim.fn.expand("$HOME/.cache/") },
 	})
 
-	configure_vue(capabilities)
+	configure_vue()
 end
 
 local function configure_diagnostics()
@@ -179,6 +179,13 @@ end
 
 lazy({
 	"neovim/nvim-lspconfig",
+	-- dependencies = {
+	-- "hrsh7th/nvim-cmp",
+	-- "hrsh7th/cmp-nvim-lsp",
+	-- "hrsh7th/cmp-buffer",
+	-- 	"hrsh7th/cmp-path",
+	-- 	"hrsh7th/cmp-cmdline",
+	-- },
 	config = function()
 		configure_lsp()
 		configure_diagnostics()

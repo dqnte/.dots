@@ -3,6 +3,7 @@
 DOTDIR=$HOME/.dots
 KITTYDIR=$DOTDIR/kitty
 GHOSTTYDIR=$DOTDIR/ghostty
+CMUXDIR=$DOTDIR/cmux
 ZSHDIR=$DOTDIR/zsh
 NVIMDIR=$DOTDIR/nvim
 
@@ -29,6 +30,11 @@ fi
 if [ ! -f $HOME/.config/ghostty/config ]; then
     mkdir $HOME/.config/ghostty
     ln -s $GHOSTTYDIR/config ~/.config/ghostty/config
+fi
+
+if [ ! -f $HOME/.config/cmux/cmux.json ]; then
+    mkdir -p $HOME/.config/cmux
+    ln -s $CMUXDIR/cmux.json ~/.config/cmux/cmux.json
 fi
 
 if [ ! -d $HOME/.config/nvim ]; then

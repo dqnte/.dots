@@ -1,0 +1,29 @@
+{
+  "name": "Iceberg",
+  "base": "dark",
+  "overrides": {
+    "claude": "#84a0c6",
+    "claudeShimmer": "#91acd1",
+    "professionalBlue": "#84a0c6",
+    "text": "#c6c8d1",
+    "inverseText": "#161821",
+    "inactive": "#6b7089",
+    "subtle": "#444b71",
+    "success": "#b4be82",
+    "error": "#e27878",
+    "warning": "#e2a478",
+    "merged": "#a093c7",
+    "planMode": "#89b8c2",
+    "autoAccept": "#a093c7",
+    "fastMode": "#e2a478",
+    "bashBorder": "#e27878",
+    "userMessageBackground": "#1e2132",
+    "userMessageBackgroundHover": "#272c42",
+    "memoryBackgroundColor": "#1e2132",
+    "bashMessageBackgroundColor": "#1e2132",
+    "diffAdded": "#45493e",
+    "diffRemoved": "#53343b",
+    "diffAddedWord": "#5b6150",
+    "diffRemovedWord": "#6e3f4a"
+  }
+}

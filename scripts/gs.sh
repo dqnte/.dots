@@ -1,42 +1,97 @@
-separator="\/="
-branch_indicator="\*\/"
+#!/bin/sh
 
-[ ! -z $1 ] && padding=$ZPADDING
+. ~/.dots/zsh/utils.sh
 
-staged_sub="s/^\(.\)\(.\)/${padding}$ZGREEN\1$ZRED\2${ZPLAIN}/1"
-modified_sub="s/^ ./${padding}${ZRED}&${ZPLAIN}/"
-unmerged_sub="s/^../${padding}${ZRED}&${ZPLAIN}/"
-untracked_sub="s/^??/${padding}${ZPURPLE} ~${ZPLAIN}/"
+[ -n "$1" ] && padding=$ZPADDING
 
-git_status=$(git status -s -b -uall 2>&1)
-if echo "$git_status" | grep -q "fatal:" ; then
-    echo "$git_status" | sed -e "s/fatal:/$ZRED$ZPADDING!!$ZPLAIN/"
+nl='
+'
+
+# letter styles, layered on top of the status colors
+#   staged, modified  bold
+#   partially staged  underline
+#   deleted           strikethrough
+#   renamed/copied    italics
+#   untracked         italics
+#   conflicted        bold + underline
+style_letter() {
+    styled=$2
+    case "$1" in
+        D) styled="$styled$ZSTRIKE" ;;
+        R|C) styled="$styled$ZITALICS" ;;
+    esac
+    styled="$styled$1$ZPLAIN"
+}
+
+style_branch() {
+    head=${1#'## '}
+    info=""
+    case "$head" in *' ['*)
+        info=${head#* \[}
+        info=${info%]}
+        head=${head%% \[*}
+    esac
+
+    styled="$padding$ZYELLOW*/$ZPLAIN "
+    case "$head" in
+        *...*) styled="$styled$ZBOLD${head%%...*}$ZPLAIN /= $ZITALICS${head#*...}$ZPLAIN" ;;
+        *' '*) styled="$styled$ZITALICS$head$ZPLAIN" ;;
+        *) styled="$styled$ZBOLD$head$ZPLAIN" ;;
+    esac
+
+    case "$info" in *ahead*)
+        ahead=${info#*ahead }
+        styled="$styled $ZGREEN$ZBOLD+${ahead%%,*}$ZPLAIN"
+    esac
+    case "$info" in *behind*)
+        styled="$styled $ZRED$ZBOLD-${info#*behind }$ZPLAIN"
+    esac
+    case "$info" in gone)
+        styled="$styled $ZRED${ZSTRIKE}gone$ZPLAIN"
+    esac
+}
+
+if ! git_status=$(git status -s -b -unormal 2>&1); then
+    printf '%s\n' "$git_status" | sed "s/fatal:/$ZRED$ZPADDING!!$ZPLAIN/"
     exit 1
 fi
 
-branch=$(echo "$git_status" | grep '##' | \
-    sed -e "s/^## \([[:graph:]]*\)\.\.\.\([[:graph:]]\)/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN $separator \2/"  \
-    -e "s/^## \([[:graph:]]*\)$/$padding$ZYELLOW$branch_indicator$ZPLAIN $ZBOLD\1$ZPLAIN/"  \
-    -e "s/^## \(.*\)/$padding$ZYELLOW$branch_indicator$ZPLAIN \1/"  \
-        -e "s/ahead \([[:digit:]]*\)/$ZGREEN\+\1$ZPLAIN/" \
-        -e "s/behind \([[:digit:]]*\)/$ZRED\-\1$ZPLAIN/" \
-        -e "s/]\$//" \
-        -e "s/ \[/ /" \
-        )
-staged=$(echo "$git_status" | grep '^[MTADRC]' | sed "$staged_sub" )
-modified=$( echo "$git_status" | grep '^ .' | sed "$modified_sub" )
-unmerged=$(echo "$git_status" | grep '^[U]' | sed "$unmerged_sub" )
-untracked=$( echo "$git_status" | grep '^[!?][!?]' | sed "$untracked_sub" )
+branch="" staged="" modified="" unmerged="" untracked=""
+while IFS= read -r line; do
+    case "$line" in
+        '') continue ;;
+        '##'*) style_branch "$line"; branch=$styled; continue ;;
+    esac
 
-if [ -z "$staged" ] && [ -z "$modified" ] && [ -z "$untracked" ]; then
-    output="$branch"
-else
-    output="$branch\n"
-fi
+    rest=${line#?}
+    x=${line%"$rest"}
+    y=${rest%"${rest#?}"}
+    file=${line#???}
 
-[ ! -z "$staged" ] && output="$output\n$staged"
-[ ! -z "$modified" ] && output="$output\n$modified"
-[ ! -z "$unmerged" ] && output="$output\n\n$unmerged"
-[ ! -z "$untracked" ] && output="$output\n$untracked"
+    case "$x$y" in
+        DD|AU|UD|UA|DU|AA|UU)
+            unmerged="$unmerged$nl$padding$ZRED$ZBOLD$ZUNDERLINE$x$y$ZPLAIN $file" ;;
+        '??')
+            untracked="$untracked$nl$padding$ZPURPLE$ZITALICS ~$ZPLAIN $file" ;;
+        ' '?)
+            style_letter "$y" "$ZRED$ZBOLD"
+            modified="$modified$nl$padding $styled $file" ;;
+        *)
+            partial=""
+            [ "$y" != " " ] && partial=$ZUNDERLINE
+            style_letter "$x" "$ZGREEN$ZBOLD$partial"; sx=$styled
+            style_letter "$y" "$ZRED$ZBOLD$partial"
+            staged="$staged$nl$padding$sx$styled $file" ;;
+    esac
+done <<STATUS
+$git_status
+STATUS
 
-[ ! -z "$git_status" ] && printf "$output\n"
+# blank line after the branch, and around conflicts
+output=$branch
+[ -n "$staged$modified$unmerged$untracked" ] && output="$output$nl"
+output="$output$staged$modified"
+[ -n "$unmerged" ] && output="$output$nl$unmerged"
+output="$output$untracked"
+
+printf '%s\n' "$output"
