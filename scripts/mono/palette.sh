@@ -26,6 +26,6 @@ E_BOLD="$ESC[1m"
 E_ITALIC="$ESC[3m"
 E_UNDERLINE="$ESC[4m"
 E_STRIKE="$ESC[9m"
-# drops weight and decoration but keeps the band underneath
-E_ATTRS_OFF="$ESC[22;23;24;29m"
+# drops weight, decoration, and reverse but keeps the band underneath
+E_ATTRS_OFF="$ESC[22;23;24;27;29m"
 E_RESET="$ESC[0m"
