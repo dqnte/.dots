@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# monochrome themes swap hue for background shade and weight, see scripts/mono/
+grep -qxF "$THEME" ~/.dots/scripts/mono/themes && exec sh ~/.dots/scripts/mono/gl.sh "$@"
+
 linecount=$1
 [ -z "$linecount" ] && linecount=10
 

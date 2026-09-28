@@ -134,8 +134,15 @@ FZF_COLOR_OPTS="$FZF_COLOR_OPTS,bg+:$COLOR_BG_HI,info:$COLOR_FG_SUBTLE,separator
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,prompt:$COLOR_POP_1,hl+:$COLOR_POP_1,hl:bold:$COLOR_POP_1"
 FZF_COLOR_OPTS="$FZF_COLOR_OPTS,marker:$COLOR_POP_2"
 
-# e-ink leans on type instead of hue: matches are bold+underlined, selection is bold
-if [ $THEME = 'eink' ]; then
+# monochrome themes lean on type instead of hue: matches are bold+underlined, selection is bold
+# themes are listed in scripts/mono/themes
+if grep -qxF "$THEME" ~/.dots/scripts/mono/themes; then
+    THEME_IS_MONO=1
+else
+    THEME_IS_MONO=""
+fi
+
+if [ -n "$THEME_IS_MONO" ]; then
     FZF_COLOR_OPTS="$FZF_COLOR_OPTS,fg+:bold:$COLOR_FG,hl:bold:underline:$COLOR_FG,hl+:bold:underline:$COLOR_FG"
     FZF_COLOR_OPTS="$FZF_COLOR_OPTS,prompt:bold:$COLOR_FG,pointer:bold:$COLOR_FG,marker:bold:$COLOR_FG"
 fi
@@ -144,9 +151,9 @@ FZF_ICONS="--prompt='  ' --pointer=' ' --marker='• '"
 
 export FZF_DEFAULT_OPTS="--color='$FZF_COLOR_OPTS' $FZF_ICONS $FZF_LAYOUT"
 
-# git output styled by attribute under e-ink, scoped via env so ~/.gitconfig stays untouched
-if [ $THEME = 'eink' ]; then
-    GIT_EINK_STYLES=(
+# git output styled by attribute under monochrome themes, scoped via env so ~/.gitconfig stays untouched
+if [ -n "$THEME_IS_MONO" ]; then
+    GIT_MONO_STYLES=(
         color.diff.old "dim strike"
         color.diff.new bold
         color.diff.meta bold
@@ -164,15 +171,17 @@ if [ $THEME = 'eink' ]; then
         color.decorate.remoteBranch dim
         color.decorate.tag italic
     )
-    export GIT_CONFIG_COUNT=$(( ${#GIT_EINK_STYLES[@]} / 2 ))
+    export GIT_CONFIG_COUNT=$(( ${#GIT_MONO_STYLES[@]} / 2 ))
     for (( i = 0; i < GIT_CONFIG_COUNT; i++ )); do
-        export GIT_CONFIG_KEY_$i="${GIT_EINK_STYLES[$(( i * 2 + 1 ))]}"
-        export GIT_CONFIG_VALUE_$i="${GIT_EINK_STYLES[$(( i * 2 + 2 ))]}"
+        export GIT_CONFIG_KEY_$i="${GIT_MONO_STYLES[$(( i * 2 + 1 ))]}"
+        export GIT_CONFIG_VALUE_$i="${GIT_MONO_STYLES[$(( i * 2 + 2 ))]}"
     done
-    unset GIT_EINK_STYLES
+    unset GIT_MONO_STYLES
 elif [ -n "$GIT_CONFIG_COUNT" ]; then
     for (( i = 0; i < GIT_CONFIG_COUNT; i++ )); do
         unset GIT_CONFIG_KEY_$i GIT_CONFIG_VALUE_$i
     done
     unset GIT_CONFIG_COUNT
 fi
+
+unset THEME_IS_MONO

@@ -1,9 +1,12 @@
 #!/bin/sh
-# long listing trimmed to size and name
+# long listing trimmed to size, modified date, and name
 # grouped by type (dirs, links, files, other) and sorted by name within each group
 
-ls -ho --color=always -D '%y-%m-%d %T ' "$@" | awk \
-    -v cols="$(tput cols)" -v pad="$ZPADDING" -v yellow="$ZYELLOW" -v plain="$ZPLAIN" -v italic="$ZITALICS" '
+# monochrome themes swap hue for background shade and weight, see scripts/mono/
+grep -qxF "$THEME" ~/.dots/scripts/mono/themes && exec sh ~/.dots/scripts/mono/fancy_ls.sh "$@"
+
+ls -ho --color=always -D '%y-%m-%d %H:%M ' "$@" | awk \
+    -v cols="$(tput cols)" -v pad="$ZPADDING" -v yellow="$ZYELLOW" -v dim="$ZDIM" -v plain="$ZPLAIN" -v italic="$ZITALICS" '
     function flush() {
         printf "%s%s%s%s", group["d"], group["l"], group["-"], group["o"]
         split("", group)
@@ -22,7 +25,7 @@ ls -ho --color=always -D '%y-%m-%d %T ' "$@" | awk \
         sub(/^[^ ]+ [^ ]+  /, "", rest)
 
         if ($1 ~ /^d/) rest = italic rest
-        line = sprintf("%s%s%-6s%s%s", pad, yellow, $4, plain, rest)
+        line = sprintf("%s%s%-6s%s%s%s %s%s  %s", pad, yellow, $4, plain, dim, $5, $6, plain, rest)
 
         # measure without escape codes so colored lines are not cut early
         visible = line

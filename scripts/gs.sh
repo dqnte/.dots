@@ -2,6 +2,9 @@
 
 . ~/.dots/zsh/utils.sh
 
+# monochrome themes swap hue for background shade and weight, see scripts/mono/
+grep -qxF "$THEME" ~/.dots/scripts/mono/themes && exec sh ~/.dots/scripts/mono/gs.sh "$@"
+
 [ -n "$1" ] && padding=$ZPADDING
 
 nl='

@@ -1,14 +1,17 @@
 #!/bin/bash
+# high contrast z_ls for monochrome themes, the header path is a reversed chip instead of yellow
 
-# monochrome themes swap hue for background shade and weight, sourced so the cd sticks
-grep -qxF "$THEME" ~/.dots/scripts/mono/themes && { source ~/.dots/scripts/mono/z_ls.sh; return; }
+. ~/.dots/scripts/mono/palette.sh
 
 MARGIN=5%
 
 WINDOW_POSITION="right"
 
+z_header() {
+    echo " $E_REVERSE$E_BOLD $(pwd | sed "s=$HOME=~=") $E_RESET"
+}
 
-HEADER=" $ZBOLD$(pwd | sed "s=$HOME=$ZYELLOW~$ZWHITE=")"
+HEADER=$(z_header)
 tree_cmd="tree -q -L 2 -F --gitignore --prune --filesfirst"
 PREVIEW="if [ -d '{}' ]; then; $tree_cmd {} | cut -c 5- | tail -n +2 ; else; cat {}; fi"
 lines=$(command ls -ap)
@@ -23,9 +26,11 @@ while [ -d "$choice" ];
 do
     cd $choice
     lines=$(command ls -ap)
-    HEADER=" $ZBOLD$(pwd | sed "s=$HOME=$ZYELLOW~$ZWHITE=")"
+    HEADER=$(z_header)
     choice="$(echo $lines | grep -v -x -F './' | fzf --header=$HEADER --margin $MARGIN --preview=$PREVIEW --preview-window=$WINDOW_POSITION)"
 done
+
+unset -f z_header
 
 if [ ! -z "$choice" ]; then
     nvim $choice
