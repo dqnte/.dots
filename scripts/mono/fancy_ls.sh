@@ -61,7 +61,7 @@ ls -ho -D '%y-%m-%d %H:%M' "$@" | awk \
         n = ++count[type]
         names[type, n] = name
         styles[type, n] = style
-        infos[type, n] = sprintf("%s%-6s%s %s  %s", mid, $4, $5, $6, reset)
+        infos[type, n] = sprintf("%s%-6s%s %s %s", mid, $4, $5, $6, reset)
         targets[type, n] = target
         if (length(name) > longest) longest = length(name)
     }
