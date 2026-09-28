@@ -1,7 +1,7 @@
 #!/bin/sh
 # high contrast gs for monochrome themes, status is carried by background shade and weight instead of hue
 #   conflicted  bold underlined letters, name on a reversed band
-#   staged      reversed letter in the first column, name on a white band
+#   staged      bold underlined letter in the first column, name on a white band
 #   unstaged    bold letter in the second column, name on a white band
 #   untracked   ~ marker, italic name on a white band
 # rows keep the plain "XY file" shape so ga and gr can still parse them
@@ -10,10 +10,6 @@
 . ~/.dots/scripts/mono/palette.sh
 
 [ -n "$1" ] && padding=$ZPADDING
-
-# staged letters get a reversed chip, the fzf pickers use an underline so the selection bar stays whole
-staged_style="$E_REVERSE$E_BOLD"
-[ -z "$padding" ] && staged_style="$E_BOLD$E_UNDERLINE"
 
 nl='
 '
@@ -125,7 +121,7 @@ while IFS= read -r record; do
             band "$B_WHITE" "" "$file" " $styled"
             modified="$modified$nl$row" ;;
         s)
-            style_letter "$x" "$staged_style"; sx=$styled
+            style_letter "$x" "$E_BOLD$E_UNDERLINE"; sx=$styled
             style_letter "$y" "$E_BOLD"
             band "$B_WHITE" "" "$file" "$sx$styled"
             staged="$staged$nl$row" ;;
