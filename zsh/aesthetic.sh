@@ -41,4 +41,4 @@ export PS1="%1d %F{8}::%f "
 _fix_cursor() {
    echo -ne '\e[5 q'
 }
-precmd_functions=(_fix_cursor)
+precmd_functions+=(_fix_cursor)

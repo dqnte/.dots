@@ -16,5 +16,5 @@ font-feature = +ss11
 
 # CURSOR
 cursor-style = bar
-cursor-style-blink = false
+cursor-style-blink = true
 adjust-cursor-thickness = 2
