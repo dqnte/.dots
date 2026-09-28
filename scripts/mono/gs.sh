@@ -68,7 +68,7 @@ band() {
 }
 
 if ! git_status=$(git status -s -b -unormal 2>&1); then
-    printf '%s\n' "$git_status" | sed "s/fatal:/$E_REVERSE$E_BOLD$ZPADDING!! $E_RESET/"
+    printf '%s\n' "$git_status" | sed "s/fatal: */$ZPADDING$E_REVERSE$E_BOLD !! $E_RESET /"
     exit 1
 fi
 
