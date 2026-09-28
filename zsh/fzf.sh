@@ -112,19 +112,19 @@ elif [ $THEME = 'poimandres' ]; then
     COLOR_BG_HI="#303340" # TelescopeSelection bg
 elif [ $THEME = 'eink' ]; then
     if [ $THEME_MODE = 'dark' ]; then
-      COLOR_POP_1="#8b8a85" # mid gray
-      COLOR_POP_2="#d8d6d0" # ink
-      COLOR_FG="#d8d6d0" # ink
-      COLOR_FG_SUBTLE="#55544f" # faint gray
-      COLOR_BG_OVERLAY="#1e1e1d" # float
-      COLOR_BG_HI="#2c2c2a" # wash
+      COLOR_POP_1="#8c8c8c" # mid gray
+      COLOR_POP_2="#d9d9d9" # ink
+      COLOR_FG="#d9d9d9" # ink
+      COLOR_FG_SUBTLE="#5a5a5a" # faint gray
+      COLOR_BG_OVERLAY="#1f1f1f" # float
+      COLOR_BG_HI="#2b2b2b" # wash
     else
-      COLOR_POP_1="#6b6a66" # mid gray
-      COLOR_POP_2="#1c1c1b" # ink
-      COLOR_FG="#1c1c1b" # ink
-      COLOR_FG_SUBTLE="#a3a19b" # faint gray
-      COLOR_BG_OVERLAY="#e9e7e1" # float
-      COLOR_BG_HI="#dcd9d2" # wash
+      COLOR_POP_1="#777777" # mid gray
+      COLOR_POP_2="#333333" # ink
+      COLOR_FG="#333333" # ink
+      COLOR_FG_SUBTLE="#a6a6a6" # faint gray
+      COLOR_BG_OVERLAY="#fafafa" # float
+      COLOR_BG_HI="#e3e3e3" # wash
     fi
 fi
 
