@@ -27,15 +27,20 @@ local palettes = {
 	},
 }
 
+-- same stepped shape as iceberg, mid chip into a line band into a wash band,
+-- with modes told apart by weight and style instead of hue
 local function lualine_theme(p)
-	local b = { fg = p.ink, bg = p.wash }
-	local c = { fg = p.mid, bg = p.float }
+	local b = { fg = p.ink, bg = p.line }
+	local c = { fg = p.mid, bg = p.wash }
+	local chip = function(gui)
+		return { a = { fg = p.float, bg = p.mid, gui = gui }, b = b, c = c }
+	end
 	return {
-		normal = { a = { fg = p.bg, bg = p.ink, gui = "bold" }, b = b, c = c },
-		insert = { a = { fg = p.ink, bg = p.wash, gui = "bold,italic" }, b = b, c = c },
-		visual = { a = { fg = p.bg, bg = p.mid, gui = "bold" }, b = b, c = c },
-		replace = { a = { fg = p.ink, bg = p.wash, gui = "bold,underline" }, b = b, c = c },
-		command = { a = { fg = p.ink, bg = p.float, gui = "italic" }, b = b, c = c },
+		normal = chip("bold"),
+		insert = chip("bold,italic"),
+		visual = chip("bold"),
+		replace = chip("bold,strikethrough"),
+		command = chip("italic"),
 		inactive = { a = c, b = c, c = c },
 	}
 end
