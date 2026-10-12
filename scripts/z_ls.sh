@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# monochrome themes swap hue for background shade and weight, sourced so the cd sticks
+grep -qxF "$THEME" ~/.dots/scripts/mono/themes && { source ~/.dots/scripts/mono/z_ls.sh; return; }
+
 MARGIN=5%
 
 WINDOW_POSITION="right"

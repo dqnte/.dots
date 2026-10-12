@@ -8,32 +8,39 @@
 
 local palettes = {
 	light = {
-		bg = "#f2f0eb", -- paper
-		float = "#e9e7e1",
-		wash = "#dcd9d2",
-		faint = "#a3a19b",
-		mid = "#6b6a66",
-		ink = "#1c1c1b",
+		bg = "#f2f2f2", -- cool gray page
+		float = "#fafafa", -- panels sit whiter than the page
+		wash = "#e3e3e3",
+		line = "#cccccc", -- hairline borders
+		faint = "#a6a6a6",
+		mid = "#777777",
+		ink = "#333333", -- charcoal, not black
 	},
 	dark = {
-		bg = "#161616",
-		float = "#1e1e1d",
-		wash = "#2c2c2a",
-		faint = "#55544f",
-		mid = "#8b8a85",
-		ink = "#d8d6d0",
+		bg = "#141414",
+		float = "#1f1f1f",
+		wash = "#2b2b2b",
+		line = "#3b3b3b",
+		faint = "#5a5a5a",
+		mid = "#8c8c8c",
+		ink = "#d9d9d9",
 	},
 }
 
+-- same stepped shape as iceberg, mid chip into a line band into a wash band,
+-- with modes told apart by weight and style instead of hue
 local function lualine_theme(p)
-	local b = { fg = p.ink, bg = p.wash }
-	local c = { fg = p.mid, bg = p.float }
+	local b = { fg = p.ink, bg = p.line }
+	local c = { fg = p.mid, bg = p.wash }
+	local chip = function(gui)
+		return { a = { fg = p.float, bg = p.mid, gui = gui }, b = b, c = c }
+	end
 	return {
-		normal = { a = { fg = p.bg, bg = p.ink, gui = "bold" }, b = b, c = c },
-		insert = { a = { fg = p.ink, bg = p.wash, gui = "bold,italic" }, b = b, c = c },
-		visual = { a = { fg = p.bg, bg = p.mid, gui = "bold" }, b = b, c = c },
-		replace = { a = { fg = p.ink, bg = p.wash, gui = "bold,underline" }, b = b, c = c },
-		command = { a = { fg = p.ink, bg = p.float, gui = "italic" }, b = b, c = c },
+		normal = chip("bold"),
+		insert = chip("bold,italic"),
+		visual = chip("bold"),
+		replace = chip("bold,strikethrough"),
+		command = chip("italic"),
 		inactive = { a = c, b = c, c = c },
 	}
 end
@@ -46,7 +53,7 @@ local function groups(p)
 		Normal = { fg = p.ink, bg = p.bg },
 		NormalNC = { link = "Normal" },
 		NormalFloat = { fg = p.ink, bg = p.float },
-		FloatBorder = { fg = p.faint, bg = p.float },
+		FloatBorder = { fg = p.line, bg = p.float },
 		FloatTitle = { fg = p.ink, bg = p.float, bold = true },
 		Cursor = { fg = p.bg, bg = p.ink },
 		CursorLine = { bg = p.float },
@@ -57,7 +64,7 @@ local function groups(p)
 		SignColumn = {},
 		FoldColumn = { fg = p.faint },
 		Folded = { fg = p.mid, bg = p.float, italic = true },
-		WinSeparator = { fg = p.wash },
+		WinSeparator = { fg = p.line },
 		VertSplit = { link = "WinSeparator" },
 		StatusLine = { fg = p.ink, bg = p.wash },
 		StatusLineNC = { fg = p.mid, bg = p.float },
