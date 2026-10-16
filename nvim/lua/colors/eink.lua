@@ -255,7 +255,7 @@ local function groups(p)
 		CmpItemMenu = { fg = p.faint, italic = true },
 
 		-- hop
-		HopNextKey = reverse,
+		HopNextKey = { fg = p.ink, bold = true, underline = true },
 		HopNextKey1 = { fg = p.ink, bold = true, underline = true },
 		HopNextKey2 = { fg = p.mid, underline = true },
 		HopUnmatched = { fg = p.faint },
