@@ -22,3 +22,7 @@ font-codepoint-map = U+F534-U+FD46=Symbols Nerd Font
 cursor-style = bar
 cursor-style-blink = true
 adjust-cursor-thickness = 2
+
+# KEYS
+# lets nvim see <M-...> mappings (minuet accept, etc.)
+macos-option-as-alt = true
