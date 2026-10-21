@@ -58,17 +58,6 @@ fi
 # macOS System Settings
 sh $DOTDIR/mac/macos.sh
 
-# build rust scripts
-cd $DOTDIR/scripts/grrs
-cargo build --release
-cd $DOTDIR
-
-# build go scripts
-# You may need to install go from the website to do this
-go build $DOTDIR/scripts/fancy_git.go
-
 # move scripts to /exe
 cp $DOTDIR/scripts/theme.sh $DOTDIR/scripts/exe/theme
 chmod u+x $DOTDIR/scripts/exe/theme
-mv $DOTDIR/fancy_git $DOTDIR/scripts/exe/fgit
-mv $DOTDIR/scripts/grrs/target/release/grrs $DOTDIR/scripts/exe/lx

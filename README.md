@@ -12,7 +12,7 @@ Install Homebrew
 
 ### CLI Tools
 ```sh
-brew install git nvim fzf nvr ripgrep jq sqlparse isort cmatrix tree
+brew install git nvim fzf nvr ripgrep jq sqlparse isort cmatrix tree kubectl
 ```
 
 ### Install Installers
