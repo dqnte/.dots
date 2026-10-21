@@ -1,6 +1,6 @@
 .DS_Store
 .state
-.zcompdump
+.zcompdump*
 .zcompcache
 .zsh_history
 .luarc.json
