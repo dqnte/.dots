@@ -6,6 +6,7 @@ GHOSTTYDIR=$DOTDIR/ghostty
 CMUXDIR=$DOTDIR/cmux
 ZSHDIR=$DOTDIR/zsh
 NVIMDIR=$DOTDIR/nvim
+CLAUDEDIR=$DOTDIR/claude
 
 if [ ! -d $DOTDIR/scripts/exe ]; then
     mkdir $DOTDIR/scripts/exe
@@ -24,11 +25,12 @@ if [ ! -f $HOME/.zshrc ]; then
 fi
 
 if [ ! -f $HOME/.config/kitty/kitty.conf ]; then
+    mkdir -p $HOME/.config/kitty
     ln -s $KITTYDIR/kitty.conf ~/.config/kitty/kitty.conf
 fi
 
 if [ ! -f $HOME/.config/ghostty/config ]; then
-    mkdir $HOME/.config/ghostty
+    mkdir -p $HOME/.config/ghostty
     ln -s $GHOSTTYDIR/config ~/.config/ghostty/config
 fi
 
@@ -38,11 +40,16 @@ if [ ! -f $HOME/.config/cmux/cmux.json ]; then
 fi
 
 if [ ! -d $HOME/.config/nvim ]; then
-    mkdir $HOME/.config/nvim
+    mkdir -p $HOME/.config/nvim
 fi
 
 if [ ! -f $HOME/.config/nvim/init.lua ]; then
     ln -s $NVIMDIR/lua/init.lua ~/.config/nvim/init.lua
+fi
+
+if [ ! -e $HOME/.claude/themes ]; then
+    mkdir -p $HOME/.claude
+    ln -s $CLAUDEDIR/themes ~/.claude/themes
 fi
 
 # add all config files
@@ -52,7 +59,11 @@ if [ ! -f $DOTDIR/.state ]; then
     echo "THEME_MODE=dark" >> $DOTDIR/.state
 fi
 [ ! -f $KITTYDIR/theme.conf ] && cp $KITTYDIR/themes/rose-pine.conf $KITTYDIR/theme.conf
+[ ! -f $GHOSTTYDIR/theme ] && cp $GHOSTTYDIR/themes/rose-pine $GHOSTTYDIR/theme
 [ ! -f $NVIMDIR/lua/secrets.lua ] && touch $NVIMDIR/lua/secrets.lua
+
+# macOS System Settings
+sh $DOTDIR/mac/macos.sh
 
 # build rust scripts
 cd $DOTDIR/scripts/grrs
