@@ -48,7 +48,18 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Node and friends
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# nvm takes ~300ms to load, so put the default node on PATH and load nvm on first use
+nvm_default=$(cat "$NVM_DIR/alias/default" 2>/dev/null)
+nvm_bins=($NVM_DIR/versions/node/v${nvm_default#v}*/bin(N/nOn))
+[ -n "$nvm_bins" ] && export PATH="$nvm_bins[1]:$PATH"
+unset nvm_default nvm_bins
+
+function nvm() {
+    unset -f nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm "$@"
+}
 
 export PNPM_HOME="/Users/dtobar/Library/pnpm"
 case ":$PATH:" in
