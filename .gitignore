@@ -8,5 +8,4 @@ nvim/lua/secrets.lua
 zsh/plugins/*
 zsh/secrets.sh
 scripts/exe/*
-scripts/grrs/target
 ghostty/theme
