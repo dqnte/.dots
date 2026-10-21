@@ -3,7 +3,9 @@ vim.after_colorscheme.hop = function()
 
 	-- keyboard shortcuts
 	keymap("n", "<leader>e", "<cmd> HopWord<cr>", {})
+	keymap("n", "f", "<cmd> HopWord<cr>", {})
 	keymap("v", "<leader>e", "<cmd> HopWord<cr>", {})
+	keymap("v", "f", "<cmd> HopWord<cr>", {})
 
 	-- keymap for word end jump
 	local lua_require = "<cmd> lua require'hop'.hint_words"

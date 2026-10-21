@@ -1,0 +1,36 @@
+# Non-default macOS System Settings, applied by mac/macos.sh.
+# domain:
+#   key: value   (true/false -> bool, 3 -> int, 3.0 -> float, else string)
+
+NSGlobalDomain:
+  # Appearance: graphite accent + highlight, scroll bars only while scrolling
+  AppleAccentColor: -1
+  AppleAquaColorVariant: 6
+  AppleHighlightColor: "0.847059 0.847059 0.862745 Graphite"
+  AppleShowScrollBars: WhenScrolling
+  # Mouse/trackpad: max tracking speed, no swipe-to-navigate back/forward
+  com.apple.mouse.scaling: 3.0
+  com.apple.trackpad.scaling: 3.0
+  AppleEnableSwipeNavigateWithScrolls: false
+
+com.apple.dock:
+  autohide: true
+  tilesize: 76
+  show-recents: false
+  # Hot corners off
+  wvous-bl-corner: 1
+  wvous-bl-modifier: 0
+  wvous-br-corner: 1
+  wvous-br-modifier: 0
+
+com.apple.WindowManager:
+  EnableStandardClickToShowDesktop: false
+  EnableTilingByEdgeDrag: false
+  EnableTopTilingByEdgeDrag: false
+  EnableTiledWindowMargins: false
+
+com.apple.menuextra.clock:
+  ShowDayOfWeek: true
+
+com.apple.finder:
+  FXPreferredViewStyle: Nlsv

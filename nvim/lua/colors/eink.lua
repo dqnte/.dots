@@ -123,8 +123,8 @@ local function groups(p)
 		Constant = { fg = p.ink },
 		Identifier = { fg = p.ink },
 		Function = { fg = p.ink },
-		Statement = { fg = p.ink },
-		Keyword = { fg = p.ink },
+		Statement = { fg = p.ink, bold = true },
+		Keyword = { fg = p.ink, bold = true },
 		Operator = { fg = p.ink },
 		PreProc = { fg = p.mid },
 		Include = { fg = p.mid },
@@ -255,7 +255,7 @@ local function groups(p)
 		CmpItemMenu = { fg = p.faint, italic = true },
 
 		-- hop
-		HopNextKey = reverse,
+		HopNextKey = { fg = p.ink, bold = true, underline = true },
 		HopNextKey1 = { fg = p.ink, bold = true, underline = true },
 		HopNextKey2 = { fg = p.mid, underline = true },
 		HopUnmatched = { fg = p.faint },

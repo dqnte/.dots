@@ -14,7 +14,15 @@ font-feature = +ss08
 font-feature = +ss10
 font-feature = +ss11
 
+# Legacy Nerd Fonts v2 Material icons (removed in v3, which Ghostty bundles).
+# Starts at F534 so v3 Octicons (F400-F533) stay intact.
+font-codepoint-map = U+F534-U+FD46=Symbols Nerd Font
+
 # CURSOR
 cursor-style = bar
 cursor-style-blink = true
 adjust-cursor-thickness = 2
+
+# KEYS
+# lets nvim see <M-...> mappings (minuet accept, etc.)
+macos-option-as-alt = true

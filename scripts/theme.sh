@@ -2,49 +2,29 @@
 source ~/.dots/zsh/utils.sh
 
 DEFAULT_THEME=everforest
-THEMES_DIR="$HOME/.dots/kitty/themes"
+THEMES_DIR="$HOME/.dots/ghostty/themes"
 
 function show_all_themes() {
-    themes_list=$(ls $THEMES_DIR | cut -d '.' -f 1 | sed s/_light// | uniq)
+    themes_list=$(ls $THEMES_DIR | sed s/_light// | uniq)
     echo ""
     printf "  %s\n" $themes_list
     echo ""
-}
-
-function set_kitty_theme() {
-    file=$THEME
-    [ "$THEME_MODE" = "light" ] && file="${THEME}_light"
-
-    # some themes only have light files, they won't have a file without a suffix
-    if [ ! -f $THEMES_DIR/$THEME.conf ]; then
-        THEME_MODE="light"
-        file="${THEME}_light"
-    elif [ ! -f $THEMES_DIR/$file.conf ]; then
-        THEME_MODE="dark"
-        file=$THEME
-    fi
-
-    # kitty theme change
-    cp $THEMES_DIR/$file.conf ~/.dots/kitty/theme.conf
-    # kill -s USR1 $(pgrep -a kitty)
 }
 
 function set_ghostty_theme() {
     file=$THEME
     [ "$THEME_MODE" = "light" ] && file="${THEME}_light"
 
-    ghostty_themes="$HOME/.dots/ghostty/themes"
-
     # some themes only have light variants
-    if [ ! -f "$ghostty_themes/$THEME" ]; then
+    if [ ! -f "$THEMES_DIR/$THEME" ]; then
+        THEME_MODE="light"
         file="${THEME}_light"
-    elif [ ! -f "$ghostty_themes/$file" ]; then
+    elif [ ! -f "$THEMES_DIR/$file" ]; then
+        THEME_MODE="dark"
         file=$THEME
     fi
 
-    [ ! -f "$ghostty_themes/$file" ] && return
-
-    cp "$ghostty_themes/$file" ~/.dots/ghostty/theme
+    cp "$THEMES_DIR/$file" ~/.dots/ghostty/theme
     cmux reload-config >/dev/null 2>&1
 }
 
@@ -82,8 +62,8 @@ function set_device_mode() {
 }
 
 function change_theme() {
-    file="${THEMES_DIR}/${1}.conf"
-    light_file="${THEMES_DIR}/${1}_light.conf"
+    file="${THEMES_DIR}/${1}"
+    light_file="${THEMES_DIR}/${1}_light"
 
     if [ $1 = "dark" ] || [ $1 = "light" ]; then
         THEME_MODE="$1"
@@ -94,7 +74,6 @@ function change_theme() {
         exit 0
     fi
 
-    set_kitty_theme
     set_ghostty_theme
     set_cmux_theme
     set_claude_theme
@@ -113,7 +92,7 @@ function change_theme() {
 }
 
 function picker() {
-    choice=$(ls $THEMES_DIR | cut -d '.' -f 1 | sed s/_light// | uniq | fzf)
+    choice=$(ls $THEMES_DIR | sed s/_light// | uniq | fzf)
 
     if [ ! -z "$choice" ]; then
         change_theme "$choice"

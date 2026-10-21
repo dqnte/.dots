@@ -1,5 +1,4 @@
 #!/bin/bash
-AUTO_TMUX=true
 
 function set_zsh_env() {
     export DOTZSH="$HOME/.dots/zsh"
@@ -13,15 +12,4 @@ function set_zsh_env() {
     [ -f "$DOTZSH/secrets.sh" ] && source "$DOTZSH/secrets.sh"
 }
 
-function boot_up() {
-    # Open tmux automatically
-    if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~  tmux ]] && [ -z "$TMUX" ] && [ $AUTO_TMUX ]
-    then
-        # exec tmux -f ~/.dots/tmux.conf
-        set_zsh_env
-    else
-        set_zsh_env
-    fi
-}
-
-boot_up
+set_zsh_env

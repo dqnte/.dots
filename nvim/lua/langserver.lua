@@ -1,5 +1,6 @@
 require("plugs/lspconfig")
 require("plugs/cmp")
+require("plugs/claude")
 
 local function find_poetry_bin_path(cmd)
 	local file = vim.fn.findfile(".venv/bin/" .. cmd, ";Fabric;Code")

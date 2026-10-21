@@ -12,7 +12,7 @@ Install Homebrew
 
 ### CLI Tools
 ```sh
-brew install git tmux nvim fzf nvr ripgrep jq sqlparse isort cmatrix tree
+brew install git nvim fzf nvr ripgrep jq sqlparse isort cmatrix tree
 ```
 
 ### Install Installers
@@ -80,9 +80,7 @@ brew install ktlint
 ```
 
 
-### Font Configuration for Kitty
-You may need to restart kitty after downloading fonts for them to appear.
-
+### Fonts
 You can download `Symbols Nerd Font` from your icloud.
 
 
