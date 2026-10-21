@@ -9,7 +9,7 @@ alias stay="caffeinate -d cmatrix"
 alias clr=clear
 alias x="xargs "
 alias c=claude
-alias tree="tree --gitignore"
+alias tree="sh ~/.dots/scripts/tree.sh"
 
 alias ls="sh ~/.dots/scripts/fancy_ls.sh"
 alias g="git"
