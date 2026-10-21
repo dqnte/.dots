@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DOTDIR=$HOME/.dots
-KITTYDIR=$DOTDIR/kitty
 GHOSTTYDIR=$DOTDIR/ghostty
 CMUXDIR=$DOTDIR/cmux
 ZSHDIR=$DOTDIR/zsh
@@ -22,11 +21,6 @@ fi
 
 if [ ! -f $HOME/.zshrc ]; then
     ln -s $ZSHDIR/init.sh ~/.zshrc
-fi
-
-if [ ! -f $HOME/.config/kitty/kitty.conf ]; then
-    mkdir -p $HOME/.config/kitty
-    ln -s $KITTYDIR/kitty.conf ~/.config/kitty/kitty.conf
 fi
 
 if [ ! -f $HOME/.config/ghostty/config ]; then
@@ -58,7 +52,6 @@ if [ ! -f $DOTDIR/.state ]; then
     echo "THEME=rose-pine" >> $DOTDIR/.state
     echo "THEME_MODE=dark" >> $DOTDIR/.state
 fi
-[ ! -f $KITTYDIR/theme.conf ] && cp $KITTYDIR/themes/rose-pine.conf $KITTYDIR/theme.conf
 [ ! -f $GHOSTTYDIR/theme ] && cp $GHOSTTYDIR/themes/rose-pine $GHOSTTYDIR/theme
 [ ! -f $NVIMDIR/lua/secrets.lua ] && touch $NVIMDIR/lua/secrets.lua
 
@@ -79,8 +72,3 @@ cp $DOTDIR/scripts/theme.sh $DOTDIR/scripts/exe/theme
 chmod u+x $DOTDIR/scripts/exe/theme
 mv $DOTDIR/fancy_git $DOTDIR/scripts/exe/fgit
 mv $DOTDIR/scripts/grrs/target/release/grrs $DOTDIR/scripts/exe/lx
-cp $DOTDIR/scripts/font.sh $DOTDIR/scripts/exe/font
-chmod u+x $DOTDIR/scripts/exe/font
-
-# reload terminal
-kill -s USR1 $(pgrep kitty)

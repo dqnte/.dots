@@ -3,7 +3,6 @@
 # ALIASES
 alias k=kubectl
 alias v="nvim"
-alias tclear='tmux kill-session -a'
 alias pe='poetry run python'
 alias pr='poetry run'
 alias stay="caffeinate -d cmatrix"
@@ -34,8 +33,6 @@ alias zrm="zr | x rm"
 alias ff="sh ~/.dots/scripts/ff.sh"
 alias fg="git ls-files --others --exclude-standard --modified | fzf | xargs nvim"
 
-alias kitty-font="kitty --debug-font-fallback"
-
 alias TODO="v ~/TODO.md"
 alias NOTES="v ~/NOTES.md"
 alias notes="cd ~/notes"
@@ -47,9 +44,6 @@ alias dup="docker-compose up -d --build"
 alias ddown="docker-compose down"
 alias dfollow="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.Ports}}' | tail -n +2 | fzf | awk '{print \$1}' | xargs docker logs --follow"
 
-# key binding for kitty
+# ⌥ arrow word movement
 bindkey '\e[1;3D' backward-word # ⌥←
 bindkey '\e[1;3C' forward-word # ⌥→
-
-# fixes backspace issues when sshing into a server
-[[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"

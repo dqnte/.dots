@@ -4,7 +4,7 @@
 # already on screen recolors when the terminal theme changes
 #
 # a theme listed in scripts/mono/themes needs its terminal theme files
-# (ghostty/themes, kitty/themes) to provide
+# (ghostty/themes) to provide
 #   foreground  ink, the main text color
 #   background  page
 #   color 0     panel, a step lighter than the page, used for the name bands
