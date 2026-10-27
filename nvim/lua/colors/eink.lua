@@ -173,7 +173,9 @@ local function groups(p)
 		["@markup.underline"] = { underline = true },
 		["@markup.link"] = { underline = true },
 		["@markup.link.url"] = { fg = p.mid, underline = true },
-		["@markup.raw"] = { bg = p.float },
+		-- like iceberg, code is told apart by ink alone; a bg would only cover the text, not the block
+		["@markup.raw"] = { fg = p.mid },
+		["@markup.raw.delimiter"] = { fg = p.faint },
 		["@markup.quote"] = { fg = p.mid, italic = true },
 		["@markup.list"] = { fg = p.mid },
 
