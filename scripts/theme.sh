@@ -105,6 +105,13 @@ elif [ "show" = $1 ]; then
     echo -e "\n  $THEME\n"
 elif [ "show-all" = $1 ]; then
     show_all_themes
+elif [ "toggle" = $1 ]; then
+    # read from state so a stale shell env doesn't flip the wrong way
+    if [ "$(get_state_value THEME_MODE)" = "light" ]; then
+        change_theme dark
+    else
+        change_theme light
+    fi
 else
     change_theme $1
 fi

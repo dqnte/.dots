@@ -10,6 +10,7 @@ alias clr=clear
 alias x="xargs "
 alias c=claude
 alias tree="sh ~/.dots/scripts/tree.sh"
+alias tt="theme toggle"
 
 alias ls="sh ~/.dots/scripts/fancy_ls.sh"
 alias g="git"
