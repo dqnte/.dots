@@ -104,18 +104,22 @@ local function configure_lsp()
 			},
 		},
 	})
-	-- configure_server("pyright", {
-	-- 	on_attach = on_attach,
-	-- 	before_init = function(_, config)
-	-- 		local Path = require("plenary.path")
-	-- 		local venv = Path:new((config.root_dir:gsub("/", Path.path.sep)), ".venv")
-	-- 		if venv:joinpath("bin"):is_dir() then
-	-- 			config.settings.python.pythonPath = tostring(venv:joinpath("bin", "python"))
-	-- 		else
-	-- 			config.settings.python.pythonPath = tostring(venv:joinpath("Scripts", "python.exe"))
-	-- 		end
-	-- 	end,
-	-- })
+	configure_server("pyright", {
+		on_attach = on_attach,
+		-- point pyright at the project's .venv (uv/poetry) so third-party imports resolve
+		before_init = function(_, config)
+			local root = config.root_dir
+			if not root then
+				return
+			end
+			local python = root .. "/.venv/bin/python"
+			if vim.fn.executable(python) == 1 then
+				config.settings = config.settings or {}
+				config.settings.python = config.settings.python or {}
+				config.settings.python.pythonPath = python
+			end
+		end,
+	})
 	configure_server("rust_analyzer", {
 		on_attach = on_attach,
 	})
