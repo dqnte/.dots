@@ -126,6 +126,13 @@ elif [ $THEME = 'eink' ]; then
       COLOR_BG_OVERLAY="#f6f6f6" # TelescopeResultsNormal bg
       COLOR_BG_HI="#fafafa" # TelescopeSelection bg
     fi
+elif [ $THEME = 'crt' ]; then
+    COLOR_POP_1="#f28a1e" # accent, nerv orange
+    COLOR_POP_2="#d0483d" # ink
+    COLOR_FG="#d0483d" # Normal fg
+    COLOR_FG_SUBTLE="#9e3a32" # TelescopePromptCounter fg
+    COLOR_BG_OVERLAY="#0a0202" # TelescopeResultsNormal bg
+    COLOR_BG_HI="#140404" # TelescopeSelection bg
 fi
 
 FZF_COLOR_OPTS="fg:$COLOR_FG,fg+:regular:$COLOR_FG,query:regular:$COLOR_FG,header:$COLOR_FG"
