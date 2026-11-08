@@ -8,7 +8,6 @@ alias pr='poetry run'
 alias stay="caffeinate -d cmatrix"
 alias clr=clear
 alias x="xargs "
-alias c=claude
 alias tree="sh ~/.dots/scripts/tree.sh"
 alias tt="theme toggle"
 
@@ -44,6 +43,10 @@ alias d="docker"
 alias dup="docker-compose up -d --build"
 alias ddown="docker-compose down"
 alias dfollow="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.Ports}}' | tail -n +2 | fzf | awk '{print \$1}' | xargs docker logs --follow"
+
+# claude aliases
+alias c=claude
+alias ch="c --model haiku"
 
 # ⌥ arrow word movement
 bindkey '\e[1;3D' backward-word # ⌥←
