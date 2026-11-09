@@ -38,3 +38,12 @@ _fix_cursor() {
    echo -ne '\e[5 q'
 }
 precmd_functions+=(_fix_cursor)
+
+# ghost text showing what tab would complete; async so slow completers don't stall typing
+if [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    ZSH_AUTOSUGGEST_STRATEGY=(completion)
+    export ZSH_AUTOSUGGEST_USE_ASYNC=1
+    export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
+    export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi

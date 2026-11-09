@@ -1,0 +1,29 @@
+{
+  "name": "CRT",
+  "base": "dark",
+  "overrides": {
+    "claude": "rgb(242,138,30)",
+    "claudeShimmer": "rgb(255,176,92)",
+    "professionalBlue": "rgb(208,72,61)",
+    "text": "rgb(208,72,61)",
+    "inverseText": "rgb(10,2,2)",
+    "inactive": "rgb(158,58,50)",
+    "subtle": "rgb(110,33,27)",
+    "success": "rgb(208,72,61)",
+    "error": "rgb(208,72,61)",
+    "warning": "rgb(242,138,30)",
+    "merged": "rgb(158,58,50)",
+    "planMode": "rgb(158,58,50)",
+    "autoAccept": "rgb(242,138,30)",
+    "fastMode": "rgb(208,72,61)",
+    "bashBorder": "rgb(158,58,50)",
+    "userMessageBackground": "rgb(20,4,4)",
+    "userMessageBackgroundHover": "rgb(51,13,10)",
+    "memoryBackgroundColor": "rgb(20,4,4)",
+    "bashMessageBackgroundColor": "rgb(20,4,4)",
+    "diffAdded": "rgb(51,13,10)",
+    "diffRemoved": "rgb(20,4,4)",
+    "diffAddedWord": "rgb(92,24,19)",
+    "diffRemovedWord": "rgb(51,13,10)"
+  }
+}

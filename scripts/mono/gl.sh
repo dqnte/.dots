@@ -1,10 +1,8 @@
 #!/bin/sh
 # high contrast gl for monochrome themes, same style as mono/gs.sh
 #   hash      gray marker
-#   branches  reversed chip, bold
-#   tags      reversed chip, italic
 #   subject   white band, padded to the longest subject so the bands line up
-#   refs      chips after the band
+#   refs      ← arrow, then branches and tags in italics after the band
 
 . ~/.dots/scripts/mono/palette.sh
 
@@ -18,24 +16,23 @@ git log -n "$linecount" --format='%h%x1f%D%x1f%s' \
     --decorate-refs=refs/tags \
     | awk -F '\037' \
         -v cols="$(tput cols)" -v pad="$ZPADDING" \
-        -v ink="$E_INK" -v mid="$E_MID" -v white="$B_WHITE" -v reverse="$E_REVERSE" \
-        -v bold="$E_BOLD" -v italic="$E_ITALIC" -v reset="$E_RESET" '
+        -v ink="$E_INK" -v mid="$E_MID" -v white="$B_WHITE" \
+        -v italic="$E_ITALIC" -v reset="$E_RESET" '
     {
         refs = ""
         refs_len = 0
         n = split($2, names, ", ")
         for (i = 1; i <= n; i++) {
             name = names[i]
-            style = bold
-            if (name ~ /^tag: /) { name = substr(name, 6); style = italic }
-            refs = refs " " reverse style " " name " " reset
+            if (name ~ /^tag: /) name = substr(name, 6)
+            refs = refs " ← " italic name reset
             refs_len += length(name) + 3
         }
 
         hashes[NR] = pad mid $1 reset " "
         refs_after[NR] = refs
         subjects[NR] = $3
-        # every band shares one width, so it has to fit the row with the most chips
+        # every band shares one width, so it has to fit the row with the most refs
         room = cols - length(pad) - length($1) - 1 - refs_len - 2
         if (NR == 1 || room < min_room) min_room = room
         if (length($3) > width) width = length($3)

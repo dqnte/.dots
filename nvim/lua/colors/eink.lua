@@ -46,7 +46,10 @@ local function lualine_theme(p)
 end
 
 local function groups(p)
-	local reverse = { fg = p.bg, bg = p.ink, bold = true }
+	-- themes can light a second hue for whatever should catch the eye first;
+	-- without one it is just ink
+	local accent = p.accent or p.ink
+	local reverse = { fg = p.bg, bg = accent, bold = true }
 
 	return {
 		-- editor ui
@@ -55,11 +58,11 @@ local function groups(p)
 		NormalFloat = { fg = p.ink, bg = p.float },
 		FloatBorder = { fg = p.line, bg = p.float },
 		FloatTitle = { fg = p.ink, bg = p.float, bold = true },
-		Cursor = { fg = p.bg, bg = p.ink },
+		Cursor = { fg = p.bg, bg = accent },
 		CursorLine = { bg = p.float },
 		CursorColumn = { bg = p.float },
 		ColorColumn = { bg = p.float },
-		CursorLineNr = { fg = p.ink, bold = true },
+		CursorLineNr = { fg = accent, bold = true },
 		LineNr = { fg = p.faint },
 		SignColumn = {},
 		FoldColumn = { fg = p.faint },
@@ -79,7 +82,7 @@ local function groups(p)
 		SpecialKey = { fg = p.faint },
 		Conceal = { fg = p.faint },
 		Directory = { fg = p.ink, bold = true },
-		Title = { fg = p.ink, bold = true },
+		Title = { fg = accent, bold = true },
 		MatchParen = { bold = true, underline = true },
 		QuickFixLine = { bg = p.wash, bold = true },
 
@@ -98,8 +101,8 @@ local function groups(p)
 		PmenuThumb = { bg = p.faint },
 		PmenuKind = { fg = p.mid, bg = p.float },
 		PmenuExtra = { fg = p.faint, bg = p.float, italic = true },
-		PmenuMatch = { fg = p.ink, bg = p.float, bold = true, underline = true },
-		PmenuMatchSel = { fg = p.ink, bg = p.wash, bold = true, underline = true },
+		PmenuMatch = { fg = accent, bg = p.float, bold = true, underline = true },
+		PmenuMatchSel = { fg = accent, bg = p.wash, bold = true, underline = true },
 		WildMenu = { link = "PmenuSel" },
 
 		-- messages
@@ -137,13 +140,13 @@ local function groups(p)
 		Todo = reverse,
 
 		-- treesitter: definitions are bold, uses are plain
-		["@function"] = { bold = true },
-		["@function.method"] = { bold = true },
+		["@function"] = { fg = accent, bold = true },
+		["@function.method"] = { fg = accent, bold = true },
 		["@function.call"] = { fg = p.ink },
 		["@function.method.call"] = { fg = p.ink },
 		["@function.builtin"] = { italic = true },
 		["@constructor"] = { fg = p.ink },
-		["@type.definition"] = { bold = true },
+		["@type.definition"] = { fg = accent, bold = true },
 		["@type.builtin"] = { italic = true },
 		["@variable.builtin"] = { italic = true },
 		["@constant.builtin"] = { italic = true },
@@ -166,26 +169,28 @@ local function groups(p)
 		["@comment.note"] = { fg = p.ink, bold = true },
 
 		-- markup
-		["@markup.heading"] = { fg = p.ink, bold = true },
+		["@markup.heading"] = { fg = accent, bold = true },
 		["@markup.strong"] = { bold = true },
 		["@markup.italic"] = { italic = true },
 		["@markup.strikethrough"] = { strikethrough = true },
 		["@markup.underline"] = { underline = true },
 		["@markup.link"] = { underline = true },
 		["@markup.link.url"] = { fg = p.mid, underline = true },
-		["@markup.raw"] = { bg = p.float },
+		-- like iceberg, code is told apart by ink alone; a bg would only cover the text, not the block
+		["@markup.raw"] = { fg = p.mid },
+		["@markup.raw.delimiter"] = { fg = p.faint },
 		["@markup.quote"] = { fg = p.mid, italic = true },
 		["@markup.list"] = { fg = p.mid },
 
 		-- lsp semantic tokens: leave calls plain, bold declarations
 		["@lsp.type.function"] = {},
 		["@lsp.type.method"] = {},
-		["@lsp.typemod.function.declaration"] = { bold = true },
-		["@lsp.typemod.method.declaration"] = { bold = true },
-		["@lsp.typemod.class.declaration"] = { bold = true },
-		["@lsp.typemod.type.declaration"] = { bold = true },
-		["@lsp.typemod.interface.declaration"] = { bold = true },
-		["@lsp.typemod.enum.declaration"] = { bold = true },
+		["@lsp.typemod.function.declaration"] = { fg = accent, bold = true },
+		["@lsp.typemod.method.declaration"] = { fg = accent, bold = true },
+		["@lsp.typemod.class.declaration"] = { fg = accent, bold = true },
+		["@lsp.typemod.type.declaration"] = { fg = accent, bold = true },
+		["@lsp.typemod.interface.declaration"] = { fg = accent, bold = true },
+		["@lsp.typemod.enum.declaration"] = { fg = accent, bold = true },
 		["@lsp.mod.deprecated"] = { strikethrough = true },
 		LspReferenceText = { bg = p.wash },
 		LspReferenceRead = { bg = p.wash },
@@ -244,53 +249,59 @@ local function groups(p)
 
 		-- telescope (rest is derived in plugs/telescope.lua)
 		TelescopeMatching = { bold = true, underline = true },
-		TelescopeSelectionCaret = { fg = p.ink, bold = true },
+		TelescopeSelectionCaret = { fg = accent, bold = true },
 
 		-- cmp
 		CmpItemAbbr = { fg = p.ink },
-		CmpItemAbbrMatch = { fg = p.ink, bold = true, underline = true },
+		CmpItemAbbrMatch = { fg = accent, bold = true, underline = true },
 		CmpItemAbbrMatchFuzzy = { fg = p.ink, bold = true },
 		CmpItemAbbrDeprecated = { fg = p.mid, strikethrough = true },
 		CmpItemKind = { fg = p.mid },
 		CmpItemMenu = { fg = p.faint, italic = true },
 
 		-- hop
-		HopNextKey = { fg = p.ink, bold = true, underline = true },
-		HopNextKey1 = { fg = p.ink, bold = true, underline = true },
+		HopNextKey = { fg = accent, bold = true, underline = true },
+		HopNextKey1 = { fg = accent, bold = true, underline = true },
 		HopNextKey2 = { fg = p.mid, underline = true },
 		HopUnmatched = { fg = p.faint },
 	}
 end
 
-local function apply()
-	local mode = vim.env.THEME_MODE == "light" and "light" or "dark"
-	local p = palettes[mode]
+-- other single-hue themes (crt) reuse these groups with their own palettes,
+-- and can bring their own lualine theme
+local function apply(name, pals, statusline)
+	local mode = vim.env.THEME_MODE == "light" and pals.light and "light" or "dark"
+	local p = pals[mode]
 
 	vim.cmd("hi clear")
 	vim.o.background = mode
-	vim.g.colors_name = "eink"
+	vim.g.colors_name = name
 
 	-- flatten every existing group so nothing inherits hue from defaults or plugins
-	for name, def in pairs(vim.api.nvim_get_hl(0, {})) do
+	for group, def in pairs(vim.api.nvim_get_hl(0, {})) do
 		if not def.link then
-			vim.api.nvim_set_hl(0, name, {})
+			vim.api.nvim_set_hl(0, group, {})
 		end
 	end
 
-	for name, def in pairs(groups(p)) do
-		vim.api.nvim_set_hl(0, name, def)
+	for group, def in pairs(groups(p)) do
+		vim.api.nvim_set_hl(0, group, def)
 	end
 
 	-- plugins like devicons define colored groups after load
 	vim.schedule(function()
-		for name, _ in pairs(vim.api.nvim_get_hl(0, {})) do
-			if name:match("^DevIcon") then
-				vim.api.nvim_set_hl(0, name, { fg = p.mid })
+		for group, _ in pairs(vim.api.nvim_get_hl(0, {})) do
+			if group:match("^DevIcon") then
+				vim.api.nvim_set_hl(0, group, { fg = p.mid })
 			end
 		end
 	end)
 
-	vim.luatheme = lualine_theme(p)
+	vim.luatheme = (statusline or lualine_theme)(p)
 end
 
-vim.colorschemes.eink = apply
+vim.colorschemes.eink = function()
+	apply("eink", palettes)
+end
+
+return { apply = apply }
